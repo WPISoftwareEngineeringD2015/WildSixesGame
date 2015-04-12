@@ -30,7 +30,9 @@ public class SplashScreen extends JFrame{
 		lblSixesWild.setBounds(10, 11, 408, 68);
 		getContentPane().add(lblSixesWild);
 		
-		getContentPane().add(lblAlyssaGraham);
+		JLabel lblTeamNames = new JLabel("<html>Alyssa Graham<br>Jackson Oliva<br>Molly Homchenko<br>Gabriel Bell<br>Evin Ugur</html>");
+		lblTeamNames.setBounds(10, 73, 127, 108);
+		getContentPane().add(lblTeamNames);
 	}
 	
 	public void launchSplashSreen() {
