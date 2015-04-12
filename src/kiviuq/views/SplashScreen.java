@@ -1,10 +1,9 @@
 package kiviuq.views;
 
-import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 
 public class SplashScreen extends JFrame{
 
@@ -19,14 +18,19 @@ public class SplashScreen extends JFrame{
 	public SplashScreen(int duration_ms, JFrame nextWindow) {
 		super();
 		setResizable(false);
-		setTitle("Sixes Wild -- Loading");
+		setTitle("Sixes Wild");
 		setSize(750, 450);
 		setLocationRelativeTo(null); // centers
 		this.duration_ms = duration_ms;
 		this.nextWindow = nextWindow;
+		getContentPane().setLayout(null);
 		
-		JLabel lblSixesWild = new JLabel("Sixes Wild!!!!!!!!!!!!");
-		getContentPane().add(lblSixesWild, BorderLayout.CENTER);
+		JLabel lblSixesWild = new JLabel("Sixes Wild - Team Kiviuq");
+		lblSixesWild.setFont(new Font("Tahoma", Font.PLAIN, 34));
+		lblSixesWild.setBounds(10, 11, 408, 68);
+		getContentPane().add(lblSixesWild);
+		
+		getContentPane().add(lblAlyssaGraham);
 	}
 	
 	public void launchSplashSreen() {
@@ -37,6 +41,4 @@ public class SplashScreen extends JFrame{
 		nextWindow.setVisible(true);
 		dispose();
 	}
-	
-	
 }
