@@ -35,7 +35,7 @@ public class SplashScreen extends JFrame{
 		getContentPane().add(lblTeamNames);
 	}
 	
-	public void launchSplashSreen() {
+	public void launchSplashScreen() {
 		setVisible(true);
 		try {
 			Thread.sleep(duration_ms);
