@@ -8,9 +8,11 @@ public class Board {
 	int movesMade;
 	int timePassed; 
 	int points;
+	StarCriteria starCriteira; 
 	public Board(LevelTemplate template) {
 		grid = new Tile[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
 		eliminatedTiles = new boolean[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
+		starCriteira = template.getStarCriteria();
 		TileType[][] gridTemplate = template.getGridTemplate();
 		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
 			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
@@ -21,6 +23,10 @@ public class Board {
 				grid[x][y] = t;
 			}
 		}
+	}
+	
+	public StarCriteria getStarCriteria() {
+		return starCriteira;
 	}
 	
 	public Tile[][] getGrid() {

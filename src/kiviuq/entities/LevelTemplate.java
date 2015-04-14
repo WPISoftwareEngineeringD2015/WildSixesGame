@@ -29,6 +29,10 @@ public class LevelTemplate {
 		}
 	}
 	
+	public StarCriteria getStarCriteria() {
+		return starCriteria;
+	}
+	
 	public TileType[][] getGridTemplate() {
 		return grid;
 	}
