@@ -25,6 +25,10 @@ public class Board {
 		}
 	}
 	
+	public int getPoints() {
+		return points;
+	}
+	
 	public StarCriteria getStarCriteria() {
 		return starCriteira;
 	}

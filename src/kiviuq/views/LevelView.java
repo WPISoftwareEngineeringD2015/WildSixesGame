@@ -20,7 +20,9 @@ public class LevelView extends JFrame{
 		
 		JPanel grid = new BoardView(board);
 		JPanel starCriteria = new StarCriteriaView(board.getStarCriteria());
+		JPanel scoreView = new ScoreView(board);
 		getContentPane().add(starCriteria, BorderLayout.NORTH);
+		getContentPane().add(scoreView, BorderLayout.AFTER_LAST_LINE);
 		getContentPane().add(grid, BorderLayout.CENTER);
 	}
 	
