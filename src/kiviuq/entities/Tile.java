@@ -10,4 +10,12 @@ public class Tile {
 		this.type = type;
 	}
 	
+	public int getNumber() {
+		return number;
+	}
+	
+	public TileType getType() {
+		return type;
+	}
+	
 }
