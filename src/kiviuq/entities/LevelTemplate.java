@@ -21,8 +21,15 @@ public class LevelTemplate {
 		this.random4 = random4;
 		this.random5 = random5;
 		this.starCriteria = starCriteria;
-		grid = new TileType[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
-		
+		grid = new TileType[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];	
+	}
+	
+	public TileType[][] getGridTemplate() {
+		return grid;
+	}
+	
+	public void setTileTypeAtPosition(int x, int y, TileType tt) {
+		grid[x][y] = tt ;
 	}
 	
 }

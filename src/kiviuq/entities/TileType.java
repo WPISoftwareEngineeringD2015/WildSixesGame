@@ -1,7 +1,7 @@
 package kiviuq.entities;
 
 public enum TileType {
+	Number, // default
 	Null,
-	Number,
 	Relase;
 }
