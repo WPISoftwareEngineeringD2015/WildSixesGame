@@ -25,4 +25,19 @@ public class Tile {
 		return type;
 	}
 	
+	@Override 
+	public String toString() {
+		String str = "";
+		switch (type) {
+			default: break;
+			case Number:
+				str = number + "";
+			case Null:
+				break;
+			case Relase:
+				str = "R";
+		}
+		return str;
+	}
+	
 }

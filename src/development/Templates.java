@@ -19,6 +19,12 @@ public class Templates {
 				int y = r.nextInt(Constants.BOARD_WIDTH);
 				temp.setTileTypeAtPosition(x, y, TileType.Null);
 			}
+			// throw some random release tiles in there
+			for (int i = 0; i < 2; i++) {
+				int x = r.nextInt(Constants.BOARD_LENGTH);
+				int y = r.nextInt(Constants.BOARD_WIDTH);
+				temp.setTileTypeAtPosition(x, y, TileType.Relase);
+			}
 		}
 		return temp;
 	}
