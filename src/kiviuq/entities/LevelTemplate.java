@@ -1,5 +1,5 @@
 package kiviuq.entities;
-import kiviuq.util.Constants;;
+import kiviuq.util.Constants;
 public class LevelTemplate {
 	int levelNumber;
 	GameMode mode;
@@ -22,6 +22,11 @@ public class LevelTemplate {
 		this.random5 = random5;
 		this.starCriteria = starCriteria;
 		grid = new TileType[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];	
+		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
+			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
+				grid[x][y] = TileType.Number;
+			}
+		}
 	}
 	
 	public TileType[][] getGridTemplate() {

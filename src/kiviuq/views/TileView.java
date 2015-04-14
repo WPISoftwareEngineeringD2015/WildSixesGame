@@ -37,6 +37,7 @@ public class TileView extends JPanel{
 	private final static Color[] NUMBER_COLORS = {Color.ORANGE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE};
 	
 	Color getColor() {
+		boolean breakPoint = true;
 		switch (tile.getType()) {
 		case Null:
 			return Color.gray;
