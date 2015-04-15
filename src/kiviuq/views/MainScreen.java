@@ -24,6 +24,7 @@ public class MainScreen extends JFrame {
 		getContentPane().setLayout(null);
 
 		JButton ScoreButton = new JButton("Scores");
+		ScoreButton.setEnabled(false);
 		ScoreButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		ScoreButton.setBounds(10, 359, 131, 52);
 		getContentPane().add(ScoreButton);
