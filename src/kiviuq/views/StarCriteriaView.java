@@ -23,7 +23,7 @@ public class StarCriteriaView extends JPanel{
 		super();
 		this.starCriteria = starCriteria;
 		
-		setLayout(new GridLayout(3, 2, 5, 5));
+		setLayout(new GridLayout(3, 2, 5, 0));
 		
 		JLabel lblOneStar = new JLabel("One Star:");
 		add(lblOneStar);
