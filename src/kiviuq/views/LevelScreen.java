@@ -8,14 +8,14 @@ import javax.swing.JPanel;
 
 import kiviuq.entities.Board;
 
-public class LevelView extends JFrame{
+public class LevelScreen extends JFrame{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	Board board;
 	JButton back;
-	public LevelView(Board board) {
+	public LevelScreen(Board board) {
 		super();
 		setTitle("Example Level Screen");
 		setBounds(100, 100, 867, 715);
