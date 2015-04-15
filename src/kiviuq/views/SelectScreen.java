@@ -1,27 +1,26 @@
 package kiviuq.views;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
-import java.awt.Font;
-
-import javax.swing.JButton;
-
-import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import kiviuq.entities.Board;
 import kiviuq.entities.GameMode;
+import kiviuq.entities.LevelTemplate;
+import development.Templates;
 
 public class SelectScreen extends JFrame {
 
@@ -78,6 +77,15 @@ public class SelectScreen extends JFrame {
 				String gameModeStr = nameComponents[0];
 				int levelNumber = Integer.parseInt(nameComponents[1]);
 				
+				// TODO implement this later
+				// for now, just load up any level with out getExampleTemplate()...
+				
+				
+				LevelTemplate template = Templates.getExampleTemplate();
+				LevelScreen lvlScreen = new LevelScreen(new Board(template), SelectScreen.this);
+				lvlScreen.setVisible(true);
+				SelectScreen.this.setVisible(false);
+				/* TODO implement this later 
 				GameMode gameMode;
 				
 				switch(gameModeStr) {
@@ -95,7 +103,7 @@ public class SelectScreen extends JFrame {
 					break;
 				default:
 					gameMode = null;
-				}
+				} */
 				
 				// TODO levelTemplate = new LevelTemplate(gameMode, levelNumber, ...
 			}
