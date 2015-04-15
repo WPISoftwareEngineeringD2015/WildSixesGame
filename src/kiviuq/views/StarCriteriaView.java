@@ -25,19 +25,19 @@ public class StarCriteriaView extends JPanel{
 		
 		setLayout(new GridLayout(3, 2, 5, 0));
 		
-		JLabel lblOneStar = new JLabel("One Star:");
+		JLabel lblOneStar = new JLabel("\u2605");
 		add(lblOneStar);
 		
 		this.lblOnecriterialabel = new JLabel("OneCriteriaLabel");
 		add(lblOnecriterialabel);
 		
-		JLabel lblNewLabel = new JLabel("Two Stars:");
+		JLabel lblNewLabel = new JLabel("\u2605\u2605");
 		add(lblNewLabel);
 		
 		this.lblTwocriterialabel = new JLabel("TwoCriteriaLabel");
 		add(lblTwocriterialabel);
 		
-		JLabel lblThreeStars = new JLabel("Three Stars:");
+		JLabel lblThreeStars = new JLabel("\u2605\u2605\u2605");
 		add(lblThreeStars);
 		
 		this.lblThreecriterialabel = new JLabel("ThreeCriteriaLabel");
