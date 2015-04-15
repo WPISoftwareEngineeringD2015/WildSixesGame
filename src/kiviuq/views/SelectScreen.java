@@ -136,7 +136,7 @@ public class SelectScreen extends JFrame {
 		panel_1.add(puzzle4Panel);
 		
 		JPanel puzzle5Panel = new JPanel();
-		puzzle5Panel.setBackground(new Color(153, 50, 204));
+		puzzle5Panel.setBackground(Color.BLUE);
 		puzzle5Panel.addMouseListener(levelClickListener);
 		puzzle5Panel.setName("puzzle 5");
 		panel_1.add(puzzle5Panel);
@@ -166,7 +166,7 @@ public class SelectScreen extends JFrame {
 		panel_1.add(lightning4Panel);
 		
 		JPanel lightning5Panel = new JPanel();
-		lightning5Panel.setBackground(new Color(153, 50, 204));
+		lightning5Panel.setBackground(Color.BLUE);
 		lightning5Panel.addMouseListener(levelClickListener);
 		lightning5Panel.setName("lightning 5");
 		panel_1.add(lightning5Panel);
@@ -196,7 +196,7 @@ public class SelectScreen extends JFrame {
 		panel_1.add(elimination4Panel);
 		
 		JPanel elimination5Panel = new JPanel();
-		elimination5Panel.setBackground(new Color(153, 50, 204));
+		elimination5Panel.setBackground(Color.BLUE);
 		elimination5Panel.addMouseListener(levelClickListener);
 		elimination5Panel.setName("elinimation 5");
 		panel_1.add(elimination5Panel);
@@ -230,7 +230,7 @@ public class SelectScreen extends JFrame {
 		
 		JPanel release5Panel = new JPanel();
 		release5Panel.setLayout(null);
-		release5Panel.setBackground(new Color(153, 50, 204));
+		release5Panel.setBackground(Color.BLUE);
 		release5Panel.addMouseListener(levelClickListener);
 		release5Panel.setName("release 5");
 		panel_1.add(release5Panel);
