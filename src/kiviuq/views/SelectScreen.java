@@ -73,18 +73,19 @@ public class SelectScreen extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JPanel sourcePanel = (JPanel) e.getSource();
-				String[] nameComponents = sourcePanel.getName().split(" ");
-				String gameModeStr = nameComponents[0];
-				int levelNumber = Integer.parseInt(nameComponents[1]);
+				String nameComponents = sourcePanel.getName();
+				// String gameModeStr = nameComponents[0];
+				// int levelNumber = Integer.parseInt(nameComponents[1]);
 				
 				// TODO implement this later
 				// for now, just load up any level with out getExampleTemplate()...
 				
-				
-				LevelTemplate template = Templates.getExampleTemplate();
-				LevelScreen lvlScreen = new LevelScreen(new Board(template), SelectScreen.this);
-				lvlScreen.setVisible(true);
-				SelectScreen.this.setVisible(false);
+				if(nameComponents.equals("puzzle 1")) {
+					LevelTemplate template = Templates.getExampleTemplate();
+					LevelScreen lvlScreen = new LevelScreen(new Board(template), SelectScreen.this);
+					lvlScreen.setVisible(true);
+					SelectScreen.this.setVisible(false);
+					}
 				/* TODO implement this later 
 				GameMode gameMode;
 				
