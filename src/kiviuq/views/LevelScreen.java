@@ -1,7 +1,6 @@
 package kiviuq.views;
 
 import java.awt.BorderLayout;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import kiviuq.controllers.GravityController;
 import kiviuq.entities.Board;
 
 public class LevelScreen extends JFrame {
@@ -19,7 +19,7 @@ public class LevelScreen extends JFrame {
 	private static final long serialVersionUID = 1L;
 	Board board;
 	JButton back;
-	JPanel boardView;
+	BoardView boardView;
 	JFrame previousScreen;
 
 	public LevelScreen(Board board, final JFrame previousScreen) {
@@ -45,7 +45,7 @@ public class LevelScreen extends JFrame {
 
 		SpecialButtonsView sbv = new SpecialButtonsView();
 		panelTop.add(sbv);
-
+		
 		JPanel panelGrid = new JPanel();
 		panelGrid.setBounds(6, 89, 855, 585);
 		getContentPane().add(panelGrid);
@@ -60,21 +60,13 @@ public class LevelScreen extends JFrame {
 			}
 		});
 
+		boardView = new BoardView(board);
+		panelGrid.add(boardView, BorderLayout.CENTER);
 		JButton gravityTest = new JButton("gravity... test");
-		gravityTest.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Board b = LevelScreen.this.board;
-				b.gravity();
-				LevelScreen.this.boardView.repaint();
-
-			}
-		});
+		gravityTest.addActionListener(new GravityController(board, boardView));
 		panelTop.add(gravityTest);
 		panelTop.add(back);
 
-		boardView = new BoardView(board);
-		panelGrid.add(boardView, BorderLayout.CENTER);
 	}
 
 }

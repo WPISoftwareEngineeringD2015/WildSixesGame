@@ -50,6 +50,11 @@ public class Board {
 		return grid;
 	}
 	
+	public void setGrid(Tile[][] grid) {
+		this.grid = grid;
+	}
+	
+	
 	public boolean[][] getEliminatedTiles() {
 		return eliminatedTiles;
 	}
@@ -62,40 +67,11 @@ public class Board {
 		movesMade++;
 	}
 	
-	boolean emptyTilesOnBoard() {
+	public boolean emptyTilesOnBoard() {
 		for (Tile[] r : grid) 
 			for (Tile t : r) if (t == null) return true;
 		return false;
 	}
-	
-	public void gravity() {
-		while (emptyTilesOnBoard()) { // keep going until the board is valid
-			for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
-				for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
-					Tile current = grid[x][y];
-					if (current == null) {
-						// we can bubble up
-						if (x > 0) {
-							Tile above = grid[x-1][y];
-							if (above.type == TileType.Number) {
-								grid[x][y] = above;
-								grid[x-1][y] = null;
-							}
-							else {
-								// can't move around Nulls or Releases...
-								grid[x][y] = getNextTile();
-							}
-						}
-						// we can't, just load a tile
-						else {
-							grid[x][y] = getNextTile();
-						}
-					}
-				}
-			}
-		}
-	}
-	
 	
 	public Tile getNextTile() {
 		// TODO implement this with an actual randomly weighted tile
