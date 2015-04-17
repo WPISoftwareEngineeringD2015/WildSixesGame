@@ -30,6 +30,10 @@ public class TileView extends JPanel{
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);	
+		if (tile == null) { // just used for testing... 
+			setBackground(Color.BLACK);
+			return;
+		}
 		setBackground(getColor());
 		lblValue.setText(tile.toString());
 	}
@@ -47,6 +51,13 @@ public class TileView extends JPanel{
 			return Color.PINK;
 		default:
 			return Color.BLACK;
+		}
+	}
+	
+	public void setTile(Tile tile) {
+		if (this.tile != tile) {
+			this.tile = tile;
+			this.repaint();
 		}
 	}
 }

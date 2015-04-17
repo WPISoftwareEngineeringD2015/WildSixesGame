@@ -1,6 +1,7 @@
 package kiviuq.views;
 
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +19,7 @@ public class LevelScreen extends JFrame {
 	private static final long serialVersionUID = 1L;
 	Board board;
 	JButton back;
+	JPanel boardView;
 	JFrame previousScreen;
 
 	public LevelScreen(Board board, final JFrame previousScreen) {
@@ -30,7 +32,7 @@ public class LevelScreen extends JFrame {
 		getContentPane().setLayout(null);
 
 		JPanel panelTop = new JPanel();
-		panelTop.setBounds(6, 6, 855, 82);
+		panelTop.setBounds(7, 6, 855, 82);
 		getContentPane().add(panelTop);
 		panelTop.setLayout(new GridLayout(1, 4, 5, 0));
 
@@ -57,10 +59,22 @@ public class LevelScreen extends JFrame {
 				LevelScreen.this.dispose();
 			}
 		});
+
+		JButton gravityTest = new JButton("gravity... test");
+		gravityTest.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Board b = LevelScreen.this.board;
+				b.gravity();
+				LevelScreen.this.boardView.repaint();
+
+			}
+		});
+		panelTop.add(gravityTest);
 		panelTop.add(back);
 
-		BoardView boardView = new BoardView(board);
+		boardView = new BoardView(board);
 		panelGrid.add(boardView, BorderLayout.CENTER);
-
 	}
+
 }
