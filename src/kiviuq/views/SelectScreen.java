@@ -18,7 +18,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import kiviuq.entities.Board;
-import kiviuq.entities.GameMode;
 import kiviuq.entities.LevelTemplate;
 import development.Templates;
 

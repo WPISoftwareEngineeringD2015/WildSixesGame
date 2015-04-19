@@ -3,6 +3,7 @@ package kiviuq.entities;
 public class Tile {
 	int number;
 	TileType type;
+	boolean isSelected;
 	
 	public Tile(int number) {
 		this(number, TileType.Number);
@@ -38,6 +39,18 @@ public class Tile {
 				str = "R";
 		}
 		return str;
+	}
+	
+	public boolean isSelected() {
+		return isSelected;
+	}
+	
+	public void select() {
+		isSelected = true;
+	}
+	
+	public void unSelect() {
+		isSelected = false;
 	}
 	
 }

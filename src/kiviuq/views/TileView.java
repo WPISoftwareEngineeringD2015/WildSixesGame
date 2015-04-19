@@ -34,13 +34,16 @@ public class TileView extends JPanel{
 			setBackground(Color.BLACK);
 			return;
 		}
-		setBackground(getColor());
+		if(this.getTile().isSelected())
+			setBackground(Color.WHITE);
+		else
+			setBackground(getColor());
 		lblValue.setText(tile.toString());
 	}
 	
 	private final static Color[] NUMBER_COLORS = {Color.ORANGE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE};
 	
-	Color getColor() {
+	public Color getColor() {
 		switch (tile.getType()) {
 		case Null:
 			return Color.gray;
@@ -59,5 +62,9 @@ public class TileView extends JPanel{
 			this.tile = tile;
 			this.repaint();
 		}
+	}
+	
+	public Tile getTile() {
+		return tile;
 	}
 }

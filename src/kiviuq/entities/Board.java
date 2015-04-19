@@ -1,5 +1,6 @@
 package kiviuq.entities;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import kiviuq.util.Constants;
@@ -12,6 +13,10 @@ public class Board {
 	int timePassed; 
 	int points;
 	StarCriteria starCriteira; 
+	
+	int tileSum;
+	MoveType moveType = MoveType.Normal;
+	
 	public Board(LevelTemplate template) {
 		this.setTemplate(template);
 		grid = new Tile[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
@@ -27,7 +32,7 @@ public class Board {
 				grid[x][y] = t;
 			}
 		}
-		insertNullsForTesting();
+	//	insertNullsForTesting();
 	}
 	
 	private void insertNullsForTesting() {
@@ -62,11 +67,19 @@ public class Board {
 	}
 	
 	public void increaseTimePassed() {
-		// TODO 
+		timePassed++;
+	}
+	
+	public void resetTimePassed() {
+		timePassed = 0;
 	}
 	
 	public void increaseMovesMade() {
 		movesMade++;
+	}
+	
+	public void resetMovesMade() {
+		movesMade = 0;
 	}
 	
 	public boolean emptyTilesOnBoard() {
@@ -89,5 +102,28 @@ public class Board {
 		this.template = template;
 	}
 	
+	public void addTileSum(int n) {
+		tileSum += n;
+	}
+	
+	public void resetTileSum() {
+		tileSum = 0;
+	}
+	
+	public void resetTiles() {
+		for (Tile[] r : grid) 
+			for (Tile t : r) {
+				t.unSelect();
+			}
+				
+	}
+	
+	public void setMoveType(MoveType moveType) {
+		this.moveType = moveType;
+	}
+	
+	public MoveType getMoveType() {
+		return moveType;
+	}
 	
 }

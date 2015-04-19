@@ -2,9 +2,14 @@ package kiviuq.views;
 
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 import javax.swing.JPanel;
 
+import development.Templates;
+import kiviuq.controllers.SelectTileController;
 import kiviuq.entities.Board;
 import kiviuq.entities.LevelTemplate;
 import kiviuq.entities.Tile;
@@ -27,6 +32,7 @@ public class BoardView extends JPanel {
 		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
 			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
 				tvs[x][y] = new TileView(grid[x][y]);
+				tvs[x][y].addMouseListener(new SelectTileController(BoardView.this));
 				add(tvs[x][y]);
 			}
 		}
@@ -49,5 +55,13 @@ public class BoardView extends JPanel {
 	
 	public void setBoard(Board board) {
 		this.board = board;
+	}
+	
+	public void repaintTiles() {
+		for (TileView[] r : tvs) 
+			for (TileView t : r) {
+				t.repaint();
+			}
+				
 	}
 }
