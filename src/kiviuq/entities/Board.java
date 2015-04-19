@@ -49,7 +49,7 @@ public class Board {
 	}
 	
 	public void resetPoints() {
-		points = 0;
+		points = 0;	
 	}
 	
 	

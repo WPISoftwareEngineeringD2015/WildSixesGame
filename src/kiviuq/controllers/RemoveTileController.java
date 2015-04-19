@@ -1,7 +1,6 @@
 package kiviuq.controllers;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import kiviuq.entities.Board;
 import kiviuq.entities.Tile;
