@@ -37,7 +37,7 @@ public class LevelScreen extends JFrame {
 		JPanel panelTop = new JPanel();
 		panelTop.setBounds(7, 6, 855, 82);
 		getContentPane().add(panelTop);
-		panelTop.setLayout(new GridLayout(1, 4, 5, 0));
+		panelTop.setLayout(new GridLayout(1, 3, 5, 0));
 
 		StarCriteriaView starCriteria = new StarCriteriaView(
 				board.getStarCriteria());
@@ -65,9 +65,6 @@ public class LevelScreen extends JFrame {
 
 		
 		panelGrid.add(boardView, BorderLayout.CENTER);
-		JButton gravityTest = new JButton("gravity... test");
-		gravityTest.addActionListener(new GravityController(board, boardView));
-		panelTop.add(gravityTest);
 		panelTop.add(back);
 	}
 	

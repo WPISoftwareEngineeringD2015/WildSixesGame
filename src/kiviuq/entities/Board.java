@@ -27,9 +27,10 @@ public class Board {
 				grid[x][y] = t;
 			}
 		}
-		insertNullsForTesting();
+		// insertNullsForTesting(); 
 	}
 	
+	@SuppressWarnings("unused") // TODO delete this when we are confident we don't need it anymore
 	private void insertNullsForTesting() {
 		for (int i = 0; i < 3; i++) {
 			Random r = new Random();
