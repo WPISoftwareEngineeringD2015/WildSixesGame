@@ -22,9 +22,11 @@ public class LevelScreen extends JFrame {
 	JButton back;
 	BoardView boardView;
 	JFrame previousScreen;
+	ScoreView scoreView;
 
 	public LevelScreen(Board board, final JFrame previousScreen) {
 		super();
+		boardView = new BoardView(board);
 		this.previousScreen = previousScreen;
 		setTitle("Example Level Screen");
 		setBounds(100, 100, 867, 715);
@@ -35,16 +37,16 @@ public class LevelScreen extends JFrame {
 		JPanel panelTop = new JPanel();
 		panelTop.setBounds(7, 6, 855, 82);
 		getContentPane().add(panelTop);
-		panelTop.setLayout(new GridLayout(1, 4, 5, 0));
+		panelTop.setLayout(new GridLayout(1, 3, 5, 0));
 
 		StarCriteriaView starCriteria = new StarCriteriaView(
 				board.getStarCriteria());
 		panelTop.add(starCriteria);
 
-		ScoreView scoreView = new ScoreView(board);
+		scoreView = new ScoreView(board);
 		panelTop.add(scoreView);
 
-		SpecialButtonsView sbv = new SpecialButtonsView();
+		SpecialButtonsView sbv = new SpecialButtonsView(new RestartLevelController(board, this));
 		panelTop.add(sbv);
 		
 		JPanel panelGrid = new JPanel();
@@ -61,17 +63,17 @@ public class LevelScreen extends JFrame {
 			}
 		});
 
-		boardView = new BoardView(board);
-		panelGrid.add(boardView, BorderLayout.CENTER);
-		JButton gravityTest = new JButton("gravity... test");
-		gravityTest.addActionListener(new GravityController(board, boardView));
-		panelTop.add(gravityTest);
-		panelTop.add(back);
 		
-		JButton restart = new JButton("restart");
-		restart.addActionListener(new RestartLevelController(boardView));
-		panelTop.add(restart);
-
+		panelGrid.add(boardView, BorderLayout.CENTER);
+		panelTop.add(back);
+	}
+	
+	public ScoreView getScoreView() {
+		return scoreView;
+	}
+	
+	public BoardView getBoardView() {
+		return boardView;
 	}
 
 }

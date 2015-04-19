@@ -1,30 +1,26 @@
 package kiviuq.controllers;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import kiviuq.entities.Board;
 import kiviuq.entities.Tile;
 import kiviuq.entities.TileType;
 import kiviuq.util.Constants;
-import kiviuq.views.BoardView;
+import kiviuq.views.LevelScreen;
 
-public class SwapTileController implements ActionListener {
+public class SwapTileController extends AbstractMoveController {
 	Tile a, b;
-	Board board;
-	BoardView boardView;
 
-	public SwapTileController(Tile a, Tile b, Board board, BoardView boardView) {
+	public SwapTileController(Tile a, Tile b, Board board, LevelScreen levelScreen) {
+		super(board, levelScreen);
 		this.a = a;
 		this.b = b;
-		this.board = board;
-		this.boardView = boardView;
 	}
-
+	
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public boolean handleMove(ActionEvent e) {
 		if (a.getType() != TileType.Number || b.getType() != TileType.Number)
-			return;
+			return false;
 		// find x,y position of a
 		Tile[][] grid = board.getGrid();
 		int ax = -1, ay = -1; // position of a
@@ -40,7 +36,7 @@ public class SwapTileController implements ActionListener {
 				break;
 		}
 		if (ax < 0)
-			return; // A isn't in the grid!
+			return false; // A isn't in the grid!
 		boolean nextTo = false;
 		for (int x = ax - 1; x < ax + 1; x++) {
 			for (int y = ay - 1; y < ay + 1; y++) {
@@ -59,7 +55,6 @@ public class SwapTileController implements ActionListener {
 				break;
 		}
 		board.setGrid(grid);
-		boardView.repaint();
+		return true;
 	}
-
 }

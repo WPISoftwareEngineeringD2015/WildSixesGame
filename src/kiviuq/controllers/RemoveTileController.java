@@ -1,28 +1,26 @@
 package kiviuq.controllers;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import kiviuq.entities.Board;
 import kiviuq.entities.Tile;
 import kiviuq.entities.TileType;
 import kiviuq.util.Constants;
-import kiviuq.views.BoardView;
+import kiviuq.views.LevelScreen;
 
-public class RemoveTileController implements ActionListener{
-	Board board;
+public class RemoveTileController extends AbstractMoveController{
 	Tile tileToBeRemoved;
-	BoardView boardView;
 	
-	public RemoveTileController(Board board, Tile tileToBeRemoved, BoardView boardView) {
-		this.board = board;
+	public RemoveTileController(Board board, Tile tileToBeRemoved, LevelScreen levelScreen) {
+		super(board, levelScreen);
 		this.tileToBeRemoved = tileToBeRemoved;
-		this.boardView = boardView;
 	}
 	
+	
+
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (tileToBeRemoved.getType() != TileType.Number) return;
+	public boolean handleMove(ActionEvent e) {
+		if (tileToBeRemoved.getType() != TileType.Number) return false;
 		Tile[][] grid = board.getGrid();
 		boolean stopLooping = false;
 		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
@@ -38,7 +36,8 @@ public class RemoveTileController implements ActionListener{
 		}
 		board.setGrid(grid);
 		// board is in an inconsistent state with a tile set to 'null'
-		new GravityController(board, boardView).actionPerformed(e); 
+		new GravityController(board, levelScreen.getBoardView()).actionPerformed(e);
+		return true;
 	}
 
 }
