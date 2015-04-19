@@ -4,23 +4,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import kiviuq.entities.Board;
-import kiviuq.views.BoardView;
+import kiviuq.views.LevelScreen;
 
 public abstract class AbstractMoveController implements ActionListener {
 
 	protected Board board;
-	protected BoardView boardView;
+	protected LevelScreen levelScreen;
 
-	public AbstractMoveController(Board board, BoardView boardView) {
+	public AbstractMoveController(Board board, LevelScreen levelScreen) {
 		this.board = board;
-		this.boardView = boardView;
+		this.levelScreen = levelScreen;
 	}
 
 	@Override
 	public final void actionPerformed(ActionEvent e) {
 		if (handleMove(e)) {
 			board.increaseMovesMade();
-			boardView.repaint();
+			levelScreen.getBoardView().repaint();
+			levelScreen.getScoreView().repaint();
 		}
 	}
 

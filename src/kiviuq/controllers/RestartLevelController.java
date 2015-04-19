@@ -1,20 +1,19 @@
 package kiviuq.controllers;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import kiviuq.entities.Board;
-import kiviuq.views.BoardView;
+import kiviuq.views.LevelScreen;
 
 public class RestartLevelController extends AbstractMoveController {
 	
-	public RestartLevelController(Board board, BoardView boardView) {
-		super(board, boardView);
+	public RestartLevelController(Board board, LevelScreen levelScreen) {
+		super(board, levelScreen);
 	}
 
 	@Override
 	public boolean handleMove(ActionEvent e) {
-		Board newBoard = new Board(boardView.getBoard().getTemplate());
+		Board newBoard = new Board(levelScreen.getBoardView().getBoard().getTemplate());
 		board.setGrid(newBoard.getGrid());
 		board.resetPoints();
 		return true;

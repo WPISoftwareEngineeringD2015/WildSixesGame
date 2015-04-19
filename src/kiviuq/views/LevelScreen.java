@@ -22,6 +22,7 @@ public class LevelScreen extends JFrame {
 	JButton back;
 	BoardView boardView;
 	JFrame previousScreen;
+	ScoreView scoreView;
 
 	public LevelScreen(Board board, final JFrame previousScreen) {
 		super();
@@ -42,10 +43,10 @@ public class LevelScreen extends JFrame {
 				board.getStarCriteria());
 		panelTop.add(starCriteria);
 
-		ScoreView scoreView = new ScoreView(board);
+		scoreView = new ScoreView(board);
 		panelTop.add(scoreView);
 
-		SpecialButtonsView sbv = new SpecialButtonsView(new RestartLevelController(board, boardView));
+		SpecialButtonsView sbv = new SpecialButtonsView(new RestartLevelController(board, this));
 		panelTop.add(sbv);
 		
 		JPanel panelGrid = new JPanel();
@@ -68,6 +69,14 @@ public class LevelScreen extends JFrame {
 		gravityTest.addActionListener(new GravityController(board, boardView));
 		panelTop.add(gravityTest);
 		panelTop.add(back);
+	}
+	
+	public ScoreView getScoreView() {
+		return scoreView;
+	}
+	
+	public BoardView getBoardView() {
+		return boardView;
 	}
 
 }

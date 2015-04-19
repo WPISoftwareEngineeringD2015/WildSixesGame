@@ -1,19 +1,18 @@
 package kiviuq.controllers;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import kiviuq.entities.Board;
 import kiviuq.entities.Tile;
 import kiviuq.entities.TileType;
 import kiviuq.util.Constants;
-import kiviuq.views.BoardView;
+import kiviuq.views.LevelScreen;
 
 public class SwapTileController extends AbstractMoveController {
 	Tile a, b;
 
-	public SwapTileController(Tile a, Tile b, Board board, BoardView boardView) {
-		super(board, boardView);
+	public SwapTileController(Tile a, Tile b, Board board, LevelScreen levelScreen) {
+		super(board, levelScreen);
 		this.a = a;
 		this.b = b;
 	}

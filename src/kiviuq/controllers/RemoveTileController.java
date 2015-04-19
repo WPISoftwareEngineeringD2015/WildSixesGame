@@ -6,13 +6,13 @@ import kiviuq.entities.Board;
 import kiviuq.entities.Tile;
 import kiviuq.entities.TileType;
 import kiviuq.util.Constants;
-import kiviuq.views.BoardView;
+import kiviuq.views.LevelScreen;
 
 public class RemoveTileController extends AbstractMoveController{
 	Tile tileToBeRemoved;
 	
-	public RemoveTileController(Board board, Tile tileToBeRemoved, BoardView boardView) {
-		super(board, boardView);
+	public RemoveTileController(Board board, Tile tileToBeRemoved, LevelScreen levelScreen) {
+		super(board, levelScreen);
 		this.tileToBeRemoved = tileToBeRemoved;
 	}
 	
@@ -36,7 +36,7 @@ public class RemoveTileController extends AbstractMoveController{
 		}
 		board.setGrid(grid);
 		// board is in an inconsistent state with a tile set to 'null'
-		new GravityController(board, boardView).actionPerformed(e);
+		new GravityController(board, levelScreen.getBoardView()).actionPerformed(e);
 		return true;
 	}
 
