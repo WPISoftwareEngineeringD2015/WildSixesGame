@@ -25,6 +25,7 @@ public class LevelScreen extends JFrame {
 
 	public LevelScreen(Board board, final JFrame previousScreen) {
 		super();
+		boardView = new BoardView(board);
 		this.previousScreen = previousScreen;
 		setTitle("Example Level Screen");
 		setBounds(100, 100, 867, 715);
@@ -44,7 +45,7 @@ public class LevelScreen extends JFrame {
 		ScoreView scoreView = new ScoreView(board);
 		panelTop.add(scoreView);
 
-		SpecialButtonsView sbv = new SpecialButtonsView();
+		SpecialButtonsView sbv = new SpecialButtonsView(new RestartLevelController(boardView));
 		panelTop.add(sbv);
 		
 		JPanel panelGrid = new JPanel();
@@ -61,17 +62,12 @@ public class LevelScreen extends JFrame {
 			}
 		});
 
-		boardView = new BoardView(board);
+		
 		panelGrid.add(boardView, BorderLayout.CENTER);
 		JButton gravityTest = new JButton("gravity... test");
 		gravityTest.addActionListener(new GravityController(board, boardView));
 		panelTop.add(gravityTest);
 		panelTop.add(back);
-		
-		JButton restart = new JButton("restart");
-		restart.addActionListener(new RestartLevelController(boardView));
-		panelTop.add(restart);
-
 	}
 
 }

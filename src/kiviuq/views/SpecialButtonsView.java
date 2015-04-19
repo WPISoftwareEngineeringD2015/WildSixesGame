@@ -3,8 +3,11 @@ package kiviuq.views;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import kiviuq.controllers.RestartLevelController;
 
 public class SpecialButtonsView extends JPanel{
 	/**
@@ -13,13 +16,15 @@ public class SpecialButtonsView extends JPanel{
 	private static final long serialVersionUID = 1L;
 	JLabel x;
 	JLabel swap;
-	JLabel reset;
+	JButton reset;
 	
-	public SpecialButtonsView() {
+	public SpecialButtonsView(RestartLevelController rlc) {
 		super();
 		setLayout(new GridLayout(1, 3,0,0));
-		reset = new JLabel("");
+		reset = new JButton("");
+		reset.setBorderPainted(false);
 		reset.setIcon(new ImageIcon(LevelScreen.class.getResource("/kiviuq/views/reset.png")));
+		reset.addActionListener(rlc);
 		
 		swap = new JLabel("");
 		swap.setIcon(new ImageIcon(LevelScreen.class.getResource("/kiviuq/views/swap.png")));
@@ -41,7 +46,7 @@ public class SpecialButtonsView extends JPanel{
 		return swap;
 	}
 	
-	public JLabel getResetLabel() {
+	public JButton getResetLabel() {
 		return reset;
 	}
 	
