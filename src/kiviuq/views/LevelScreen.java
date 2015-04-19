@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import kiviuq.controllers.GravityController;
+import kiviuq.controllers.RestartLevelController;
 import kiviuq.entities.Board;
 
 public class LevelScreen extends JFrame {
@@ -66,6 +67,10 @@ public class LevelScreen extends JFrame {
 		gravityTest.addActionListener(new GravityController(board, boardView));
 		panelTop.add(gravityTest);
 		panelTop.add(back);
+		
+		JButton restart = new JButton("restart");
+		restart.addActionListener(new RestartLevelController(boardView));
+		panelTop.add(restart);
 
 	}
 

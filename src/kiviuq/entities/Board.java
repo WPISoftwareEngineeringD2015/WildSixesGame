@@ -5,6 +5,7 @@ import java.util.Random;
 import kiviuq.util.Constants;
 
 public class Board {
+	LevelTemplate template;
 	Tile[][] grid;
 	boolean[][] eliminatedTiles;
 	int movesMade;
@@ -12,6 +13,7 @@ public class Board {
 	int points;
 	StarCriteria starCriteira; 
 	public Board(LevelTemplate template) {
+		this.setTemplate(template);
 		grid = new Tile[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
 		eliminatedTiles = new boolean[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
 		starCriteira = template.getStarCriteria();
@@ -77,6 +79,14 @@ public class Board {
 		// TODO implement this with an actual randomly weighted tile
 		return new Tile(Math.random() > 0.5 ? 1 : 2);
 		// for now just give us a Tile valued 1 or 2
+	}
+
+	public LevelTemplate getTemplate() {
+		return template;
+	}
+
+	public void setTemplate(LevelTemplate template) {
+		this.template = template;
 	}
 	
 	

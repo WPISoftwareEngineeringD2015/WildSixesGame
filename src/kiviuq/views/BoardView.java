@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 
 import kiviuq.entities.Board;
+import kiviuq.entities.LevelTemplate;
 import kiviuq.entities.Tile;
 import kiviuq.util.Constants;
 
@@ -40,5 +41,13 @@ public class BoardView extends JPanel {
 				tvs[x][y].setTile(grid[x][y]);
 			}
 		}
+	}
+	
+	public Board getBoard() {
+		return board;
+	}
+	
+	public void setBoard(Board board) {
+		this.board = board;
 	}
 }
