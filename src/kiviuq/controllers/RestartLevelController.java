@@ -6,22 +6,17 @@ import java.awt.event.ActionListener;
 import kiviuq.entities.Board;
 import kiviuq.views.BoardView;
 
-public class RestartLevelController implements ActionListener {
-	Board board;
-	BoardView boardView;
-
+public class RestartLevelController extends AbstractMoveController {
+	
 	public RestartLevelController(Board board, BoardView boardView) {
-		this.board = board;
-		this.boardView = boardView;
+		super(board, boardView);
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public boolean handleMove(ActionEvent e) {
 		Board newBoard = new Board(boardView.getBoard().getTemplate());
 		board.setGrid(newBoard.getGrid());
-		board.increaseMovesMade();
 		board.resetPoints();
-		boardView.setBoard(board);
-		boardView.repaint();
-		}
+		return true;
+	}
 }
