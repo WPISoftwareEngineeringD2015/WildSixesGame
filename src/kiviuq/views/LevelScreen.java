@@ -45,7 +45,7 @@ public class LevelScreen extends JFrame {
 		ScoreView scoreView = new ScoreView(board);
 		panelTop.add(scoreView);
 
-		SpecialButtonsView sbv = new SpecialButtonsView(new RestartLevelController(boardView));
+		SpecialButtonsView sbv = new SpecialButtonsView(new RestartLevelController(board, boardView));
 		panelTop.add(sbv);
 		
 		JPanel panelGrid = new JPanel();

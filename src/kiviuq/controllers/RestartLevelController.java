@@ -7,19 +7,21 @@ import kiviuq.entities.Board;
 import kiviuq.views.BoardView;
 
 public class RestartLevelController implements ActionListener {
-	/*
-	 * TODO ALSO RESET SCORE INFORMATION
-	 */
+	Board board;
 	BoardView boardView;
 
-	public RestartLevelController(BoardView boardView) {
+	public RestartLevelController(Board board, BoardView boardView) {
+		this.board = board;
 		this.boardView = boardView;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		    Board newBoard = new Board(boardView.getBoard().getTemplate());
-			boardView.setBoard(newBoard);
-			boardView.repaint();
+		Board newBoard = new Board(boardView.getBoard().getTemplate());
+		board.setGrid(newBoard.getGrid());
+		board.increaseMovesMade();
+		board.resetPoints();
+		boardView.setBoard(board);
+		boardView.repaint();
 		}
 }

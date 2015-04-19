@@ -44,6 +44,15 @@ public class Board {
 		return points;
 	}
 	
+	public void addPoints(int points) {
+		this.points += points;
+	}
+	
+	public void resetPoints() {
+		points = 0;
+	}
+	
+	
 	public StarCriteria getStarCriteria() {
 		return starCriteira;
 	}
@@ -63,6 +72,10 @@ public class Board {
 	
 	public void increaseTimePassed() {
 		// TODO 
+	}
+	
+	public int getMovesMade() {
+		return movesMade;
 	}
 	
 	public void increaseMovesMade() {
