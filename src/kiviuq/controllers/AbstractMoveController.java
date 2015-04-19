@@ -17,7 +17,7 @@ public abstract class AbstractMoveController implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public final void actionPerformed(ActionEvent e) {
 		if (handleMove(e)) {
 			board.increaseMovesMade();
 			boardView.repaint();
