@@ -6,7 +6,7 @@ public class WildSixesGameRunner {
 	
 	public static void main(String[] args) {
 		MainScreen mainScreen = new MainScreen();
-		SplashScreen s = new SplashScreen(2000, mainScreen);
+		SplashScreen s = new SplashScreen(300, mainScreen);
 		s.launchSplashScreen();
 	}
 }

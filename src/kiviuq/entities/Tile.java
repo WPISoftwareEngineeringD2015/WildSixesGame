@@ -53,4 +53,8 @@ public class Tile {
 		isSelected = false;
 	}
 	
+	public void toggleSelect() {
+		isSelected = !isSelected;
+	}
+	
 }

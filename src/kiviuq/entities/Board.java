@@ -15,7 +15,12 @@ public class Board {
 	StarCriteria starCriteira;
 
 	int tileSum;
+	int tileCount;
 	MoveType moveType = MoveType.Normal;
+	
+	boolean isMousePressed;
+	int lastX = -1;
+	int lastY = -1;
 
 	public Board(LevelTemplate template) {
 		this.setTemplate(template);
@@ -125,7 +130,23 @@ public class Board {
 	public void resetTileSum() {
 		tileSum = 0;
 	}
-
+	
+	public int getTileSum() {
+		return tileSum;
+	}
+	
+	public void increaseTileCount() {
+		tileCount++;
+	}
+	
+	public void resetTileCount() {
+		tileCount = 0;
+	}
+	
+	public int getTileCount() {
+		return tileCount;
+	}
+	
 	public void resetTiles() {
 		for (Tile[] r : grid)
 			for (Tile t : r) {
@@ -140,6 +161,34 @@ public class Board {
 
 	public MoveType getMoveType() {
 		return moveType;
+	}
+	
+	public int getLastX() {
+		return lastX;
+	}
+	
+	public void setLastX(int lastX) {
+		this.lastX = lastX;
+	}
+
+	public int getLastY() {
+		return lastY;
+	}
+	
+	public void setLastY(int lastY) {
+		this.lastY = lastY;
+	}
+	
+	public void pressMouse() {
+		isMousePressed = true;
+	}
+	
+	public void releaseMouse() {
+		isMousePressed = false;
+	}
+	
+	public boolean isMousePressed() {
+		return isMousePressed;
 	}
 
 }

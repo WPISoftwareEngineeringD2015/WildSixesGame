@@ -27,12 +27,14 @@ public class BoardView extends JPanel {
 		super();
 		this.board = board;
 		tvs = new TileView[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
-		setLayout(new GridLayout(Constants.BOARD_LENGTH, Constants.BOARD_WIDTH, 3, 3));
+		setLayout(new GridLayout(Constants.BOARD_LENGTH, Constants.BOARD_WIDTH, 10, 10));
 		Tile[][] grid = board.getGrid();
 		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
 			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
+				int X = x;
+				int Y = y;
 				tvs[x][y] = new TileView(grid[x][y]);
-				tvs[x][y].addMouseListener(new SelectTileController(BoardView.this));
+				tvs[x][y].addMouseListener(new SelectTileController(BoardView.this, X, Y));
 				add(tvs[x][y]);
 			}
 		}
