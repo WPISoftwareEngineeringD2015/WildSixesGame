@@ -7,6 +7,10 @@ import kiviuq.entities.TileType;
 import kiviuq.views.TileView;
 
 public class TileViewTester extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public TileViewTester() {
 		Tile t = new Tile(5, TileType.Number);
 		setSize(900, 700);

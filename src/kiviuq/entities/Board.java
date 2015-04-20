@@ -1,6 +1,5 @@
 package kiviuq.entities;
 
-import java.util.Arrays;
 import java.util.Random;
 
 import kiviuq.util.Constants;

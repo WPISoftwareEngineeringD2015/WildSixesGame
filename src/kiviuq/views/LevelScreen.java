@@ -9,8 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import kiviuq.controllers.GravityController;
 import kiviuq.controllers.RestartLevelController;
+import kiviuq.controllers.SelectRemoveController;
+import kiviuq.controllers.SelectSwapController;
 import kiviuq.entities.Board;
 
 public class LevelScreen extends JFrame {
@@ -26,7 +27,7 @@ public class LevelScreen extends JFrame {
 
 	public LevelScreen(Board board, final JFrame previousScreen) {
 		super();
-		boardView = new BoardView(board);
+		boardView = new BoardView(board, this);
 		this.previousScreen = previousScreen;
 		setTitle("Example Level Screen");
 		setBounds(100, 100, 867, 715);
@@ -46,7 +47,10 @@ public class LevelScreen extends JFrame {
 		scoreView = new ScoreView(board);
 		panelTop.add(scoreView);
 
-		SpecialButtonsView sbv = new SpecialButtonsView(new RestartLevelController(board, this));
+		SpecialButtonsView sbv = new SpecialButtonsView(
+				new RestartLevelController(board, this),
+				new SelectSwapController(board),
+				new SelectRemoveController(board));
 		panelTop.add(sbv);
 		
 		JPanel panelGrid = new JPanel();

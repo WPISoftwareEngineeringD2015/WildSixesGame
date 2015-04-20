@@ -5,10 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import kiviuq.controllers.RestartLevelController;
+import kiviuq.controllers.SelectRemoveController;
+import kiviuq.controllers.SelectSwapController;
 
 public class SpecialButtonsView extends JPanel{
 	/**
@@ -24,13 +25,13 @@ public class SpecialButtonsView extends JPanel{
 	private static final String RESOURCE_X = "/kiviuq/views/x.png";
 	
 	
-	public SpecialButtonsView(RestartLevelController rlc) {
+	public SpecialButtonsView(RestartLevelController rlc, SelectSwapController ssc, SelectRemoveController src) {
 		super();
 		setLayout(new GridLayout(1, 3,0,0));
 		
 		reset = CreateImageBtn(RESOURCE_RESET, rlc);
-		swap = CreateImageBtn(RESOURCE_SWAP, null);
-		x = CreateImageBtn(RESOURCE_X, null);
+		swap = CreateImageBtn(RESOURCE_SWAP, ssc);
+		x = CreateImageBtn(RESOURCE_X, src);
 	}
 	
 	private JButton CreateImageBtn(String resources, ActionListener al) {

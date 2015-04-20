@@ -2,13 +2,11 @@ package kiviuq.controllers;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
-
-import javax.swing.SwingUtilities;
-
 import kiviuq.entities.Board;
 import kiviuq.entities.MoveType;
 import kiviuq.entities.Tile;
 import kiviuq.views.BoardView;
+import kiviuq.views.LevelScreen;
 import kiviuq.views.TileView;
 
 public class SelectTileController extends MouseAdapter {
@@ -21,8 +19,10 @@ public class SelectTileController extends MouseAdapter {
 	int lastY;
 	Tile tile;
 	boolean waiting;
+	LevelScreen levelScreen;
 
-	public SelectTileController(BoardView boardView, int x, int y) {
+	public SelectTileController(LevelScreen levelScreen, BoardView boardView, int x, int y) {
+		this.levelScreen = levelScreen;
 		this.boardView = boardView;
 		this.board = boardView.getBoard();
 		this.x = x;
@@ -32,18 +32,6 @@ public class SelectTileController extends MouseAdapter {
 	public void setWaiting(boolean bool) {
 		waiting = bool;
 	}
-	
-	//	private boolean isLast() {
-	//		lastX = board.getLastX();
-	//		lastY = board.getLastY();
-	//
-	//		if(x == lastX && y == lastY) {
-	//			System.out.println("same tile");
-	//			return true;
-	//		}
-	//
-	//		return false;
-	//	}
 
 	private boolean isAdjacent() {
 		lastX = board.getLastX();
@@ -73,14 +61,10 @@ public class SelectTileController extends MouseAdapter {
 			if(board.getTileSum() >= 6)
 				return true;
 
-		if(moveType == MoveType.Remove)
-			if(board.getTileCount() == 1)
-				return true;
-
 		if(moveType == MoveType.Swap)
 			if(board.getTileCount() == 2)
 				return true;
-		
+
 		return false;
 	}
 
@@ -98,6 +82,17 @@ public class SelectTileController extends MouseAdapter {
 			board.setLastY(y);
 			if(moveType == MoveType.Normal)
 				board.addTileSum(tile.getNumber());
+			if(moveType == MoveType.Remove) {
+				board.releaseMouse();
+				board.resetTileCount();
+				board.resetTiles();
+				boardView.repaintTiles();
+				board.setLastX(-1);
+				board.setLastY(-1);
+				// stuff
+				board.setMoveType(MoveType.Normal);
+				new RemoveTileController(board, tile, levelScreen).handleMove(null);
+			}
 		}
 	}
 
@@ -118,33 +113,29 @@ public class SelectTileController extends MouseAdapter {
 					if(moveType == MoveType.Normal) {
 						board.addTileSum(sourcePanel.getTile().getNumber());
 					}
-					if(moveType == MoveType.Remove) {
-						// stuff
-					}
 					if(moveType == MoveType.Swap) {
 						// stuff
 					}
-				}
-			}
-			if(isLastTile()) {
-				board.releaseMouse();
-				board.resetTileCount();
-				board.resetTiles();
-				boardView.repaintTiles();
-				board.setLastX(-1);
-				board.setLastY(-1);
 
-				if(moveType == MoveType.Normal) {
-					// stuff
-					board.resetTileSum();
-				}
-				if(moveType == MoveType.Remove) {
-					// stuff
-				}
-				if(moveType == MoveType.Swap) {
-					// stuff
-				}
+					if(isLastTile()) {
+						board.releaseMouse();
+						board.resetTileCount();
+						board.resetTiles();
+						boardView.repaintTiles();
+						board.setLastX(-1);
+						board.setLastY(-1);
 
+						if(moveType == MoveType.Normal) {
+							// stuff
+							board.resetTileSum();
+						}
+						if(moveType == MoveType.Swap) {
+							// stuff
+							board.setMoveType(MoveType.Normal);
+						}
+
+					}
+				}
 			}
 		}
 	}
