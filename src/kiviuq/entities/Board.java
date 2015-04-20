@@ -9,9 +9,11 @@ public class Board {
 	Tile[][] grid;
 	boolean[][] eliminatedTiles;
 	int movesMade;
+	int moveLimit;
 	int timePassed;
 	int points;
 	StarCriteria starCriteira;
+	GameMode mode;
 
 	int tileSum;
 	int tileCount;
@@ -23,6 +25,8 @@ public class Board {
 
 	public Board(LevelTemplate template) {
 		this.setTemplate(template);
+		moveLimit = template.moveLimit;
+		mode = template.mode;
 		grid = new Tile[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
 		eliminatedTiles = new boolean[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
 		starCriteira = template.getStarCriteria();
@@ -188,6 +192,14 @@ public class Board {
 	
 	public boolean isMousePressed() {
 		return isMousePressed;
+	}
+	
+	public int getMoveLimit() {
+		return moveLimit;
+	}
+	
+	public GameMode getMode() {
+		return mode;
 	}
 
 }

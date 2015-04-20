@@ -55,6 +55,7 @@ public class SwapTileController extends AbstractMoveController {
 				break;
 		}
 		board.setGrid(grid);
+		board.increaseMovesMade();
 		return true;
 	}
 }

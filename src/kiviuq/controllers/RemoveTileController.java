@@ -35,6 +35,7 @@ public class RemoveTileController extends AbstractMoveController{
 			if (stopLooping) break;
 		}
 		board.setGrid(grid);
+		board.increaseMovesMade();
 		// board is in an inconsistent state with a tile set to 'null'
 		new GravityController(board, levelScreen.getBoardView()).actionPerformed(e);
 		return true;

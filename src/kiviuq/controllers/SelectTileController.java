@@ -91,6 +91,7 @@ public class SelectTileController extends MouseAdapter {
 				// stuff
 				board.setMoveType(MoveType.Normal);
 				new RemoveTileController(board, tile, levelScreen).handleMove(null);
+				levelScreen.refreshMoves();
 			}else {
 				board.setLastX(x);
 				board.setLastY(y);
@@ -125,6 +126,7 @@ public class SelectTileController extends MouseAdapter {
 						if(moveType == MoveType.Swap) {
 							// stuff
 							new SwapTileController(board.getGrid()[lastX][lastY], tile, board, levelScreen).handleMove(null);
+							levelScreen.refreshMoves();
 							board.setMoveType(MoveType.Normal);
 						}
 						

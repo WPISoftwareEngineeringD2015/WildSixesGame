@@ -7,12 +7,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import kiviuq.controllers.RestartLevelController;
 import kiviuq.controllers.SelectRemoveController;
 import kiviuq.controllers.SelectSwapController;
 import kiviuq.entities.Board;
+import kiviuq.entities.GameMode;
 
 public class LevelScreen extends JFrame {
 	/**
@@ -24,6 +26,8 @@ public class LevelScreen extends JFrame {
 	BoardView boardView;
 	JFrame previousScreen;
 	ScoreView scoreView;
+	JLabel movesLeft;
+	JLabel movesMade;
 
 	public LevelScreen(Board board, final JFrame previousScreen) {
 		super();
@@ -52,7 +56,17 @@ public class LevelScreen extends JFrame {
 				new SelectSwapController(board),
 				new SelectRemoveController(board));
 		panelTop.add(sbv);
+
+		if(board.getMode() == GameMode.Elimination) {
+			movesLeft = new JLabel("Moves Left: " + board.getMoveLimit());
+			panelTop.add(movesLeft);
+		}else {
+			movesMade = new JLabel("Moves Made: " + board.getMovesMade());
+			panelTop.add(movesMade);
+		}
 		
+		
+
 		JPanel panelGrid = new JPanel();
 		panelGrid.setBounds(6, 89, 855, 585);
 		getContentPane().add(panelGrid);
@@ -67,17 +81,22 @@ public class LevelScreen extends JFrame {
 			}
 		});
 
-		
+
 		panelGrid.add(boardView, BorderLayout.CENTER);
 		panelTop.add(back);
 	}
-	
+
 	public ScoreView getScoreView() {
 		return scoreView;
 	}
-	
+
 	public BoardView getBoardView() {
 		return boardView;
 	}
 
+	public void refreshMoves() {
+		movesLeft.setText("Moves Left: " + (board.getMoveLimit() - board.getMovesMade()) );
+		movesMade.setText("Moves Made: " + board.getMovesMade());
+		repaint();
+	}
 }

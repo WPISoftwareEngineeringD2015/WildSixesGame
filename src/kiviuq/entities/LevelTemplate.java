@@ -14,7 +14,7 @@ public class LevelTemplate {
 		this.levelNumber = levelNumber;
 		this.mode = mode;
 		this.timeLimit = timeLimit;
-		this.moveLimit =moveLimit;
+		this.moveLimit = moveLimit;
 		this.random1 = random1;
 		this.random2 = random2;
 		this.random3 = random3;
