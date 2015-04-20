@@ -38,11 +38,11 @@ public class SwapTileController extends AbstractMoveController {
 		if (ax < 0)
 			return false; // A isn't in the grid!
 		boolean nextTo = false;
-		for (int x = ax - 1; x < ax + 1; x++) {
-			for (int y = ay - 1; y < ay + 1; y++) {
+		for (int x = ax - 1; x < ax + 2; x++) {
+			for (int y = ay - 1; y < ay + 2; y++) {
 				if (ax >= 0 && ay >= 0 && ax < Constants.BOARD_LENGTH
 						&& ay < Constants.BOARD_WIDTH) {
-					Tile possibleB = grid[ax][ay];
+					Tile possibleB = grid[x][y];
 					if (possibleB == b) {
 						nextTo = true;
 						grid[x][y] = a;

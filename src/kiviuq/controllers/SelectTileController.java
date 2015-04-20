@@ -78,8 +78,7 @@ public class SelectTileController extends MouseAdapter {
 			tile = sourcePanel.getTile();
 			tile.select();
 			sourcePanel.repaint();
-			board.setLastX(x);
-			board.setLastY(y);
+
 			if(moveType == MoveType.Normal)
 				board.addTileSum(tile.getNumber());
 			if(moveType == MoveType.Remove) {
@@ -92,6 +91,9 @@ public class SelectTileController extends MouseAdapter {
 				// stuff
 				board.setMoveType(MoveType.Normal);
 				new RemoveTileController(board, tile, levelScreen).handleMove(null);
+			}else {
+				board.setLastX(x);
+				board.setLastY(y);
 			}
 		}
 	}
@@ -107,8 +109,6 @@ public class SelectTileController extends MouseAdapter {
 					board.increaseTileCount();
 					tile.select();
 					sourcePanel.repaint();
-					board.setLastX(x);
-					board.setLastY(y);
 
 					if(moveType == MoveType.Normal) {
 						board.addTileSum(sourcePanel.getTile().getNumber());
@@ -118,23 +118,28 @@ public class SelectTileController extends MouseAdapter {
 					}
 
 					if(isLastTile()) {
-						board.releaseMouse();
-						board.resetTileCount();
-						board.resetTiles();
-						boardView.repaintTiles();
-						board.setLastX(-1);
-						board.setLastY(-1);
-
 						if(moveType == MoveType.Normal) {
 							// stuff
 							board.resetTileSum();
 						}
 						if(moveType == MoveType.Swap) {
 							// stuff
+							new SwapTileController(board.getGrid()[lastX][lastY], tile, board, levelScreen).handleMove(null);
 							board.setMoveType(MoveType.Normal);
 						}
-
+						
+						board.releaseMouse();
+						board.resetTileCount();
+						board.resetTiles();
+						boardView.repaintTiles();
+						boardView.repaint();
+						board.setLastX(-1);
+						board.setLastY(-1);
+					}else {
+						board.setLastX(x);
+						board.setLastY(y);
 					}
+						
 				}
 			}
 		}
