@@ -49,6 +49,13 @@ public class Tile {
 		isSelected = true;
 	}
 	
+	public boolean isSelectable(MoveType moveType) {
+		if (type == TileType.Release || type == TileType.Null) return false;
+		// MoveType.Remove can Remove any Tile of type Number
+		if (moveType == MoveType.Remove) return true; 
+		return number < 6;
+	}
+	
 	public void unSelect() {
 		isSelected = false;
 	}
