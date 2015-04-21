@@ -19,7 +19,6 @@ public class SwapTileController extends AbstractMoveController {
 	
 	@Override
 	public boolean handleMove(ActionEvent e) {
-		board = levelScreen.getBoardView().getBoard();
 		if (a.getType() != TileType.Number || b.getType() != TileType.Number)
 			return false;
 		// find x,y position of a

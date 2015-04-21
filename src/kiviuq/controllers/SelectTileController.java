@@ -6,7 +6,6 @@ import java.awt.event.MouseAdapter;
 import kiviuq.entities.Board;
 import kiviuq.entities.MoveType;
 import kiviuq.entities.Tile;
-import kiviuq.entities.TileType;
 import kiviuq.views.BoardView;
 import kiviuq.views.LevelScreen;
 import kiviuq.views.TileView;
@@ -96,7 +95,7 @@ public class SelectTileController extends MouseAdapter {
 				// stuff
 				board.setMoveType(MoveType.Normal);
 				new RemoveTileController(board, tile, levelScreen)
-						.handleMove(null);
+						.actionPerformed(null);
 				levelScreen.refreshMoves();
 			} else {
 				board.setLastX(x);
@@ -133,8 +132,7 @@ public class SelectTileController extends MouseAdapter {
 							// stuff
 							new SwapTileController(
 									board.getGrid()[lastX][lastY], tile, board,
-									levelScreen).handleMove(null);
-							levelScreen.refreshMoves();
+									levelScreen).actionPerformed(null);
 							board.setMoveType(MoveType.Normal);
 						}
 

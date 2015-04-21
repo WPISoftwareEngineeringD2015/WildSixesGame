@@ -18,7 +18,6 @@ public class RemoveTileController extends AbstractMoveController{
 
 	@Override
 	public boolean handleMove(ActionEvent e) {
-		board = levelScreen.getBoardView().getBoard();
 		if (tileToBeRemoved.getType() != TileType.Number) return false;
 		Tile[][] grid = board.getGrid();
 		boolean stopLooping = false;
