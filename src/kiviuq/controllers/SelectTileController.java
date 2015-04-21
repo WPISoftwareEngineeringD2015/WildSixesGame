@@ -2,7 +2,6 @@ package kiviuq.controllers;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
-
 import kiviuq.entities.Board;
 import kiviuq.entities.MoveType;
 import kiviuq.entities.Tile;
@@ -94,8 +93,7 @@ public class SelectTileController extends MouseAdapter {
 				board.setLastY(-1);
 				// stuff
 				board.setMoveType(MoveType.Normal);
-				new RemoveTileController(board, tile, levelScreen)
-						.actionPerformed(null);
+				new RemoveTileController(board, tile, levelScreen).actionPerformed(null);
 				levelScreen.refreshMoves();
 			} else {
 				board.setLastX(x);
@@ -125,7 +123,8 @@ public class SelectTileController extends MouseAdapter {
 
 					if (isLastTile()) {
 						if (moveType == MoveType.Normal) {
-							// stuff
+							if(board.getTileSum() == 6) // else ignore move
+								new ValidMoveController(board, levelScreen).actionPerformed(null);
 							board.resetTileSum();
 						}
 						if (moveType == MoveType.Swap) {
@@ -154,8 +153,6 @@ public class SelectTileController extends MouseAdapter {
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	// @Override
