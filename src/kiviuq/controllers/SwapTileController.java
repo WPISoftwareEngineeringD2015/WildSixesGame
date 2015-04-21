@@ -19,6 +19,7 @@ public class SwapTileController extends AbstractMoveController {
 	
 	@Override
 	public boolean handleMove(ActionEvent e) {
+		board = levelScreen.getBoardView().getBoard();
 		if (a.getType() != TileType.Number || b.getType() != TileType.Number)
 			return false;
 		// find x,y position of a
@@ -40,8 +41,8 @@ public class SwapTileController extends AbstractMoveController {
 		boolean nextTo = false;
 		for (int x = ax - 1; x < ax + 2; x++) {
 			for (int y = ay - 1; y < ay + 2; y++) {
-				if (ax >= 0 && ay >= 0 && ax < Constants.BOARD_LENGTH
-						&& ay < Constants.BOARD_WIDTH) {
+				if (x >= 0 && y >= 0 && x < Constants.BOARD_LENGTH
+						&& y < Constants.BOARD_WIDTH) {
 					Tile possibleB = grid[x][y];
 					if (possibleB == b) {
 						nextTo = true;
@@ -55,7 +56,6 @@ public class SwapTileController extends AbstractMoveController {
 				break;
 		}
 		board.setGrid(grid);
-		board.increaseMovesMade();
 		return true;
 	}
 }

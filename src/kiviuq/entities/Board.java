@@ -201,5 +201,16 @@ public class Board {
 	public GameMode getMode() {
 		return mode;
 	}
+	
+	public void resetBoard() {
+		Board newBoard = new Board(this.getTemplate());
+		this.setGrid(newBoard.getGrid());
+		resetPoints();
+		resetTimePassed();
+		resetMovesMade();
+		resetTileSum();
+		resetTileCount();
+		resetTiles();
+	}
 
 }

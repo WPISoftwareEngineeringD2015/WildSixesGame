@@ -15,11 +15,10 @@ public class RemoveTileController extends AbstractMoveController{
 		super(board, levelScreen);
 		this.tileToBeRemoved = tileToBeRemoved;
 	}
-	
-	
 
 	@Override
 	public boolean handleMove(ActionEvent e) {
+		board = levelScreen.getBoardView().getBoard();
 		if (tileToBeRemoved.getType() != TileType.Number) return false;
 		Tile[][] grid = board.getGrid();
 		boolean stopLooping = false;
@@ -35,7 +34,6 @@ public class RemoveTileController extends AbstractMoveController{
 			if (stopLooping) break;
 		}
 		board.setGrid(grid);
-		board.increaseMovesMade();
 		// board is in an inconsistent state with a tile set to 'null'
 		new GravityController(board, levelScreen.getBoardView()).actionPerformed(e);
 		return true;

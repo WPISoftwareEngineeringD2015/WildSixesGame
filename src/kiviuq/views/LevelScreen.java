@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import kiviuq.controllers.ResetTilesController;
 import kiviuq.controllers.RestartLevelController;
 import kiviuq.controllers.SelectRemoveController;
 import kiviuq.controllers.SelectSwapController;
@@ -21,9 +22,10 @@ public class LevelScreen extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	Board board;
 	JButton back;
+	JButton restart;
 	BoardView boardView;
+	Board board;
 	JFrame previousScreen;
 	ScoreView scoreView;
 	JLabel movesLeft;
@@ -36,7 +38,6 @@ public class LevelScreen extends JFrame {
 		setTitle("Example Level Screen");
 		setBounds(100, 100, 867, 715);
 		setLocationRelativeTo(null);
-		this.board = board;
 		getContentPane().setLayout(null);
 
 		JPanel panelTop = new JPanel();
@@ -52,7 +53,7 @@ public class LevelScreen extends JFrame {
 		panelTop.add(scoreView);
 
 		SpecialButtonsView sbv = new SpecialButtonsView(
-				new RestartLevelController(board, this),
+				new ResetTilesController(board, this),
 				new SelectSwapController(board),
 				new SelectRemoveController(board));
 		panelTop.add(sbv);
@@ -65,13 +66,15 @@ public class LevelScreen extends JFrame {
 			panelTop.add(movesMade);
 		}
 		
-		
-
 		JPanel panelGrid = new JPanel();
 		panelGrid.setBounds(6, 89, 855, 585);
 		getContentPane().add(panelGrid);
 		panelGrid.setLayout(new BorderLayout(0, 0));
 
+		this.restart = new JButton("Restart Level");
+		restart.addActionListener(new RestartLevelController(board, this));
+		
+		
 		this.back = new JButton("Back");
 		back.addActionListener(new ActionListener() {
 			@Override
@@ -81,9 +84,11 @@ public class LevelScreen extends JFrame {
 			}
 		});
 
-
 		panelGrid.add(boardView, BorderLayout.CENTER);
+		panelTop.add(restart);
 		panelTop.add(back);
+		
+		this.board = board;
 	}
 
 	public ScoreView getScoreView() {
@@ -93,10 +98,17 @@ public class LevelScreen extends JFrame {
 	public BoardView getBoardView() {
 		return boardView;
 	}
+	
+//	public void setBoardView(BoardView newBoardView) {
+//		boardView = newBoardView;
+//		repaint();
+//	}
 
 	public void refreshMoves() {
-		movesLeft.setText("Moves Left: " + (board.getMoveLimit() - board.getMovesMade()) );
-		movesMade.setText("Moves Made: " + board.getMovesMade());
+		if(board.getMode() == GameMode.Elimination)
+			movesLeft.setText("Moves Left: " + (board.getMoveLimit() - board.getMovesMade()) );
+		else
+			movesMade.setText("Moves Made: " + board.getMovesMade());
 		repaint();
 	}
 }

@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import kiviuq.controllers.RestartLevelController;
+import kiviuq.controllers.ResetTilesController;
 import kiviuq.controllers.SelectRemoveController;
 import kiviuq.controllers.SelectSwapController;
 
@@ -25,11 +25,11 @@ public class SpecialButtonsView extends JPanel{
 	private static final String RESOURCE_X = "/kiviuq/views/x.png";
 	
 	
-	public SpecialButtonsView(RestartLevelController rlc, SelectSwapController ssc, SelectRemoveController src) {
+	public SpecialButtonsView(ResetTilesController rtc, SelectSwapController ssc, SelectRemoveController src) {
 		super();
 		setLayout(new GridLayout(1, 3,0,0));
 		
-		reset = CreateImageBtn(RESOURCE_RESET, rlc);
+		reset = CreateImageBtn(RESOURCE_RESET, rtc);
 		swap = CreateImageBtn(RESOURCE_SWAP, ssc);
 		x = CreateImageBtn(RESOURCE_X, src);
 	}

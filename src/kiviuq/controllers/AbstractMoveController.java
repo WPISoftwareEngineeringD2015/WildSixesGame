@@ -20,8 +20,10 @@ public abstract class AbstractMoveController implements ActionListener {
 	public final void actionPerformed(ActionEvent e) {
 		if (handleMove(e)) {
 			board.increaseMovesMade();
+			levelScreen.refreshMoves();
 			levelScreen.getBoardView().repaint();
 			levelScreen.getScoreView().repaint();
+			levelScreen.repaint();
 		}
 	}
 

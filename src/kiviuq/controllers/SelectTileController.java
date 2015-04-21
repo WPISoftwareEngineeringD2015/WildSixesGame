@@ -70,6 +70,7 @@ public class SelectTileController extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		this.board = boardView.getBoard();
 		moveType = boardView.getBoard().getMoveType();
 		if(!board.isMousePressed()) {
 			board.pressMouse();
@@ -90,8 +91,7 @@ public class SelectTileController extends MouseAdapter {
 				board.setLastY(-1);
 				// stuff
 				board.setMoveType(MoveType.Normal);
-				new RemoveTileController(board, tile, levelScreen).handleMove(null);
-				levelScreen.refreshMoves();
+				new RemoveTileController(board, tile, levelScreen).actionPerformed(null);
 			}else {
 				board.setLastX(x);
 				board.setLastY(y);
@@ -101,6 +101,7 @@ public class SelectTileController extends MouseAdapter {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
+		this.board = boardView.getBoard();
 		moveType = boardView.getBoard().getMoveType();
 		if(board.isMousePressed()) {
 			TileView sourcePanel = (TileView) e.getSource();
@@ -125,9 +126,7 @@ public class SelectTileController extends MouseAdapter {
 						}
 						if(moveType == MoveType.Swap) {
 							// stuff
-							new SwapTileController(board.getGrid()[lastX][lastY], tile, board, levelScreen).handleMove(null);
-							levelScreen.refreshMoves();
-							board.setMoveType(MoveType.Normal);
+							new SwapTileController(board.getGrid()[lastX][lastY], tile, board, levelScreen).actionPerformed(null);
 						}
 						
 						board.releaseMouse();

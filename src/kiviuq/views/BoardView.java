@@ -16,12 +16,10 @@ public class BoardView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	Board board;
-	LevelScreen levelScreen;
 	TileView[][] tvs;
 	public BoardView(Board board, LevelScreen levelScreen) {
 		super();
 		this.board = board;
-		this.levelScreen = levelScreen;
 		tvs = new TileView[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
 		setLayout(new GridLayout(Constants.BOARD_LENGTH, Constants.BOARD_WIDTH, 10, 10));
 		Tile[][] grid = board.getGrid();
