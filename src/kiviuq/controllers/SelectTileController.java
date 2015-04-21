@@ -150,47 +150,4 @@ public class SelectTileController extends MouseAdapter {
 				}
 		}
 	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-	}
-
-	// @Override
-	// public void mouseMoved(MouseEvent e) {
-	// TileView sourcePanel = (TileView) e.getSource();
-	// if(isMousePressed) {
-	// sourcePanel.getTile().select();
-	// sourcePanel.repaint();
-	// board.addTileSum(sourcePanel.getTile().getNumber());
-	// }
-	// }
-	//
-	// @Override
-	// public void mousePressed(MouseEvent e) {
-	// board.pressMouse();
-	// TileView sourcePanel = (TileView) e.getSource();
-	// tile = sourcePanel.getTile();
-	// tile.select();
-	// sourcePanel.repaint();
-	// board.setLastX(x);
-	// board.setLastY(y);
-	// board.addTileSum(tile.getNumber());
-	// }
-	//
-	// @Override
-	// public void mouseReleased(MouseEvent e) {
-	// board.releaseMouse();
-	// TileView sourcePanel = (TileView) e.getSource();
-	// if(moveType == MoveType.Normal) {
-	// board.resetTileSum();
-	// }
-	// if(moveType == MoveType.Remove) {
-	// // stuff
-	// }
-	// if(moveType == MoveType.Swap) {
-	// // stuff
-	// }
-	// board.resetTiles();
-	// boardView.repaintTiles();
-	// }
 }

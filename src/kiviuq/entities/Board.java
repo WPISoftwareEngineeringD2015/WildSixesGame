@@ -22,7 +22,7 @@ public class Board {
 	boolean isMousePressed;
 	int lastX = -1;
 	int lastY = -1;
-
+	int r1,r2,r3,r4,r5;
 	public Board(LevelTemplate template) {
 		this.setTemplate(template);
 		moveLimit = template.moveLimit;
@@ -31,6 +31,14 @@ public class Board {
 		eliminatedTiles = new boolean[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
 		starCriteira = template.getStarCriteria();
 		TileType[][] gridTemplate = template.getGridTemplate();
+		
+		int mult = template.probConst;
+		r1 = 40 - mult/4;
+		r2 = 25 - mult/10;
+		r3 = 15 + mult/20;
+		r4 = 10 + mult/10;
+		r5 = 5 + mult/10;
+		
 		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
 			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
 				TileType type = gridTemplate[x][y];
@@ -113,8 +121,26 @@ public class Board {
 	}
 
 	public Tile getNextTile() {
-		// TODO implement this with an actual randomly weighted tile
-		return new Tile(Math.random() > 0.5 ? 1 : 2);
+		Random x = new Random();
+		int result = x.nextInt(99) + 1;
+		if(result < r1) {
+			return new Tile(1);
+		} else if (result <= (r1 + r2)) {
+			return new Tile(2);
+		} else if (result <= (r1 + r2 + r3)) {
+			return new Tile(3);
+		} else if (result <= (r1 + r2 + r3 + r4)) {
+			return new Tile(4);
+		} else if (result <= (r1 + r2+ r3 + r4 + r5)) {
+			return new Tile(5);
+		} else if(mode == GameMode.Release) {
+			return new Tile(1);
+		} else {
+			return new Tile(6);
+	}
+		
+		
+	//	return new Tile(Math.random() > 0.5 ? 1 : 2);
 		// for now just give us a Tile valued 1 or 2
 	}
 

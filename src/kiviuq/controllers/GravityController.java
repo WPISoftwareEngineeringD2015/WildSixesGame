@@ -10,7 +10,6 @@ import kiviuq.util.Constants;
 import kiviuq.views.BoardView;
 
 public class GravityController implements ActionListener {
-
 	Board board;
 	BoardView boardView;
 

@@ -49,7 +49,7 @@ public class TileView extends JPanel{
 			return Color.gray;
 		case Number:
 			int num = tile.getNumber();
-			return NUMBER_COLORS[num];
+			return NUMBER_COLORS[num-1];
 		case Release:
 			return Color.PINK;
 		default:
