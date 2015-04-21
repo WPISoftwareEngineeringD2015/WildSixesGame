@@ -50,7 +50,7 @@ public class TileView extends JPanel{
 		case Number:
 			int num = tile.getNumber();
 			return NUMBER_COLORS[num];
-		case Relase:
+		case Release:
 			return Color.PINK;
 		default:
 			return Color.BLACK;

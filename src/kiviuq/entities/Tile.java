@@ -35,7 +35,7 @@ public class Tile {
 				str = number + "";
 			case Null:
 				break;
-			case Relase:
+			case Release:
 				str = "R";
 		}
 		return str;

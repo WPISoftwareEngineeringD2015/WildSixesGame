@@ -27,7 +27,7 @@ public class Templates {
 			for (int i = 0; i < 2; i++) {
 				int x = r.nextInt(Constants.BOARD_LENGTH);
 				int y = r.nextInt(Constants.BOARD_WIDTH);
-				temp.setTileTypeAtPosition(x, y, TileType.Relase);
+				temp.setTileTypeAtPosition(x, y, TileType.Release);
 			}
 		}
 		return temp;
