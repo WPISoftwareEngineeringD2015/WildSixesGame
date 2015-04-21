@@ -228,9 +228,13 @@ public class Board {
 		return mode;
 	}
 	
-	public void resetBoard() {
+	public void resetGrid() {
 		Board newBoard = new Board(this.getTemplate());
 		this.setGrid(newBoard.getGrid());
+	}
+	
+	public void resetBoard() {
+		resetGrid();
 		resetPoints();
 		resetTimePassed();
 		resetMovesMade();
@@ -238,5 +242,6 @@ public class Board {
 		resetTileCount();
 		resetTiles();
 	}
+	
 
 }
