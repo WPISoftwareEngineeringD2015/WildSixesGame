@@ -74,4 +74,8 @@ public class TileView extends JPanel{
 	public Tile getTile() {
 		return tile;
 	}
+	
+	public JLabel getMainLabel()  {
+		return lblValue;
+	}
 }

@@ -9,6 +9,10 @@ public class EliminationBoard extends Board{
 	protected EliminationBoard(LevelTemplate template) {
 		super(template);
 		eliminatedTiles = new boolean[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
+		// set non-number Tiles to already be considered for Elimination
+		for (int x = 0; x < Constants.BOARD_LENGTH; x++) 
+			for (int y = 0; y < Constants.BOARD_WIDTH; y++)
+				eliminatedTiles[x][y] = grid[x][y].getType() != TileType.Number;
 	}
 	
 	@Override

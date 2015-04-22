@@ -1,11 +1,14 @@
 package kiviuq.views;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+
 import javax.swing.JPanel;
 
 import kiviuq.controllers.SelectTileController;
 import kiviuq.entities.Board;
+import kiviuq.entities.EliminationBoard;
 import kiviuq.entities.Tile;
 import kiviuq.util.Constants;
 
@@ -40,7 +43,15 @@ public class BoardView extends JPanel {
 		Tile[][] grid = board.getGrid();
 		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
 			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
-				tvs[x][y].setTile(grid[x][y]);
+				TileView tv = tvs[x][y];
+				tv.setTile(grid[x][y]);
+				if (board instanceof EliminationBoard) {
+					EliminationBoard eb = (EliminationBoard) board;
+					if (eb.getEliminatedTiles()[x][y]) {
+						// TODO implement a better way of indicating this, but it works
+						tv.getMainLabel().setForeground(Color.CYAN);
+					}
+				}
 			}
 		}
 	}
