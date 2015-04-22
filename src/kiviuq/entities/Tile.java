@@ -61,8 +61,8 @@ public class Tile {
 	public boolean isSelectable(MoveType moveType) {
 		if (type == TileType.Release || type == TileType.Null) return false;
 		// MoveType.Remove can Remove any Tile of type Number
-		if (moveType == MoveType.Remove) return true; 
-		return number < 6;
+		if (moveType == MoveType.Remove) return true;
+		return number < 6 || moveType == MoveType.Swap;
 	}
 	
 	public void unSelect() {
