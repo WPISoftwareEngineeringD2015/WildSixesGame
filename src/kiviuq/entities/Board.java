@@ -24,6 +24,7 @@ public abstract class Board {
 	int lastX = -1;
 	int lastY = -1;
 	int r1, r2, r3, r4, r5;
+	int m1, m2;
 
 	public static Board MakeBoardFromTemplate(LevelTemplate template) {
 		GameMode mode = template.getGameMode();
@@ -50,12 +51,16 @@ public abstract class Board {
 		starCriteira = template.getStarCriteria();
 		TileType[][] gridTemplate = template.getGridTemplate();
 
-		int mult = template.probConst;
-		r1 = 40 - mult / 4;
-		r2 = 25 - mult / 10;
-		r3 = 15 + mult / 20;
-		r4 = 10 + mult / 10;
-		r5 = 5 + mult / 10;
+		int pMult = template.probConst;
+		r1 = 40 - pMult / 4;
+		r2 = 25 - pMult / 10;
+		r3 = 15 + pMult / 20;
+		r4 = 10 + pMult / 10;
+		r5 = 5 + pMult / 10;
+		
+		int mMult = template.multConst;
+		m1 = 100 - mMult;
+		m2 = (mMult*2)/3;
 
 		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
 			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
@@ -138,24 +143,34 @@ public abstract class Board {
 		Random x = new Random();
 		int result = x.nextInt(99) + 1;
 		if (result < r1) {
-			return new Tile(1);
+			return getNextTileHelper(1);
 		} else if (result <= (r1 + r2)) {
-			return new Tile(2);
+			return getNextTileHelper(2);
 		} else if (result <= (r1 + r2 + r3)) {
-			return new Tile(3);
+			return getNextTileHelper(3);
 		} else if (result <= (r1 + r2 + r3 + r4)) {
-			return new Tile(4);
+			return getNextTileHelper(4);
 		} else if (result <= (r1 + r2 + r3 + r4 + r5)) {
-			return new Tile(5);
+			return getNextTileHelper(5);
 		} else if (mode == GameMode.Release) {
-			return new Tile(1);
+			return getNextTileHelper(1);
 		} else {
-			return new Tile(6);
+			return new Tile(6, 1);
 		}
-
-		// return new Tile(Math.random() > 0.5 ? 1 : 2);
-		// for now just give us a Tile valued 1 or 2
 	}
+	
+	public Tile getNextTileHelper(int number) {
+		Random y = new Random();
+		int rand = y.nextInt(99) + 1;
+		if (rand <= m1) {
+			return new Tile(number, 1);
+		} else if(rand <= (m1 + m2)) {
+			return new Tile(number, 2);
+		} else {
+			return new Tile(number, 3);
+		}
+	}
+		
 
 	public LevelTemplate getTemplate() {
 		return template;

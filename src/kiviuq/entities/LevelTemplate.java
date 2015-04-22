@@ -7,15 +7,17 @@ public class LevelTemplate {
 	int timeLimit;
 	int moveLimit;
 	int probConst;
+	int multConst;
 	StarCriteria starCriteria;
 	
 	public LevelTemplate(int levelNumber, GameMode mode, int timeLimit, int moveLimit, int probConst,
-			StarCriteria starCriteria) {
+			int multConst, StarCriteria starCriteria) {
 		this.levelNumber = levelNumber;
 		this.mode = mode;
 		this.timeLimit = timeLimit;
 		this.moveLimit = moveLimit;
-		this.probConst = probConst; //
+		this.probConst = probConst;
+		this.multConst = multConst;
 		this.starCriteria = starCriteria;
 		grid = new TileType[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];	
 		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {

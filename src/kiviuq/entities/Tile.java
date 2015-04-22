@@ -6,16 +6,17 @@ public class Tile {
 	TileType type;
 	boolean isSelected;
 	
-	public Tile(int number) {
-		this(number, TileType.Number);
+	public Tile(int number, int mult) {
+		this(number, mult, TileType.Number);
 	}
 	
 	public Tile(TileType type) {
-		this(-1, type);
+		this(-1, 1, type);
 	}
 	
-	public Tile(int number, TileType type) {
+	public Tile(int number, int mult, TileType type) {
 		this.number = number;
+		this.mult = mult;
 		this.type = type;
 	}
 	
