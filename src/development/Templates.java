@@ -14,7 +14,7 @@ public class Templates {
 	public static LevelTemplate getExampleTemplate() {
 		if (temp == null) {
 			StarCriteria sc = new StarCriteria(0, 0, 50, 100, 300, 4, 6, 8); 
-			temp = new LevelTemplate(0, GameMode.Elimination, 60, 30, 50, 30, sc);
+			temp = new LevelTemplate(0, GameMode.Elimination, 60, 30, 50, 60, sc);
 			Random r = new Random();
 			// throw some random null tiles in there
 			for (int i = 0; i < 5; i++) {

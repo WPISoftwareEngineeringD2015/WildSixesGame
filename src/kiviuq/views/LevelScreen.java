@@ -36,7 +36,7 @@ public class LevelScreen extends JFrame {
 		boardView = new BoardView(board, this);
 		this.previousScreen = previousScreen;
 		setTitle("Example Level Screen");
-		setBounds(100, 100, 867, 715);
+		setBounds(100, 100, 880, 715);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 

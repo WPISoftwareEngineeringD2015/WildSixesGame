@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import kiviuq.entities.Tile;
+import java.awt.Font;
 
 public class TileView extends JPanel{
 
@@ -29,6 +30,7 @@ public class TileView extends JPanel{
 		add(lblValue);
 		
 		this.lblMult = new JLabel("MULT");
+		lblMult.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblMult.setBounds(42, 30, 46, 14);
 		add(lblMult);
 	}
