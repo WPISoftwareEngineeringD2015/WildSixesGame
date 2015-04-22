@@ -44,7 +44,7 @@ public class Tile {
 	
 	public String multToString() {
 		String multStr = "";
-		if (type == TileType.Number && number != 6 && mult != 0) {
+		if (type == TileType.Number && number != 6 && mult > 1) {
 			multStr = "x" + mult;
 		}
 		return multStr;
