@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author mhomchenko
- *
- */
-package test;
