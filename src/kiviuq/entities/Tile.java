@@ -20,6 +20,10 @@ public class Tile {
 		this.type = type;
 	}
 	
+	public int getMultiplier() {
+		return mult;
+	}
+	
 	public int getNumber() {
 		return number;
 	}
@@ -45,7 +49,7 @@ public class Tile {
 	
 	public String multToString() {
 		String multStr = "";
-		if (type == TileType.Number && number != 6 && mult > 1) {
+		if (type == TileType.Number && number != 6 && mult > 1	) {
 			multStr = "x" + mult;
 		}
 		return multStr;
