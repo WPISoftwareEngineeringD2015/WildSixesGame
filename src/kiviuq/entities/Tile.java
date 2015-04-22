@@ -43,7 +43,11 @@ public class Tile {
 	}
 	
 	public String multToString() {
-		return "x";
+		String multStr = "";
+		if (type == TileType.Number && number != 6 && mult != 0) {
+			multStr = "x" + mult;
+		}
+		return multStr;
 	}
 	
 	public boolean isSelected() {
