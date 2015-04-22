@@ -2,6 +2,7 @@ package kiviuq.entities;
 
 public class Tile {
 	int number;
+	int mult;
 	TileType type;
 	boolean isSelected;
 	
@@ -39,6 +40,10 @@ public class Tile {
 				str = "R";
 		}
 		return str;
+	}
+	
+	public String multToString() {
+		return "x";
 	}
 	
 	public boolean isSelected() {
