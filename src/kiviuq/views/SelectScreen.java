@@ -81,7 +81,7 @@ public class SelectScreen extends JFrame {
 				
 				if(nameComponents.equals("puzzle 1")) {
 					LevelTemplate template = Templates.getExampleTemplate();
-					LevelScreen lvlScreen = new LevelScreen(new Board(template), SelectScreen.this);
+					LevelScreen lvlScreen = new LevelScreen(Board.MakeBoardFromTemplate(template), SelectScreen.this);
 					lvlScreen.setVisible(true);
 					SelectScreen.this.setVisible(false);
 					}
