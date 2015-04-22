@@ -25,14 +25,13 @@ public class RemoveTileController extends AbstractMoveController{
 			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
 				Tile t = grid[x][y];
 				if (t == tileToBeRemoved) {
-					grid[x][y] = null;
+					board.removeTile(x, y);
 					stopLooping = true;
 					break;
 				}
 			}
 			if (stopLooping) break;
 		}
-		board.setGrid(grid);
 		// board is in an inconsistent state with a tile set to 'null'
 		new GravityController(board, levelScreen.getBoardView()).actionPerformed(e);
 		return true;

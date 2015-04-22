@@ -4,10 +4,11 @@ import java.util.Random;
 
 import kiviuq.util.Constants;
 
-public class Board {
+public abstract class Board {
+
 	LevelTemplate template;
+
 	Tile[][] grid;
-	boolean[][] eliminatedTiles;
 	int movesMade;
 	int moveLimit;
 	int timePassed;
@@ -18,27 +19,44 @@ public class Board {
 	int tileSum;
 	int tileCount;
 	MoveType moveType = MoveType.Normal;
-	
+
 	boolean isMousePressed;
 	int lastX = -1;
 	int lastY = -1;
-	int r1,r2,r3,r4,r5;
-	public Board(LevelTemplate template) {
+	int r1, r2, r3, r4, r5;
+
+	public static Board MakeBoardFromTemplate(LevelTemplate template) {
+		GameMode mode = template.getGameMode();
+		switch (mode) {
+		case Puzzle:
+			return new PuzzleBoard(template);
+		case Lightning:
+			return new LightningBoard(template);
+		case Release:
+			return new ReleaseBoard(template);
+		case Elimination:
+			return new EliminationBoard(template);
+		default:
+			break;
+		}
+		return null;
+	}
+
+	protected Board(LevelTemplate template) {
 		this.setTemplate(template);
 		moveLimit = template.moveLimit;
 		mode = template.mode;
 		grid = new Tile[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
-		eliminatedTiles = new boolean[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
 		starCriteira = template.getStarCriteria();
 		TileType[][] gridTemplate = template.getGridTemplate();
-		
+
 		int mult = template.probConst;
-		r1 = 40 - mult/4;
-		r2 = 25 - mult/10;
-		r3 = 15 + mult/20;
-		r4 = 10 + mult/10;
-		r5 = 5 + mult/10;
-		
+		r1 = 40 - mult / 4;
+		r2 = 25 - mult / 10;
+		r3 = 15 + mult / 20;
+		r4 = 10 + mult / 10;
+		r5 = 5 + mult / 10;
+
 		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
 			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
 				TileType type = gridTemplate[x][y];
@@ -88,10 +106,6 @@ public class Board {
 		this.grid = grid;
 	}
 
-	public boolean[][] getEliminatedTiles() {
-		return eliminatedTiles;
-	}
-
 	public void increaseTimePassed() {
 		timePassed++;
 	}
@@ -123,7 +137,7 @@ public class Board {
 	public Tile getNextTile() {
 		Random x = new Random();
 		int result = x.nextInt(99) + 1;
-		if(result < r1) {
+		if (result < r1) {
 			return new Tile(1);
 		} else if (result <= (r1 + r2)) {
 			return new Tile(2);
@@ -131,16 +145,15 @@ public class Board {
 			return new Tile(3);
 		} else if (result <= (r1 + r2 + r3 + r4)) {
 			return new Tile(4);
-		} else if (result <= (r1 + r2+ r3 + r4 + r5)) {
+		} else if (result <= (r1 + r2 + r3 + r4 + r5)) {
 			return new Tile(5);
-		} else if(mode == GameMode.Release) {
+		} else if (mode == GameMode.Release) {
 			return new Tile(1);
 		} else {
 			return new Tile(6);
-	}
-		
-		
-	//	return new Tile(Math.random() > 0.5 ? 1 : 2);
+		}
+
+		// return new Tile(Math.random() > 0.5 ? 1 : 2);
 		// for now just give us a Tile valued 1 or 2
 	}
 
@@ -159,23 +172,23 @@ public class Board {
 	public void resetTileSum() {
 		tileSum = 0;
 	}
-	
+
 	public int getTileSum() {
 		return tileSum;
 	}
-	
+
 	public void increaseTileCount() {
 		tileCount++;
 	}
-	
+
 	public void resetTileCount() {
 		tileCount = 0;
 	}
-	
+
 	public int getTileCount() {
 		return tileCount;
 	}
-	
+
 	public void resetTiles() {
 		for (Tile[] r : grid)
 			for (Tile t : r) {
@@ -191,11 +204,11 @@ public class Board {
 	public MoveType getMoveType() {
 		return moveType;
 	}
-	
+
 	public int getLastX() {
 		return lastX;
 	}
-	
+
 	public void setLastX(int lastX) {
 		this.lastX = lastX;
 	}
@@ -203,36 +216,36 @@ public class Board {
 	public int getLastY() {
 		return lastY;
 	}
-	
+
 	public void setLastY(int lastY) {
 		this.lastY = lastY;
 	}
-	
+
 	public void pressMouse() {
 		isMousePressed = true;
 	}
-	
+
 	public void releaseMouse() {
 		isMousePressed = false;
 	}
-	
+
 	public boolean isMousePressed() {
 		return isMousePressed;
 	}
-	
+
 	public int getMoveLimit() {
 		return moveLimit;
 	}
-	
+
 	public GameMode getMode() {
 		return mode;
 	}
-	
+
 	public void resetGrid() {
-		Board newBoard = new Board(this.getTemplate());
+		Board newBoard = Board.MakeBoardFromTemplate(template);
 		this.setGrid(newBoard.getGrid());
 	}
-	
+
 	public void resetBoard() {
 		resetGrid();
 		resetPoints();
@@ -242,6 +255,31 @@ public class Board {
 		resetTileCount();
 		resetTiles();
 	}
-	
+
+	/**
+	 * Removes a Tile at the given location.
+	 * 
+	 * This function leaves the Board in an inconsistent state.
+	 * 
+	 * This function may be overridden, <b>however</b> it is the responsibility
+	 * of the subclass to call the parent function to ensure all functionality
+	 * still occurs.
+	 * 
+	 * @param x
+	 * @param y
+	 */
+	public void removeTile(int x, int y) {
+		grid[x][y] = null;
+	}
+
+	/**
+	 * 
+	 * Specific Board implementations must override this method and make it
+	 * return true if that variation of SixesWild has been won, and false
+	 * otherwise.
+	 * 
+	 * @return true if a winning condition has been established on this Board.
+	 */
+	public abstract boolean hasWon();
 
 }

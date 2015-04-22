@@ -25,6 +25,10 @@ public class LevelTemplate {
 		}
 	}
 	
+	public GameMode getGameMode() {
+		return mode;
+	}
+	
 	public StarCriteria getStarCriteria() {
 		return starCriteria;
 	}

@@ -16,15 +16,21 @@ public class TileView extends JPanel{
 	private static final long serialVersionUID = 1L;
 	Tile tile;
 	JLabel lblValue;
+	JLabel lblMult;
 	
 	public TileView(Tile tile) {
 		super();
 		this.tile = tile;
 		setSize(50,50);
+		setLayout(null);
 		
 		this.lblValue = new JLabel("VALUE");
-		lblValue.setBounds(44, 42, 46, 14);
+		lblValue.setBounds(42, 5, 31, 14);
 		add(lblValue);
+		
+		this.lblMult = new JLabel("MULT");
+		lblMult.setBounds(42, 30, 46, 14);
+		add(lblMult);
 	}
 	
 	@Override
@@ -39,6 +45,7 @@ public class TileView extends JPanel{
 		else
 			setBackground(getColor());
 		lblValue.setText(tile.toString());
+		lblMult.setText(tile.multToString());
 	}
 	
 	private final static Color[] NUMBER_COLORS = {Color.ORANGE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE};
