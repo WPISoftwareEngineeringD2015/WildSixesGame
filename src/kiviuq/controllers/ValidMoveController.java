@@ -17,13 +17,11 @@ public class ValidMoveController extends AbstractMoveController{
 		Tile[][] grid = board.getGrid();
 		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
 			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
-				Tile t = grid[x][y];
-				if (t.isSelected()) {
-					grid[x][y] = null;
+				if (grid[x][y].isSelected()) {
+					board.removeTile(x, y);
 				}
 			}
 		}
-		board.setGrid(grid);
 		// board is in an inconsistent state with a tile set to 'null'
 		new GravityController(board, levelScreen.getBoardView()).actionPerformed(e);
 		return true;

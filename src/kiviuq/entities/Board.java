@@ -5,9 +5,10 @@ import java.util.Random;
 import kiviuq.util.Constants;
 
 public abstract class Board {
+
 	LevelTemplate template;
+
 	Tile[][] grid;
-	boolean[][] eliminatedTiles;
 	int movesMade;
 	int moveLimit;
 	int timePassed;
@@ -46,7 +47,6 @@ public abstract class Board {
 		moveLimit = template.moveLimit;
 		mode = template.mode;
 		grid = new Tile[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
-		eliminatedTiles = new boolean[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
 		starCriteira = template.getStarCriteria();
 		TileType[][] gridTemplate = template.getGridTemplate();
 
@@ -104,10 +104,6 @@ public abstract class Board {
 
 	public void setGrid(Tile[][] grid) {
 		this.grid = grid;
-	}
-
-	public boolean[][] getEliminatedTiles() {
-		return eliminatedTiles;
 	}
 
 	public void increaseTimePassed() {
@@ -260,6 +256,30 @@ public abstract class Board {
 		resetTiles();
 	}
 
+	/**
+	 * Removes a Tile at the given location.
+	 * 
+	 * This function leaves the Board in an inconsistent state.
+	 * 
+	 * This function may be overridden, <b>however</b> it is the responsibility
+	 * of the subclass to call the parent function to ensure all functionality
+	 * still occurs.
+	 * 
+	 * @param x
+	 * @param y
+	 */
+	public void removeTile(int x, int y) {
+		grid[x][y] = null;
+	}
+
+	/**
+	 * 
+	 * Specific Board implementations must override this method and make it
+	 * return true if that variation of SixesWild has been won, and false
+	 * otherwise.
+	 * 
+	 * @return true if a winning condition has been established on this Board.
+	 */
 	public abstract boolean hasWon();
 
 }
