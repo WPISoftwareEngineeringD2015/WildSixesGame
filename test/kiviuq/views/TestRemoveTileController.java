@@ -1,3 +1,4 @@
+
 package kiviuq.views;
 
 import development.Templates;
@@ -30,5 +31,4 @@ public class TestRemoveTileController extends TestCase {
 		assertEquals(lvlScreen.boardView.tvs[1][0].tile.getNumber(), initTile2.getNumber());
 		assertEquals(lvlScreen.boardView.tvs[1][0].tile.getMultiplier(), initTile2.getMultiplier());
 	}
-
 }
