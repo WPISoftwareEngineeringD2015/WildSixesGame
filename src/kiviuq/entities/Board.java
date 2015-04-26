@@ -13,7 +13,7 @@ public abstract class Board {
 	int moveLimit;
 	int timePassed;
 	int points;
-	StarCriteria starCriteira;
+	StarCriteria starCriteria;
 	GameMode mode;
 
 	int tileSum;
@@ -48,7 +48,7 @@ public abstract class Board {
 		moveLimit = template.moveLimit;
 		mode = template.mode;
 		grid = new Tile[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
-		starCriteira = template.getStarCriteria();
+		starCriteria = template.getStarCriteria();
 		TileType[][] gridTemplate = template.getGridTemplate();
 
 		int pMult = template.probConst;
@@ -100,7 +100,7 @@ public abstract class Board {
 	}
 
 	public StarCriteria getStarCriteria() {
-		return starCriteira;
+		return starCriteria;
 	}
 
 	public Tile[][] getGrid() {
@@ -269,6 +269,13 @@ public abstract class Board {
 		resetTileSum();
 		resetTileCount();
 		resetTiles();
+	}
+	
+	public StarRating checkCriteria() {
+		if (this.points >= this.starCriteria.points3) return StarRating.ThreeStars;
+		else if (this.points >= this.starCriteria.points2) return StarRating.TwoStars;
+		else if (this.points >= this.starCriteria.points1) return StarRating.OneStar;
+		return StarRating.NoStars;
 	}
 
 	/**
