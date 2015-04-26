@@ -204,7 +204,7 @@ public abstract class Board {
 		return tileCount;
 	}
 
-	public void resetTiles() {
+	public void unselectTiles() {
 		for (Tile[] r : grid)
 			for (Tile t : r) {
 				t.unSelect();
@@ -267,7 +267,7 @@ public abstract class Board {
 		resetMovesMade();
 		resetTileSum();
 		resetTileCount();
-		resetTiles();
+		unselectTiles();
 	}
 	
 	public StarRating checkCriteria() {

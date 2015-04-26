@@ -90,7 +90,7 @@ public class SelectTileController extends MouseAdapter {
 			if (moveType == MoveType.Remove) {
 				board.releaseMouse();
 				board.resetTileCount();
-				board.resetTiles();
+				board.unselectTiles();
 				boardView.repaintTiles();
 				board.setLastX(-1);
 				board.setLastY(-1);
@@ -141,7 +141,7 @@ public class SelectTileController extends MouseAdapter {
 
 						board.releaseMouse();
 						board.resetTileCount();
-						board.resetTiles();
+						board.unselectTiles();
 						boardView.repaintTiles();
 						boardView.repaint();
 						board.setLastX(-1);
