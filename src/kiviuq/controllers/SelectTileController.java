@@ -71,6 +71,9 @@ public class SelectTileController extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		moveType = boardView.getBoard().getMoveType();
+		if(board.getMovesMade() >= board.getMoveLimit()) {
+			return;
+		}
 		if (!board.isMousePressed()) {
 			TileView sourcePanel = (TileView) e.getSource();
 			tile = sourcePanel.getTile();

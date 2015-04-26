@@ -53,14 +53,16 @@ public abstract class AbstractMoveController implements ActionListener {
 	 */
 	@Override
 	public final void actionPerformed(ActionEvent e) {
-		if (handleMove(e)) {
-			if (board instanceof ReleaseBoard) 
-				new ReleaseTileController(board, levelScreen.getBoardView()).actionPerformed(e);;
-			board.increaseMovesMade();
-			levelScreen.refreshMoves();
-			levelScreen.getBoardView().repaint();
-			levelScreen.getScoreView().repaint();
-			levelScreen.repaint();
+		if(board.getMovesMade() < board.getMoveLimit()) {
+			if (handleMove(e)) {
+				if (board instanceof ReleaseBoard) 
+					new ReleaseTileController(board, levelScreen.getBoardView()).actionPerformed(e);
+				board.increaseMovesMade();
+				levelScreen.refreshMoves();
+				levelScreen.getBoardView().repaint();
+				levelScreen.getScoreView().repaint();
+				levelScreen.repaint();
+			}
 		}
 	}
 
