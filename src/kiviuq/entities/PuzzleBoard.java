@@ -8,8 +8,7 @@ public class PuzzleBoard extends Board{
 	
 	@Override
 	public boolean hasWon() {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.points > this.starCriteria.getPoints1());
 	}
 
 
