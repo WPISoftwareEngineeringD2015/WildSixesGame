@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import kiviuq.entities.Board;
+import kiviuq.entities.ReleaseBoard;
 import kiviuq.views.LevelScreen;
 
 /**
@@ -53,6 +54,8 @@ public abstract class AbstractMoveController implements ActionListener {
 	@Override
 	public final void actionPerformed(ActionEvent e) {
 		if (handleMove(e)) {
+			if (board instanceof ReleaseBoard) 
+				new ReleaseTileController(board, levelScreen.getBoardView()).actionPerformed(e);;
 			board.increaseMovesMade();
 			levelScreen.refreshMoves();
 			levelScreen.getBoardView().repaint();

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import kiviuq.entities.Board;
+import kiviuq.entities.ReleaseBoard;
 import kiviuq.entities.Tile;
 import kiviuq.entities.TileType;
 import kiviuq.util.Constants;
@@ -46,6 +47,9 @@ public class GravityController implements ActionListener {
 			}
 		}
 		board.setGrid(grid);
+		if (board instanceof ReleaseBoard) {
+			new ReleaseTileController(board, boardView).actionPerformed(e);
+		}
 		boardView.repaint();
 	}
 }
