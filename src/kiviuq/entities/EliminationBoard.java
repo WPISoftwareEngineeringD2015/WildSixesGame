@@ -17,9 +17,11 @@ public class EliminationBoard extends Board{
 	
 	@Override
 	public boolean hasWon() {
-		for (boolean[] row: eliminatedTiles)
-			for (boolean b : row)
-				if (!b) return false;
+		for (boolean[] row: eliminatedTiles) {
+			for (boolean b : row) {
+				if (!b) { return false; }
+			}
+		}
 		return true;
 	}
 	
@@ -31,6 +33,20 @@ public class EliminationBoard extends Board{
 	
 	public boolean[][] getEliminatedTiles() {
 		return eliminatedTiles;
+	}
+	
+	public void resetEliminated() {
+		for (int x = 0; x <= 8; x++) {
+			for (int y = 0; y <= 8; y++) {
+				this.eliminatedTiles[x][y] = false;
+			}
+		}
+	}
+	
+	@Override
+	public void resetBoard() {
+		resetEliminated();
+		super.resetBoard();
 	}
 	
 }
