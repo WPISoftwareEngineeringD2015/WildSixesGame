@@ -38,17 +38,17 @@ public class SelectTileController extends MouseAdapter {
 		lastX = board.getLastX();
 		lastY = board.getLastY();
 
-		if(lastX == -1 && lastY == -1) {
+		if (lastX == -1 && lastY == -1) {
 			return true;
 		}
 
-		if(x == lastX) {
-			if(y == (lastY + 1) || y == (lastY - 1) ) {
+		if (x == lastX) {
+			if (y == (lastY + 1) || y == (lastY - 1)) {
 				return true;
 			}
 		}
-		if(y == lastY) {
-			if(x == (lastX + 1) || x == (lastX - 1) ) {
+		if (y == lastY) {
+			if (x == (lastX + 1) || x == (lastX - 1)) {
 				return true;
 			}
 		}
@@ -57,8 +57,8 @@ public class SelectTileController extends MouseAdapter {
 	}
 
 	private boolean isLastTile() {
-		if(moveType == MoveType.Normal)
-			if(board.getTileSum() >= 6)
+		if (moveType == MoveType.Normal)
+			if (board.getTileSum() >= 6)
 				return true;
 
 		if (moveType == MoveType.Swap)
@@ -93,7 +93,8 @@ public class SelectTileController extends MouseAdapter {
 				board.setLastY(-1);
 				// stuff
 				board.setMoveType(MoveType.Normal);
-				new RemoveTileController(board, tile, levelScreen).actionPerformed(null);
+				new RemoveTileController(board, tile, levelScreen)
+						.actionPerformed(null);
 				levelScreen.refreshMoves();
 			} else {
 				board.setLastX(x);
@@ -108,7 +109,7 @@ public class SelectTileController extends MouseAdapter {
 		if (board.isMousePressed()) {
 			TileView sourcePanel = (TileView) e.getSource();
 			tile = sourcePanel.getTile();
-			if (!tile.isSelected() && tile.isSelectable(moveType))
+			if (!tile.isSelected() && tile.isSelectable(moveType)) {
 				if (isAdjacent()) {
 					board.increaseTileCount();
 					tile.select();
@@ -123,15 +124,15 @@ public class SelectTileController extends MouseAdapter {
 
 					if (isLastTile()) {
 						if (moveType == MoveType.Normal) {
-							if(board.getTileSum() == 6) // else ignore move
-								new ValidMoveController(board, levelScreen).actionPerformed(null);
+							if (board.getTileSum() == 6) // else ignore move
+								new ValidMoveController(board, levelScreen)
+										.actionPerformed(null);
 							board.resetTileSum();
 						}
 						if (moveType == MoveType.Swap) {
 							// stuff
-							new SwapTileController(
-									board.getGrid()[lastX][lastY], tile, board,
-									levelScreen).actionPerformed(null);
+							new SwapTileController( board.getGrid()[lastX][lastY], tile, board,levelScreen)
+								.actionPerformed(null);
 							board.setMoveType(MoveType.Normal);
 						}
 
@@ -148,6 +149,7 @@ public class SelectTileController extends MouseAdapter {
 					}
 
 				}
+			}
 		}
 	}
 }

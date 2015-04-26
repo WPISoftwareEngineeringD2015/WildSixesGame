@@ -209,7 +209,6 @@ public abstract class Board {
 			for (Tile t : r) {
 				t.unSelect();
 			}
-
 	}
 
 	public void setMoveType(MoveType moveType) {

@@ -20,6 +20,10 @@ public class Tile {
 		this.type = type;
 	}
 	
+	public static Tile MakeTile(TileType t) {
+		return null;
+	}
+	
 	public int getMultiplier() {
 		return mult;
 	}
@@ -76,6 +80,10 @@ public class Tile {
 	
 	public void toggleSelect() {
 		isSelected = !isSelected;
+	}
+	
+	public boolean isBlock() {
+		return type == TileType.Number && number == 6;
 	}
 	
 }

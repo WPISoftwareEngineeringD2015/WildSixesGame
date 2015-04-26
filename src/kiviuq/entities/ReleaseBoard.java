@@ -8,6 +8,10 @@ public class ReleaseBoard extends Board{
 
 	@Override
 	public boolean hasWon() {
-		return false; // TODO implement
+		// check to see if there are any release tiles left
+		for (Tile[] row: grid) 
+			for (Tile t : row) 
+				if (t.getType() == TileType.Release) return false;
+		return true; 
 	}
 }
