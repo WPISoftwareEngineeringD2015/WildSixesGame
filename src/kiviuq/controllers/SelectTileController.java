@@ -112,7 +112,12 @@ public class SelectTileController extends MouseAdapter {
 		if (board.isMousePressed()) {
 			TileView sourcePanel = (TileView) e.getSource();
 			tile = sourcePanel.getTile();
-			if (!tile.isSelected() && tile.isSelectable(moveType)) {
+			if(tile.isSelected()) {
+				board.setLastX(x);
+				board.setLastY(y);
+				return;
+			}
+			if (tile.isSelectable(moveType)) {
 				if (isAdjacent()) {
 					board.increaseTileCount();
 					tile.select();
