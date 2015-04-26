@@ -30,6 +30,7 @@ public class LevelScreen extends JFrame {
 	ScoreView scoreView;
 	JLabel movesLeft;
 	JLabel movesMade;
+	SpecialButtonsView sbv;
 
 	public LevelScreen(Board board, final JFrame previousScreen) {
 		super();
@@ -52,7 +53,7 @@ public class LevelScreen extends JFrame {
 		scoreView = new ScoreView(board);
 		panelTop.add(scoreView);
 
-		SpecialButtonsView sbv = new SpecialButtonsView(
+		sbv = new SpecialButtonsView(
 				new ResetTilesController(board, this),
 				new SelectSwapController(board),
 				new SelectRemoveController(board));
@@ -99,10 +100,9 @@ public class LevelScreen extends JFrame {
 		return boardView;
 	}
 	
-//	public void setBoardView(BoardView newBoardView) {
-//		boardView = newBoardView;
-//		repaint();
-//	}
+	public SpecialButtonsView getSpecialButtonsView() {
+		return sbv;
+	}
 
 	public void refreshMoves() {
 		if(board.getMode() == GameMode.Elimination)

@@ -75,6 +75,7 @@ public class SelectTileController extends MouseAdapter {
 			return;
 		}
 		if (!board.isMousePressed()) {
+			levelScreen.getSpecialButtonsView().setEnabled(false);
 			TileView sourcePanel = (TileView) e.getSource();
 			tile = sourcePanel.getTile();
 			if (!tile.isSelectable(moveType))
@@ -131,6 +132,7 @@ public class SelectTileController extends MouseAdapter {
 					}
 
 					if (isLastTile()) {
+						levelScreen.getSpecialButtonsView().setEnabled(true);
 						if (moveType == MoveType.Normal) {
 							if (board.getTileSum() == 6) // else ignore move
 								new ValidMoveController(board, levelScreen)

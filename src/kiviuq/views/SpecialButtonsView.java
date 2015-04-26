@@ -55,4 +55,12 @@ public class SpecialButtonsView extends JPanel{
 		return reset;
 	}
 	
+	@Override
+	public void setEnabled(boolean enabled) {
+		super.setEnabled(enabled);
+		x.setEnabled(enabled);
+		swap.setEnabled(enabled);
+		reset.setEnabled(enabled);
+	}
+	
 }
