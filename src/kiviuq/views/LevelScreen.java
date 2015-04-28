@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import kiviuq.controllers.ResetTilesController;
 import kiviuq.controllers.RestartLevelController;
@@ -40,6 +41,7 @@ public class LevelScreen extends JFrame {
 	JLabel movesLeft;
 	JLabel movesMade;
 	SpecialButtonsView sbv;
+	int time;
 
 	
 	public LevelScreen(Board board, final JFrame previousScreen) {
@@ -56,7 +58,17 @@ public class LevelScreen extends JFrame {
 		int panelTopCol = 3;
 		if (board instanceof LightningBoard) {
 			panelTopCol++;
-			timeLeft = new JLabel("Timer");
+			Timer timer = new Timer(1000, new ActionListener() {
+				// Executes code per second
+				public void actionPerformed(ActionEvent e) {
+					 LevelScreen.this.board.increaseTimePassed();
+					 LevelScreen.this.refreshTime();
+				}
+			});
+			timer.setInitialDelay(1000);
+			timer.start();
+			timeLeft = new JLabel("Timer: " + 
+			(board.getTimeLimit() - board.getTimePassed()));
 		}
 		panelTop.setLayout(new GridLayout(1, panelTopCol, 5, 0));
 
@@ -125,8 +137,17 @@ public class LevelScreen extends JFrame {
 		if (board.getMode() == GameMode.Elimination)
 			movesLeft.setText("Moves Left: "
 					+ (board.getMoveLimit() - board.getMovesMade()));
-		else
+		else {
 			movesMade.setText("Moves Made: " + board.getMovesMade());
+		}
 		repaint();
 	}
+	
+	public void refreshTime() {
+		if(board.getMode() == GameMode.Lightning) {
+			timeLeft.setText("Timer: " + 
+					(board.getTimeLimit() - board.getTimePassed()));
+		}
+	}
+	
 }

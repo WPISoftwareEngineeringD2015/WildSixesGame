@@ -328,6 +328,14 @@ public abstract class Board {
 		Board newBoard = Board.MakeBoardFromTemplate(template);
 		this.setGrid(newBoard.getGrid());
 	}
+	
+	public int getTimeLimit() {
+		return -1;
+	}
+	
+	public int getTimePassed() {
+		return this.timePassed;
+	}
 
 	/**
 	 * Functionally resets everything about the level you are playing. This
