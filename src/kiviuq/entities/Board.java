@@ -100,26 +100,53 @@ public abstract class Board {
 		}
 	}
 
+	/**
+	 * @return an integer representing the current score.
+	 */
 	public int getPoints() {
 		return points;
 	}
 
+	/**
+	 * Adds points to the current score
+	 * 
+	 * @param points
+	 *            the amount of points to be added
+	 */
 	public void addPoints(int points) {
 		this.points += points;
 	}
 
+	/**
+	 * Sets the current score to zero.
+	 */
 	public void resetPoints() {
 		points = 0;
 	}
 
+	/**
+	 * @return the object that is used to represent the differnet criteria for
+	 *         earning star(s) on this level.
+	 */
 	public StarCriteria getStarCriteria() {
 		return starCriteria;
 	}
 
+	/**
+	 * @return a two dimensional array that is used to represent the Tiles on
+	 *         this appear. The order of the Tiles in this array is important
+	 *         for game logic.
+	 * 
+	 */
 	public Tile[][] getGrid() {
 		return grid;
 	}
 
+	/**
+	 * @param grid
+	 *            An array used to set the Tiles on the grid.
+	 * @see Board#getGrid()
+	 */
 	public void setGrid(Tile[][] grid) {
 		this.grid = grid;
 	}
@@ -132,10 +159,16 @@ public abstract class Board {
 		timePassed = 0;
 	}
 
+	/**
+	 * @return an integer corresponding to the amount of moves made
+	 */
 	public int getMovesMade() {
 		return movesMade;
 	}
 
+	/**
+	 * Increases the amount of moves made by one. 
+	 */
 	public void increaseMovesMade() {
 		movesMade++;
 	}
@@ -273,19 +306,33 @@ public abstract class Board {
 		return isMousePressed;
 	}
 
+	/**
+	 * @return the move limit
+	 */
 	public int getMoveLimit() {
 		return moveLimit;
 	}
 
+	/**
+	 * @return a {@link GameMode} enum representing the current state of the
+	 *         Game.
+	 */
 	public GameMode getMode() {
 		return mode;
 	}
 
+	/**
+	 * Scrambles the Tiles in the grid.
+	 */
 	public void resetGrid() {
 		Board newBoard = Board.MakeBoardFromTemplate(template);
 		this.setGrid(newBoard.getGrid());
 	}
 
+	/**
+	 * Functionally resets everything about the level you are playing. This
+	 * function is called when the Restart Level button is clicked on.
+	 */
 	public void resetBoard() {
 		resetGrid();
 		resetPoints();
@@ -296,6 +343,10 @@ public abstract class Board {
 		unselectTiles();
 	}
 
+	/**
+	 * @return a {@link StarRating} for a Board based off of this Board's
+	 *         {@link StarCriteria} objects.
+	 */
 	public StarRating checkCriteria() {
 		if (this.points >= this.starCriteria.points3)
 			return StarRating.ThreeStars;
