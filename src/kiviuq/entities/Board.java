@@ -26,6 +26,21 @@ public abstract class Board {
 	int r1, r2, r3, r4, r5;
 	int m1, m2;
 
+	/**
+	 * This function takes a LevelTemplate and will construct the appropriate
+	 * Board object based off of that.
+	 * <p>
+	 * Since Board is abstract, and its subclasses have no available
+	 * constructors, this is the only way to build boards. This is done
+	 * partially to discourage people from ever maintaining objects of a Board
+	 * subclass. That should only happen when specific code needs to be executed
+	 * based on which kind of Board is being dealt with, however most of those
+	 * cases are addressable simply by adding and then implementing abstract
+	 * methods to this class.
+	 * 
+	 * @param template
+	 * @return
+	 */
 	public static Board MakeBoardFromTemplate(LevelTemplate template) {
 		GameMode mode = template.getGameMode();
 		switch (mode) {
@@ -43,6 +58,16 @@ public abstract class Board {
 		return null;
 	}
 
+	/**
+	 * Publicly unaccessible constructor to Board. Super classes invoke this
+	 * constructor when they're called from
+	 * {@link Board#MakeBoardFromTemplate(LevelTemplate)}.
+	 * <p>
+	 * This constructor initializes a Board's fields to proper values.
+	 * 
+	 * @param template
+	 *            the LevelTemplate object used for building this Board.
+	 */
 	protected Board(LevelTemplate template) {
 		this.setTemplate(template);
 		moveLimit = template.moveLimit;
@@ -57,10 +82,10 @@ public abstract class Board {
 		r3 = 15 + pMult / 20;
 		r4 = 10 + pMult / 10;
 		r5 = 5 + pMult / 10;
-		
+
 		int mMult = template.multConst;
 		m1 = 100 - mMult;
-		m2 = (mMult*2)/3;
+		m2 = (mMult * 2) / 3;
 
 		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
 			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
@@ -72,18 +97,6 @@ public abstract class Board {
 					t = new Tile(type); // it's a null or release tile
 				grid[x][y] = t;
 			}
-		}
-		// insertNullsForTesting();
-	}
-
-	@SuppressWarnings("unused")
-	// TODO delete this when we are confident we don't need it anymore
-	private void insertNullsForTesting() {
-		for (int i = 0; i < 3; i++) {
-			Random r = new Random();
-			int x = r.nextInt(Constants.BOARD_LENGTH);
-			int y = r.nextInt(Constants.BOARD_WIDTH);
-			grid[x][y] = null;
 		}
 	}
 
@@ -131,6 +144,16 @@ public abstract class Board {
 		movesMade = 0;
 	}
 
+	/**
+	 * Indicates if there are any 'empty' Tiles on this Board. Empty Tiles are
+	 * denoted by having a null object reference.
+	 * <p>
+	 * There are only empty Tiles on a Board between discrete states.
+	 * Controllers that handle game aspects such as gravity look for them and
+	 * fix them between moves.
+	 * 
+	 * @return true if there are any 'empty' Tiles, false if otherwise.
+	 */
 	public boolean emptyTilesOnBoard() {
 		for (Tile[] r : grid)
 			for (Tile t : r)
@@ -158,19 +181,18 @@ public abstract class Board {
 			return new Tile(6, 1);
 		}
 	}
-	
+
 	public Tile getNextTileHelper(int number) {
 		Random y = new Random();
 		int rand = y.nextInt(99) + 1;
 		if (rand <= m1) {
 			return new Tile(number, 1);
-		} else if(rand <= (m1 + m2)) {
+		} else if (rand <= (m1 + m2)) {
 			return new Tile(number, 2);
 		} else {
 			return new Tile(number, 3);
 		}
 	}
-		
 
 	public LevelTemplate getTemplate() {
 		return template;
@@ -204,6 +226,10 @@ public abstract class Board {
 		return tileCount;
 	}
 
+	/**
+	 * Deselects every Tile in this Board's grid. This is used when cleaning up
+	 * after a Move.
+	 */
 	public void unselectTiles() {
 		for (Tile[] r : grid)
 			for (Tile t : r) {
@@ -269,11 +295,14 @@ public abstract class Board {
 		resetTileCount();
 		unselectTiles();
 	}
-	
+
 	public StarRating checkCriteria() {
-		if (this.points >= this.starCriteria.points3) return StarRating.ThreeStars;
-		else if (this.points >= this.starCriteria.points2) return StarRating.TwoStars;
-		else if (this.points >= this.starCriteria.points1) return StarRating.OneStar;
+		if (this.points >= this.starCriteria.points3)
+			return StarRating.ThreeStars;
+		else if (this.points >= this.starCriteria.points2)
+			return StarRating.TwoStars;
+		else if (this.points >= this.starCriteria.points1)
+			return StarRating.OneStar;
 		return StarRating.NoStars;
 	}
 

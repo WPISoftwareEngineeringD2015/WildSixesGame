@@ -10,6 +10,6 @@ public class LightningBoard extends Board{
 	
 	@Override
 	public boolean hasWon() {
-		return false; // TODO implement
+		return (this.points >= this.starCriteria.getPoints1());
 	}
 }
