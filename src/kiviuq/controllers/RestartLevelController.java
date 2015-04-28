@@ -19,6 +19,8 @@ public class RestartLevelController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		board.resetBoard();
+		levelScreen.getSpecialButtonsView().setEnabled(true);
+		// after the level has been randomly generated 
 		if (board instanceof ReleaseBoard)
 			new ReleaseTileController(board, levelScreen.getBoardView()).actionPerformed(e);
 		levelScreen.refreshMoves();

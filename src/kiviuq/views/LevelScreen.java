@@ -17,9 +17,16 @@ import kiviuq.controllers.SelectSwapController;
 import kiviuq.entities.Board;
 import kiviuq.entities.GameMode;
 
+/**
+ * View class that is the main screen for a game of Sixes Wild. Contains Swing
+ * controls, and a BoardView which is a custom component used to visibly
+ * represent the game controls.
+ * 
+ * @author Evin Ugur
+ */
 public class LevelScreen extends JFrame {
 	/**
-	 * 
+	 * eclipse warning silencer
 	 */
 	private static final long serialVersionUID = 1L;
 	JButton back;
@@ -32,6 +39,7 @@ public class LevelScreen extends JFrame {
 	JLabel movesMade;
 	SpecialButtonsView sbv;
 
+	
 	public LevelScreen(Board board, final JFrame previousScreen) {
 		super();
 		boardView = new BoardView(board, this);
@@ -53,20 +61,19 @@ public class LevelScreen extends JFrame {
 		scoreView = new ScoreView(board);
 		panelTop.add(scoreView);
 
-		sbv = new SpecialButtonsView(
-				new ResetTilesController(board, this),
-				new SelectSwapController(board),
-				new SelectRemoveController(board));
+		sbv = new SpecialButtonsView(new ResetTilesController(board, this),
+				new SelectSwapController(board), new SelectRemoveController(
+						board));
 		panelTop.add(sbv);
 
-		if(board.getMode() == GameMode.Elimination) {
+		if (board.getMode() == GameMode.Elimination) {
 			movesLeft = new JLabel("Moves Left: " + board.getMoveLimit());
 			panelTop.add(movesLeft);
-		}else {
+		} else {
 			movesMade = new JLabel("Moves Made: " + board.getMovesMade());
 			panelTop.add(movesMade);
 		}
-		
+
 		JPanel panelGrid = new JPanel();
 		panelGrid.setBounds(6, 89, 855, 585);
 		getContentPane().add(panelGrid);
@@ -74,8 +81,7 @@ public class LevelScreen extends JFrame {
 
 		this.restart = new JButton("Restart Level");
 		restart.addActionListener(new RestartLevelController(board, this));
-		
-		
+
 		this.back = new JButton("Back");
 		back.addActionListener(new ActionListener() {
 			@Override
@@ -88,7 +94,7 @@ public class LevelScreen extends JFrame {
 		panelGrid.add(boardView, BorderLayout.CENTER);
 		panelTop.add(restart);
 		panelTop.add(back);
-		
+
 		this.board = board;
 	}
 
@@ -99,14 +105,15 @@ public class LevelScreen extends JFrame {
 	public BoardView getBoardView() {
 		return boardView;
 	}
-	
+
 	public SpecialButtonsView getSpecialButtonsView() {
 		return sbv;
 	}
 
 	public void refreshMoves() {
-		if(board.getMode() == GameMode.Elimination)
-			movesLeft.setText("Moves Left: " + (board.getMoveLimit() - board.getMovesMade()) );
+		if (board.getMode() == GameMode.Elimination)
+			movesLeft.setText("Moves Left: "
+					+ (board.getMoveLimit() - board.getMovesMade()));
 		else
 			movesMade.setText("Moves Made: " + board.getMovesMade());
 		repaint();
