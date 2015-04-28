@@ -21,7 +21,7 @@ public class TestResetTilesController extends TestCase {
 	public void testResetTiles(){
 		lvlScreen.boardView.getBoard().addPoints(50);
 		lvlScreen.boardView.getBoard().increaseMovesMade();
-		lvlScreen.boardView.getBoard().resetTiles();
+		lvlScreen.boardView.getBoard().unselectTiles();
 		assertEquals(lvlScreen.boardView.getBoard().getPoints(), 50);
 		assertEquals(lvlScreen.boardView.getBoard().getMovesMade(), 1);
 	}
