@@ -16,6 +16,7 @@ import kiviuq.controllers.SelectRemoveController;
 import kiviuq.controllers.SelectSwapController;
 import kiviuq.entities.Board;
 import kiviuq.entities.GameMode;
+import kiviuq.entities.LightningBoard;
 
 /**
  * View class that is the main screen for a game of Sixes Wild. Contains Swing
@@ -34,6 +35,7 @@ public class LevelScreen extends JFrame {
 	BoardView boardView;
 	Board board;
 	JFrame previousScreen;
+	JLabel timeLeft;
 	ScoreView scoreView;
 	JLabel movesLeft;
 	JLabel movesMade;
@@ -48,18 +50,23 @@ public class LevelScreen extends JFrame {
 		setBounds(100, 100, 880, 715);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
-
 		JPanel panelTop = new JPanel();
 		panelTop.setBounds(7, 6, 855, 82);
 		getContentPane().add(panelTop);
-		panelTop.setLayout(new GridLayout(1, 3, 5, 0));
+		int panelTopCol = 3;
+		if (board instanceof LightningBoard) {
+			panelTopCol++;
+			timeLeft = new JLabel("Timer");
+		}
+		panelTop.setLayout(new GridLayout(1, panelTopCol, 5, 0));
 
-		StarCriteriaView starCriteria = new StarCriteriaView(
-				board.getStarCriteria());
+		StarCriteriaView starCriteria = new StarCriteriaView(board.getStarCriteria());
 		panelTop.add(starCriteria);
 
 		scoreView = new ScoreView(board);
 		panelTop.add(scoreView);
+		
+		if (board instanceof LightningBoard) panelTop.add(timeLeft);
 
 		sbv = new SpecialButtonsView(new ResetTilesController(board, this),
 				new SelectSwapController(board), new SelectRemoveController(
@@ -100,6 +107,10 @@ public class LevelScreen extends JFrame {
 
 	public ScoreView getScoreView() {
 		return scoreView;
+	}
+	
+	public JLabel getTimeLeftLabel() {
+		return timeLeft;
 	}
 
 	public BoardView getBoardView() {
