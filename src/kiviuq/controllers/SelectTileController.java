@@ -56,7 +56,7 @@ public class SelectTileController extends MouseAdapter {
 		return false;
 	}
 
-	private boolean isLastTile() {
+	public boolean isLastTile() {
 		if (moveType == MoveType.Normal)
 			if (board.getTileSum() >= 6)
 				return true;
