@@ -29,6 +29,8 @@ public class TestRestartLevel extends TestCase {
 		stc.handleMove(null);
 		lvlScreen.restart.doClick();
 		
+		//assertTrue(lvlScreen.restart
+		
 		//swap tiles tests
 		//assertEquals(initTile1.getNumber(), lvlScreen.boardView.tvs[0][0].tile.getNumber());
 		//assertEquals(initTile2.getNumber(), lvlScreen.boardView.tvs[0][1].tile.getNumber());
