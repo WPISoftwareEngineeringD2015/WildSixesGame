@@ -342,8 +342,14 @@ public abstract class Board {
 	 * Scrambles the Tiles in the grid.
 	 */
 	public void resetGrid() {
-		Board newBoard = Board.MakeBoardFromTemplate(template);
-		this.setGrid(newBoard.getGrid());
+		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
+			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
+				Tile t = this.getGrid()[x][y];
+				if (t.getType() == TileType.Number) {
+					this.getGrid()[x][y] = getNextTile();
+				}
+			}
+		}
 	}
 
 	public int getTimeLimit() {
@@ -359,7 +365,8 @@ public abstract class Board {
 	 * function is called when the Restart Level button is clicked on.
 	 */
 	public void resetBoard() {
-		resetGrid();
+		Board newBoard = Board.MakeBoardFromTemplate(template);
+		this.setGrid(newBoard.getGrid());
 		resetPoints();
 		resetTimePassed();
 		resetMovesMade();
