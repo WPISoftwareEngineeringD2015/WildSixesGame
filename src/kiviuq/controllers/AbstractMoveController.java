@@ -19,6 +19,9 @@ import kiviuq.views.LevelScreen;
  * 
  * This class allows subclasses to be less verbose as common game logic is
  * handled in the scope of this class.
+ * 
+ * @author Evin Ugur
+ * 
  */
 public abstract class AbstractMoveController implements ActionListener {
 

@@ -4,17 +4,40 @@ import java.util.Random;
 
 import kiviuq.util.Constants;
 
+/**
+ * Abstract class that represents a Board. The Board class contains information
+ * and functions pertaining to a given game of Sixes Wild. Some of its
+ * functionality is delegated to subclasses which provide game specific
+ * implementation functions for each variation of Sixes Wild.
+ * 
+ * @author Evin Ugur
+ *
+ */
 public abstract class Board {
 
+	/**
+	 * The LevelTemplate which was was likely created in the Level Builder
+	 * program
+	 */
 	LevelTemplate template;
 
+	/**
+	 * Tiles on the grid. Initialized to {@link Constants#BOARD_LENGTH} x
+	 * {@link Constants#BOARD_WIDTH}.
+	 */
 	Tile[][] grid;
+
+	/** Amount of moves made */
 	int movesMade;
+	/** Total amount of allowable moves */
 	int moveLimit;
+	/** Amount of time that's passed */
 	int timePassed;
+	/** Score for the game */
 	int points;
+	
 	StarCriteria starCriteria;
-	GameMode mode;
+	
 
 	int tileSum;
 	int tileCount;
@@ -39,7 +62,8 @@ public abstract class Board {
 	 * methods to this class.
 	 * 
 	 * @param template
-	 * @return
+	 *            the {@link LevelTemplate} template for the file.
+	 * @return the proper subclass of {@link Board}
 	 */
 	public static Board MakeBoardFromTemplate(LevelTemplate template) {
 		GameMode mode = template.getGameMode();
@@ -71,7 +95,6 @@ public abstract class Board {
 	protected Board(LevelTemplate template) {
 		this.setTemplate(template);
 		moveLimit = template.moveLimit;
-		mode = template.mode;
 		grid = new Tile[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
 		starCriteria = template.getStarCriteria();
 		TileType[][] gridTemplate = template.getGridTemplate();
@@ -167,7 +190,7 @@ public abstract class Board {
 	}
 
 	/**
-	 * Increases the amount of moves made by one. 
+	 * Increases the amount of moves made by one.
 	 */
 	public void increaseMovesMade() {
 		movesMade++;
@@ -208,7 +231,7 @@ public abstract class Board {
 			return getNextTileHelper(4);
 		} else if (result <= (r1 + r2 + r3 + r4 + r5)) {
 			return getNextTileHelper(5);
-		} else if (mode == GameMode.Release) {
+		} else if (this instanceof ReleaseBoard) {
 			return getNextTileHelper(1);
 		} else {
 			return new Tile(6, 1);
@@ -314,25 +337,17 @@ public abstract class Board {
 	}
 
 	/**
-	 * @return a {@link GameMode} enum representing the current state of the
-	 *         Game.
-	 */
-	public GameMode getMode() {
-		return mode;
-	}
-
-	/**
 	 * Scrambles the Tiles in the grid.
 	 */
 	public void resetGrid() {
 		Board newBoard = Board.MakeBoardFromTemplate(template);
 		this.setGrid(newBoard.getGrid());
 	}
-	
+
 	public int getTimeLimit() {
 		return -1;
 	}
-	
+
 	public int getTimePassed() {
 		return this.timePassed;
 	}
