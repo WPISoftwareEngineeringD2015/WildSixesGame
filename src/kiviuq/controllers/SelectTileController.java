@@ -157,10 +157,7 @@ public class SelectTileController extends MouseAdapter {
 				}
 			}
 			// tile is NOT selectable
-			else {
-				System.out.println("foo");
-				reset();
-			}
+			else reset();
 		}
 	}
 	private void reset() {
