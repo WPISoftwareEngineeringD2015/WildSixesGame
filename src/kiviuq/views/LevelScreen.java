@@ -35,7 +35,7 @@ public class LevelScreen extends JFrame {
 	JButton restart;
 	BoardView boardView;
 	Board board;
-	JFrame previousScreen;
+	SelectScreen previousScreen;
 	JLabel timeLeft;
 	ScoreView scoreView;
 	JLabel movesLeft;
@@ -45,7 +45,7 @@ public class LevelScreen extends JFrame {
 	Timer timer;
 
 	
-	public LevelScreen(Board board, final JFrame previousScreen) {
+	public LevelScreen(Board board, final SelectScreen previousScreen) {
 		super();
 		boardView = new BoardView(board, this);
 		this.previousScreen = previousScreen;
