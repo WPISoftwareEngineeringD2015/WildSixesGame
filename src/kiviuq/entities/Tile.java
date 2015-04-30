@@ -19,7 +19,9 @@ public class Tile {
 		this.mult = mult;
 		this.type = type;
 	}
-	
+	public static Tile NewBlockTile() {
+		return new Tile(6, 1);
+	}
 	public static Tile MakeTile(TileType t) {
 		return null;
 	}

@@ -78,8 +78,11 @@ public class SelectTileController extends MouseAdapter {
 			levelScreen.getSpecialButtonsView().setEnabled(false);
 			TileView sourcePanel = (TileView) e.getSource();
 			tile = sourcePanel.getTile();
-			if (!tile.isSelectable(moveType))
+			if (!tile.isSelectable(moveType)){
+				levelScreen.getSpecialButtonsView().setEnabled(true);
 				return;
+			}
+				
 			// all board logic below this point
 			board.pressMouse();
 			board.increaseTileCount();
@@ -145,14 +148,7 @@ public class SelectTileController extends MouseAdapter {
 								.actionPerformed(null);
 							board.setMoveType(MoveType.Normal);
 						}
-
-						board.releaseMouse();
-						board.resetTileCount();
-						board.unselectTiles();
-						boardView.repaintTiles();
-						boardView.repaint();
-						board.setLastX(-1);
-						board.setLastY(-1);
+						reset();
 					} else {
 						board.setLastX(x);
 						board.setLastY(y);
@@ -160,6 +156,18 @@ public class SelectTileController extends MouseAdapter {
 
 				}
 			}
+			// tile is NOT selectable
+			else reset();
 		}
+	}
+	private void reset() {
+		levelScreen.getSpecialButtonsView().setEnabled(true);
+		board.releaseMouse();
+		board.resetTileCount();
+		board.unselectTiles();
+		boardView.repaintTiles();
+		boardView.repaint();
+		board.setLastX(-1);
+		board.setLastY(-1);
 	}
 }

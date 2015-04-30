@@ -16,6 +16,7 @@ import kiviuq.controllers.RestartLevelController;
 import kiviuq.controllers.SelectRemoveController;
 import kiviuq.controllers.SelectSwapController;
 import kiviuq.entities.Board;
+import kiviuq.entities.EliminationBoard;
 import kiviuq.entities.GameMode;
 import kiviuq.entities.LightningBoard;
 
@@ -91,7 +92,7 @@ public class LevelScreen extends JFrame {
 						board));
 		panelTop.add(sbv);
 
-		if (board.getMode() == GameMode.Elimination) {
+		if (board instanceof EliminationBoard) {
 			movesLeft = new JLabel("Moves Left: " + board.getMoveLimit());
 			panelTop.add(movesLeft);
 		} else {
@@ -140,7 +141,7 @@ public class LevelScreen extends JFrame {
 	}
 
 	public void refreshMoves() {
-		if (board.getMode() == GameMode.Elimination)
+		if (board instanceof EliminationBoard)
 			movesLeft.setText("Moves Left: "
 					+ (board.getMoveLimit() - board.getMovesMade()));
 		else {
@@ -150,7 +151,7 @@ public class LevelScreen extends JFrame {
 	}
 	
 	public void refreshTime() {
-		if(board.getMode() == GameMode.Lightning) {
+		if(board instanceof LightningBoard) {
 			timeLeft.setText("Timer: " + 
 					(board.getTimeLimit() - board.getTimePassed()));
 		}
