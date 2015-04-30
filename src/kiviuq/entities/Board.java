@@ -116,6 +116,8 @@ public abstract class Board {
 				Tile t;
 				if (type == TileType.Number)
 					t = getNextTile();
+				else if (type == TileType.Block) // this will convert the Tile to be a number Tile.
+					t = Tile.NewBlockTile();
 				else
 					t = new Tile(type); // it's a null or release tile
 				grid[x][y] = t;
