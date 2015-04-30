@@ -18,4 +18,10 @@ public class LightningBoard extends Board{
 	public boolean hasWon() {
 		return (this.points >= this.starCriteria.getPoints1());
 	}
+	
+	@Override
+	public void stopMovement() {
+			this.movesMade = this.moveLimit;
+	}
+	
 }

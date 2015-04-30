@@ -391,4 +391,8 @@ public abstract class Board {
 	 */
 	public abstract boolean hasWon();
 
+	public void stopMovement() {
+		return;
+	}
+
 }

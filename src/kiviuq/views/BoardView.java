@@ -49,7 +49,7 @@ public class BoardView extends JPanel {
 					EliminationBoard eb = (EliminationBoard) board;
 					if (eb.getEliminatedTiles()[x][y]) {
 						// TODO implement a better way of indicating this, but it works
-						tv.getMainLabel().setForeground(Color.CYAN);
+						tv.getMainLabel().setForeground(Color.MAGENTA);
 					} else {
 						tv.getMainLabel().setForeground(Color.BLACK);
 					}
