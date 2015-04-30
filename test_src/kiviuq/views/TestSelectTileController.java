@@ -5,10 +5,8 @@ import java.awt.event.MouseEvent;
 import development.Templates;
 import junit.framework.TestCase;
 import kiviuq.controllers.SelectTileController;
-import kiviuq.controllers.SwapTileController;
 import kiviuq.entities.Board;
 import kiviuq.entities.LevelTemplate;
-import kiviuq.entities.MoveType;
 import kiviuq.entities.Tile;
 import kiviuq.entities.TileType;
 
@@ -17,7 +15,7 @@ public class TestSelectTileController extends TestCase {
 	LevelScreen lvlScreen;
 
 	protected void setUp() throws Exception {
-		LevelTemplate template = Templates.getExampleTemplate();
+		LevelTemplate template = Templates.getExampleTemplateElimination();
 		lvlScreen = new LevelScreen(Board.MakeBoardFromTemplate(template), null);
 		lvlScreen.setVisible(true);
 	}
@@ -45,7 +43,7 @@ public class TestSelectTileController extends TestCase {
 		MouseEvent drag = new MouseEvent(lvlScreen.boardView.tvs[1][0], 0, 0, 0, 0, 0, 1, false);
 		stc.mouseEntered(drag);
 	
-		Thread.sleep(500);
+		Thread.sleep(100);
 
 		assertTrue(lvlScreen.board.getGrid()[1][0].isSelected());
 	}

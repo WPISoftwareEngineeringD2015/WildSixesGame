@@ -7,13 +7,12 @@ import kiviuq.entities.Board;
 import kiviuq.entities.LevelTemplate;
 import kiviuq.entities.Tile;
 import kiviuq.views.LevelScreen;
-import kiviuq.views.SelectScreen;
 
 public class TestRestartLevel extends TestCase {
 	LevelScreen lvlScreen;
 	
 	protected void setUp() throws Exception {
-		LevelTemplate template = Templates.getExampleTemplate();
+		LevelTemplate template = Templates.getExampleTemplateElimination();
 		lvlScreen = new LevelScreen(Board.MakeBoardFromTemplate(template), null);
 		lvlScreen.setVisible(true);
 	}

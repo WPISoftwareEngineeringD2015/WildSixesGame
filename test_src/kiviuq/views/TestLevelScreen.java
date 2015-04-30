@@ -10,7 +10,7 @@ public class TestLevelScreen extends TestCase {
 	LevelScreen lvlScreen;
 
 	protected void setUp() throws Exception {
-		LevelTemplate template = Templates.getExampleTemplate();
+		LevelTemplate template = Templates.getExampleTemplateElimination();
 		lvlScreen = new LevelScreen(Board.MakeBoardFromTemplate(template), null);
 		lvlScreen.setVisible(true);
 	}

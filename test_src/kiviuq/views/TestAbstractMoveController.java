@@ -3,7 +3,6 @@ package kiviuq.views;
 import development.Templates;
 import junit.framework.TestCase;
 import kiviuq.controllers.RemoveTileController;
-import kiviuq.controllers.SwapTileController;
 import kiviuq.entities.Board;
 import kiviuq.entities.LevelTemplate;
 import kiviuq.entities.MoveType;
@@ -15,7 +14,7 @@ public class TestAbstractMoveController extends TestCase {
 	LevelScreen lvlScreen;
 
 	protected void setUp() throws Exception {
-		LevelTemplate template = Templates.getExampleTemplate();
+		LevelTemplate template = Templates.getExampleTemplateElimination();
 		lvlScreen = new LevelScreen(Board.MakeBoardFromTemplate(template), null);
 		lvlScreen.setVisible(true);
 	}

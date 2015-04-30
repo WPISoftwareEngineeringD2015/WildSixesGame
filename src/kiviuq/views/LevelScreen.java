@@ -17,7 +17,6 @@ import kiviuq.controllers.SelectRemoveController;
 import kiviuq.controllers.SelectSwapController;
 import kiviuq.entities.Board;
 import kiviuq.entities.EliminationBoard;
-import kiviuq.entities.GameMode;
 import kiviuq.entities.LightningBoard;
 
 /**
