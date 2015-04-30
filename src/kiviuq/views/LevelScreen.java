@@ -43,6 +43,7 @@ public class LevelScreen extends JFrame {
 	JLabel movesMade;
 	SpecialButtonsView sbv;
 	int time;
+	Timer timer;
 
 	
 	public LevelScreen(Board board, final JFrame previousScreen) {
@@ -59,11 +60,16 @@ public class LevelScreen extends JFrame {
 		int panelTopCol = 3;
 		if (board instanceof LightningBoard) {
 			panelTopCol++;
-			Timer timer = new Timer(1000, new ActionListener() {
+			timer = new Timer(1000, new ActionListener() {
 				// Executes code per second
 				public void actionPerformed(ActionEvent e) {
-					 LevelScreen.this.board.increaseTimePassed();
-					 LevelScreen.this.refreshTime();
+					if(LevelScreen.this.board.getTimePassed() < LevelScreen.this.board.getTimeLimit()) {
+						 LevelScreen.this.board.increaseTimePassed();
+						 LevelScreen.this.refreshTime();
+					} else {
+					 LevelScreen.this.board.stopMovement();
+					 LevelScreen.this.timer.stop();
+					}
 				}
 			});
 			timer.setInitialDelay(1000);
