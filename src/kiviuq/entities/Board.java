@@ -233,8 +233,8 @@ public abstract class Board {
 			return getNextTileHelper(4);
 		} else if (result <= (r1 + r2 + r3 + r4 + r5)) {
 			return getNextTileHelper(5);
-		} else if (this instanceof ReleaseBoard) {
-			return getNextTileHelper(1);
+		} else if (this instanceof ReleaseBoard || this instanceof EliminationBoard) {
+			return getNextTileHelper(x.nextInt(5) + 1);
 		} else {
 			return new Tile(6, 1);
 		}
