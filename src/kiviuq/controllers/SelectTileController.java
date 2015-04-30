@@ -87,6 +87,7 @@ public class SelectTileController extends MouseAdapter {
 			board.pressMouse();
 			board.increaseTileCount();
 			tile.select();
+			System.out.println("SelectTileController: Reached tile.select().");
 			sourcePanel.repaint();
 
 			if (moveType == MoveType.Normal)
