@@ -61,6 +61,10 @@ public class Templates {
 			temp.setTileTypeAtPosition(8, 7, TileType.Null);
 			temp.setTileTypeAtPosition(8, 8, TileType.Null);
 
+			temp.setTileTypeAtPosition(0, 2, TileType.Block);
+			temp.setTileTypeAtPosition(0, 4, TileType.Block);
+			temp.setTileTypeAtPosition(0, 6, TileType.Block);
+			
 			temp.setTileTypeAtPosition(8, 2, TileType.Release);
 			temp.setTileTypeAtPosition(8, 4, TileType.Release);
 			temp.setTileTypeAtPosition(8, 6, TileType.Release);

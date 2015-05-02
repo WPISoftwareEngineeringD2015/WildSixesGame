@@ -3,13 +3,13 @@ package kiviuq.views;
 import junit.framework.TestCase;
 
 
-public class TestMainScreen extends TestCase {
+public class TestSplashScreen extends TestCase {
 	SplashScreen splashScreen;
 	MainScreen mainScreen;
 
 	protected void setUp() throws Exception {
-		mainScreen = new MainScreen();
-		mainScreen.setVisible(true);
+		splashScreen = new SplashScreen(1000, splashScreen);
+		splashScreen.setVisible(true);
 	}
 
 	protected void tearDown() throws Exception {
@@ -17,6 +17,11 @@ public class TestMainScreen extends TestCase {
 	}
 	
 	public void testScreen(){
-		assertSame(mainScreen., mainScreen);
+		assertSame(splashScreen.nextWindow, mainScreen);
 		assertEquals(splashScreen.duration_ms, 1000);
 	}
+	
+
+	
+	
+}
