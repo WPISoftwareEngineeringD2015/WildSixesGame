@@ -23,5 +23,4 @@ public class TestSelectScreen extends TestCase {
 	public void testScreen(){
 //		assertEquals(selectScreen.lastWindow, mainScreen);
 	}
-	
 }
