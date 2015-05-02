@@ -12,6 +12,7 @@ public class Templates {
 	private static LevelTemplate temp = null; // TODO
 
 	public static LevelTemplate getExampleTemplateElimination() {
+		System.out.println("getting example Elimination template");
 		if (temp == null) {
 			StarCriteria sc = new StarCriteria(50, 100, 300, 4, 6, 8); 
 			temp = new LevelTemplate(0, GameMode.Elimination, 5, 30, 50, 60, sc);
@@ -34,6 +35,7 @@ public class Templates {
 	}
 
 	public static LevelTemplate getExampleTemplateLightning() {
+		System.out.println("getting example Lightning template");
 		if (temp == null) {
 			StarCriteria sc = new StarCriteria(0, 0, 50, 100, 300, 4); 
 			temp = new LevelTemplate(1, GameMode.Lightning, 60, 30, 50, 60, sc);
@@ -42,6 +44,7 @@ public class Templates {
 	}
 
 	public static LevelTemplate getExampleTemplatePuzzle() {
+		System.out.println("getting example Puzzle template");
 		if (temp == null) {
 			StarCriteria sc = new StarCriteria(0, 0, 50, 100, 300, 4); 
 			temp = new LevelTemplate(2, GameMode.Puzzle, 60, 30, 50, 60, sc);
@@ -50,6 +53,7 @@ public class Templates {
 	}
 
 	public static LevelTemplate getExampleTemplateRelease() {
+		System.out.println("getting example Release template");
 		if (temp == null) {
 			StarCriteria sc = new StarCriteria(0, 0, 50, 100, 300, 4); 
 			temp = new LevelTemplate(3, GameMode.Release, 60, 30, 50, 60, sc);
