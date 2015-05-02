@@ -8,13 +8,13 @@ import kiviuq.entities.LevelTemplate;
 import kiviuq.views.LevelScreen;
 import kiviuq.views.SelectScreen;
 
-public class CreateLevelController extends MouseAdapter{
+public class LoadLevelController extends MouseAdapter{
 	private LevelTemplate template;
 	private LevelScreen lvlScreen;
 	private SelectScreen selectScreen;
 	private String name;
 
-	public CreateLevelController(String name, SelectScreen selectScreen) {
+	public LoadLevelController(String name, SelectScreen selectScreen) {
 		this.selectScreen = selectScreen;
 		this.name = name;
 
