@@ -19,8 +19,4 @@ public class TestSelectScreen extends TestCase {
 	public void testScreen(){
 		assertSame(selectScreen.lastWindow, mainScreen);
 	}
-	
-
-	
-	
 }

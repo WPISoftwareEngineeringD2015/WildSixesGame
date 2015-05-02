@@ -156,4 +156,8 @@ public class LevelScreen extends JFrame {
 		}
 	}
 	
+	public void refreshBoardView() {
+		boardView = new BoardView(board, this);
+	}
+	
 }
