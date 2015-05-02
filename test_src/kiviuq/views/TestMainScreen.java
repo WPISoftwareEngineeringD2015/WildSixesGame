@@ -1,10 +1,9 @@
 package kiviuq.views;
 
-import junit.framework.TestCase;
+/*import junit.framework.TestCase;
 
 
 public class TestMainScreen extends TestCase {
-	SplashScreen splashScreen;
 	MainScreen mainScreen;
 
 	protected void setUp() throws Exception {
@@ -16,7 +15,10 @@ public class TestMainScreen extends TestCase {
 		super.tearDown();
 	}
 	
-	public void testScreen(){
-		assertSame(mainScreen., mainScreen);
-		assertEquals(splashScreen.duration_ms, 1000);
+	public void testMainScreen(){
+	mainScreen.
 	}
+
+	}
+	
+	*/

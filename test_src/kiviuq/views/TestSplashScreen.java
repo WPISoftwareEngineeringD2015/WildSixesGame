@@ -1,5 +1,7 @@
 package kiviuq.views;
 
+import java.awt.event.WindowEvent;
+
 import junit.framework.TestCase;
 
 
@@ -13,6 +15,7 @@ public class TestSplashScreen extends TestCase {
 	}
 
 	protected void tearDown() throws Exception {
+		splashScreen.dispatchEvent(new WindowEvent(splashScreen, WindowEvent.WINDOW_CLOSING));
 		super.tearDown();
 	}
 	
