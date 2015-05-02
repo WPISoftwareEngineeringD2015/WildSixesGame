@@ -1,6 +1,7 @@
 package kiviuq.views;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
 
 import development.Templates;
 import junit.framework.TestCase;
@@ -21,6 +22,7 @@ public class TestSelectTileController extends TestCase {
 	}
 
 	protected void tearDown() throws Exception {
+		lvlScreen.dispatchEvent(new WindowEvent(lvlScreen, WindowEvent.WINDOW_CLOSING));
 		super.tearDown();
 	}
 	
@@ -39,13 +41,11 @@ public class TestSelectTileController extends TestCase {
 		MouseEvent click = new MouseEvent(lvlScreen.boardView.tvs[0][0], 0, 0, 0, 0, 0, 1, false);
 		stc.mouseClicked(click);
 		
-		Thread.sleep(500);
+		Thread.sleep(100);
 		assertTrue(lvlScreen.board.getGrid()[0][0].isSelected());
 		MouseEvent drag = new MouseEvent(lvlScreen.boardView.tvs[1][0], 0, 0, 0, 0, 0, 0, false);
 		stc.mouseEntered(drag);
-	
 		Thread.sleep(100);
-
-//		assertTrue(lvlScreen.board.getGrid()[1][0].isSelected());
+		assertTrue(lvlScreen.board.getGrid()[1][0].isSelected());
 	}
 }

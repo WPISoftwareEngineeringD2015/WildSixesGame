@@ -1,5 +1,7 @@
 package kiviuq.views;
 
+import java.awt.event.WindowEvent;
+
 import development.Templates;
 import junit.framework.TestCase;
 import kiviuq.entities.Board;
@@ -17,6 +19,7 @@ public class TestLevelScreen extends TestCase {
 	
 	protected void tearDown() throws Exception {
 		super.tearDown();
+		lvlScreen.dispatchEvent(new WindowEvent(lvlScreen, WindowEvent.WINDOW_CLOSING));
 	}
 	
 	public void testMovesMade(){

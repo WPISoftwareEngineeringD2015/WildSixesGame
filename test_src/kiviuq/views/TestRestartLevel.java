@@ -1,5 +1,7 @@
 package kiviuq.views;
 
+import java.awt.event.WindowEvent;
+
 import development.Templates;
 import junit.framework.TestCase;
 import kiviuq.controllers.SwapTileController;
@@ -18,6 +20,7 @@ public class TestRestartLevel extends TestCase {
 	}
 
 	protected void tearDown() throws Exception {
+		lvlScreen.dispatchEvent(new WindowEvent(lvlScreen, WindowEvent.WINDOW_CLOSING));
 		super.tearDown();
 	}
 	
