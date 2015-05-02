@@ -33,7 +33,7 @@ public class CreateLevelController extends MouseAdapter{
 		else if(name == "release 1") {
 			template = Templates.getExampleTemplateRelease();
 		}
-		
+
 		// THIS ELSE STATEMENT FOR TESTING ONLY
 		else {
 			template = Templates.getExampleTemplateLightning();

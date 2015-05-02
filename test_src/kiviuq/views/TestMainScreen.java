@@ -1,7 +1,8 @@
 package kiviuq.views;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import junit.framework.TestCase;
-
 
 public class TestMainScreen extends TestCase {
 	SplashScreen splashScreen;
@@ -17,6 +18,15 @@ public class TestMainScreen extends TestCase {
 	}
 	
 	public void testScreen(){
-		assertSame(mainScreen., mainScreen);
-		assertEquals(splashScreen.duration_ms, 1000);
+		ActionListener listener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Execute when button is pressed
+				mainScreen.goToSelectScreen();
+			}
+		};
+		listener.actionPerformed(null);
+		
+		assertTrue(!mainScreen.isVisible());
+//		assertEquals(splashScreen.duration_ms, 1000);
 	}
+}
