@@ -1,6 +1,10 @@
 package kiviuq.views;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
+
+import javax.swing.JPanel;
 
 import junit.framework.TestCase;
 
@@ -10,17 +14,25 @@ public class TestSelectScreen extends TestCase {
 	MainScreen mainScreen;
 
 	protected void setUp() throws Exception {
-//      Causing unit tests to terminate, temporarily just commenting it out.
-//		selectScreen = new SelectScreen(mainScreen);
-//		selectScreen.setVisible(true);
+		mainScreen = new MainScreen();
+		selectScreen = new SelectScreen(mainScreen);
+		selectScreen.setVisible(true);
+		
 	}
 
 	protected void tearDown() throws Exception {
-//		selectScreen.dispatchEvent(new WindowEvent(selectScreen, WindowEvent.WINDOW_CLOSING));
-//		super.tearDown();
+		mainScreen.dispatchEvent(new WindowEvent(mainScreen, WindowEvent.WINDOW_CLOSING));
+		super.tearDown();
 	}
 	
-	public void testScreen(){
-//		assertEquals(selectScreen.lastWindow, mainScreen);
+	public void testScreen() throws InterruptedException{
+		JPanel testPanel = selectScreen.elimination1Panel;
+		MouseEvent me = new MouseEvent(testPanel, 0, 100, 0, 0, 0, 0, false);
+		for(MouseListener ml: testPanel.getMouseListeners()){
+			ml.mouseClicked(me);
+		}
+		
+		Thread.sleep(100);
+		assertFalse(selectScreen.isVisible());
 	}
 }
