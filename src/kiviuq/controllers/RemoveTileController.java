@@ -7,17 +7,42 @@ import kiviuq.entities.Tile;
 import kiviuq.entities.TileType;
 import kiviuq.views.LevelScreen;
 
-public class RemoveTileController extends AbstractMoveController{
+/**
+ * Controller for removing a {@link Tile} from a {@link Board}/
+ * 
+ * @author Evin Ugur
+ *
+ */
+public class RemoveTileController extends AbstractMoveController {
+	/** The {@link Tile} that is to be removed */
 	Tile tileToBeRemoved;
-	
-	public RemoveTileController(Board board, Tile tileToBeRemoved, LevelScreen levelScreen) {
+
+	/**
+	 * @param board
+	 *            the Board to be passed into {@link AbstractMoveController}
+	 * @param tileToBeRemoved
+	 *            the Tile to be removed
+	 * @param levelScreen
+	 *            the LevelScreen to be passed into
+	 *            {@link AbstractMoveController}
+	 */
+	public RemoveTileController(Board board, Tile tileToBeRemoved,
+			LevelScreen levelScreen) {
 		super(board, levelScreen);
 		this.tileToBeRemoved = tileToBeRemoved;
 	}
 
+	/**
+	 * Loops through the Board until
+	 * {@link RemoveTileController#tileToBeRemoved} is found and then removes
+	 * it. If found, this controller will invoke a new instance of a
+	 * {@link GravityController} in order to restore the game into the current
+	 * state.
+	 */
 	@Override
 	public boolean handleMove(ActionEvent e) {
-		if (tileToBeRemoved.getType() != TileType.Number) return false;
+		if (tileToBeRemoved.getType() != TileType.Number)
+			return false;
 		Tile[][] grid = board.getGrid();
 		boolean stopLooping = false;
 		for (int x = 0; x < Board.BOARD_LENGTH; x++) {
@@ -29,10 +54,12 @@ public class RemoveTileController extends AbstractMoveController{
 					break;
 				}
 			}
-			if (stopLooping) break;
+			if (stopLooping)
+				break;
 		}
 		// board is in an inconsistent state with a tile set to 'null'
-		new GravityController(board, levelScreen.getBoardView()).actionPerformed(e);
+		new GravityController(board, levelScreen.getBoardView())
+				.actionPerformed(e);
 		return true;
 	}
 
