@@ -51,7 +51,7 @@ public class Tile {
 	 * @param type
 	 *            the type associated with the new Tile
 	 */
-	Tile(int number, int mult, TileType type) {
+	public Tile(int number, int mult, TileType type) {
 		this.number = number;
 		this.mult = mult;
 		this.type = type;
