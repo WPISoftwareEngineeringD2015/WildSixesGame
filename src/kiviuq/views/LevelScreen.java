@@ -122,7 +122,7 @@ public class LevelScreen extends JFrame {
 		this.board = board;
 	}
 	
-	public SelectScreen getPreviousScreen() {
+	public JFrame getPreviousScreen() {
 		return previousScreen;
 	}
 
