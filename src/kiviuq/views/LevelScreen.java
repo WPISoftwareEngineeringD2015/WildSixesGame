@@ -44,7 +44,11 @@ public class LevelScreen extends JFrame {
 	int time;
 	Timer timer;
 
-	
+	/**
+	 * Constructs a new LevelScreen.
+	 * @param board
+	 * @param previousScreen
+	 */
 	public LevelScreen(Board board, final JFrame previousScreen) {
 		super();
 		boardView = new BoardView(board, this);
@@ -122,26 +126,49 @@ public class LevelScreen extends JFrame {
 		this.board = board;
 	}
 	
+	/**
+	 * Returns the screen the game was previously on.
+	 * @return previous screen
+	 */
 	public JFrame getPreviousScreen() {
 		return previousScreen;
 	}
 
+	/**
+	 * Retrieves the ScoreView of this LevelScreen
+	 * @return ScoreView
+	 */
 	public ScoreView getScoreView() {
 		return scoreView;
 	}
 	
+	/**
+	 * Returns the Timer Label
+	 * @return timeLeftLabel
+	 */
 	public JLabel getTimeLeftLabel() {
 		return timeLeft;
 	}
 
+	/**
+	 * Returns the BoardView
+	 * @return BoardView
+	 */
 	public BoardView getBoardView() {
 		return boardView;
 	}
 
+	/**
+	 * Returns the views for the Special Buttons
+	 * @return SpecialButtonsView
+	 */
 	public SpecialButtonsView getSpecialButtonsView() {
 		return sbv;
 	}
 
+	/**
+	 * Updates screen to show current number of Moves
+	 */
 	public void refreshMoves() {
 		if (board instanceof EliminationBoard)
 			movesLeft.setText("Moves Left: "
@@ -152,6 +179,10 @@ public class LevelScreen extends JFrame {
 		repaint();
 	}
 	
+	/**
+	 * Updates screen to show proper amount of time left.
+	 * Automatically called every second on Lightning levels.
+	 */
 	public void refreshTime() {
 		if(board instanceof LightningBoard) {
 			timeLeft.setText("Timer: " + 
@@ -159,10 +190,16 @@ public class LevelScreen extends JFrame {
 		}
 	}
 	
+	/**
+	 * Refreshes the BoardView.
+	 */
 	public void refreshBoardView() {
 		boardView = new BoardView(board, this);
 	}
 	
+	/**
+	 * Exits the LevelScreen and returns to previous screen.
+	 */
 	public void exitGame() {
 		previousScreen.setVisible(true);
 		// TODO probably save some stuff here

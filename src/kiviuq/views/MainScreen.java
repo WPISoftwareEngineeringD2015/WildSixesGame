@@ -18,6 +18,9 @@ public class MainScreen extends JFrame {
 	
 	JButton PlayButton = new JButton("Play");
 
+	/**
+	 * Creates a new MainScreen.
+	 */
 	public MainScreen() {
 		super();
 		setResizable(false);
@@ -58,6 +61,11 @@ public class MainScreen extends JFrame {
 		getContentPane().add(lblNewLabel);
 	}
 
+	/**
+	 * Transitions WildSixes to the SelectScreen.
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public void goToSelectScreen() throws ClassNotFoundException, IOException {
 		SelectScreen s = new SelectScreen(this);
 		s.setVisible(true);

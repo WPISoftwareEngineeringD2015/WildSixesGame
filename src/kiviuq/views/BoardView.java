@@ -19,6 +19,12 @@ public class BoardView extends JPanel {
 	
 	Board board;
 	TileView[][] tvs;
+	
+	/**
+	 * Constructs a new BoardView for use when in-game.
+	 * @param board
+	 * @param levelScreen
+	 */
 	public BoardView(Board board, LevelScreen levelScreen) {
 		super();
 		this.board = board;
@@ -36,6 +42,9 @@ public class BoardView extends JPanel {
 		}
 	}
 	
+	/**
+	 * Allows BoardView to display the proper information graphically to the user.
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -57,14 +66,25 @@ public class BoardView extends JPanel {
 		}
 	}
 	
+	/**
+	 * Retrieves Board of BoardView
+	 * @return board
+	 */
 	public Board getBoard() {
 		return board;
 	}
 	
+	/**
+	 * Sets board of BoardView
+	 * @param board
+	 */
 	public void setBoard(Board board) {
 		this.board = board;
 	}
 	
+	/**
+	 * Updates the appearance of BoardView to reflect possible changes.
+	 */
 	public void repaintTiles() {
 		for (TileView[] r : tvs) 
 			for (TileView t : r) {

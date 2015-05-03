@@ -230,6 +230,9 @@ public class SelectScreen extends JFrame {
 		panel_2.add(lblNewLabel_3);
 	}
 
+	/**
+	 * Returns WildSixes to the MainScreen and disposes this window.
+	 */
 	public void goToMainScreen() {
 		this.lastWindow.setVisible(true);
 		this.setVisible(false);

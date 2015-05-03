@@ -24,7 +24,12 @@ public class SpecialButtonsView extends JPanel{
 	private static final String RESOURCE_SWAP = "/kiviuq/views/swap.png";
 	private static final String RESOURCE_X = "/kiviuq/views/x.png";
 	
-	
+	/**
+	 * Creates a new SpecialButtonsView with its controllers integrated.
+	 * @param rtc
+	 * @param ssc
+	 * @param src
+	 */
 	public SpecialButtonsView(ResetTilesController rtc, SelectSwapController ssc, SelectRemoveController src) {
 		super();
 		setLayout(new GridLayout(1, 3,0,0));
@@ -34,6 +39,12 @@ public class SpecialButtonsView extends JPanel{
 		x = CreateImageBtn(RESOURCE_X, src);
 	}
 	
+	/**
+	 * Allows to button to be painted with an image.
+	 * @param resources
+	 * @param al
+	 * @return
+	 */
 	private JButton CreateImageBtn(String resources, ActionListener al) {
 		JButton b = new JButton("");
 		b.setBorderPainted(false); // makes it not look like a button
@@ -43,18 +54,33 @@ public class SpecialButtonsView extends JPanel{
 		return b;
 	}
 	
+	/**
+	 * Returns the Eliminate Tile Label.
+	 * @return XLabel
+	 */
 	public JButton getXLabel() {
 		return x;
 	}
 	
+	/**
+	 * Returns the Swap Tile Label
+	 * @return SwapLabel
+	 */
 	public JButton getSwapLabel() {
 		return swap;
 	}
 	
+	/**
+	 * Returns the Reset Tiles Label
+	 * @return ResetLabel
+	 */
 	public JButton getResetLabel() {
 		return reset;
 	}
 	
+	/**
+	 * Sets all the buttons of the SpecialTileView as enabled.
+	 */
 	@Override
 	public void setEnabled(boolean enabled) {
 		super.setEnabled(enabled);

@@ -19,6 +19,11 @@ public class TileView extends JPanel{
 	JLabel lblValue;
 	JLabel lblMult;
 	
+	/**
+	 * Creates a new TileView
+	 * @param tile
+	 * 				Tile which is represented by the View.
+	 */
 	public TileView(Tile tile) {
 		super();
 		this.tile = tile;
@@ -35,6 +40,9 @@ public class TileView extends JPanel{
 		add(lblMult);
 	}
 	
+	/**
+	 * Updates View to properly display information of the Tile
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);	
@@ -50,8 +58,15 @@ public class TileView extends JPanel{
 		lblMult.setText(tile.multToString());
 	}
 	
+	/**
+	 * Array of Color types used in TileViews
+	 */
 	private final static Color[] NUMBER_COLORS = {Color.ORANGE, Color.CYAN, Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE};
 	
+	/**
+	 * Determines what color a tile should be based on its type/number.
+	 * @return Color of TileView
+	 */
 	public Color getColor() {
 		switch (tile.getType()) {
 		case Null:
@@ -66,6 +81,11 @@ public class TileView extends JPanel{
 		}
 	}
 	
+	/**
+	 * Sets a TileView to show information for a new Tile.
+	 * @param tile
+	 * 				New Tile for the TileView
+	 */
 	public void setTile(Tile tile) {
 		if (this.tile != tile) {
 			this.tile = tile;
@@ -73,10 +93,18 @@ public class TileView extends JPanel{
 		}
 	}
 	
+	/**
+	 * Returns what Tile the TileView is representing
+	 * @return Tile
+	 */
 	public Tile getTile() {
 		return tile;
 	}
 	
+	/**
+	 * Returns the Value Label of the TileView
+	 * @return ValueLabel
+	 */
 	public JLabel getMainLabel()  {
 		return lblValue;
 	}

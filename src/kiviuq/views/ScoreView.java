@@ -26,6 +26,9 @@ public class ScoreView extends JPanel{
 		add(lblScoreDisplay);
 	}
 
+	/**
+	 * Properly paints component to display updated score.
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
