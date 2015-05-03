@@ -66,6 +66,7 @@ public abstract class AbstractMoveController implements ActionListener {
 				levelScreen.getScoreView().repaint();
 				levelScreen.getSpecialButtonsView().setEnabled(true);
 				levelScreen.repaint();
+				new WinController(board, levelScreen).actionPerformed(e);
 			}
 		}
 	}

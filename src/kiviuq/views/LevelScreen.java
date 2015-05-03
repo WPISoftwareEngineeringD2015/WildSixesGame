@@ -111,8 +111,7 @@ public class LevelScreen extends JFrame {
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				previousScreen.setVisible(true);
-				LevelScreen.this.dispose();
+				LevelScreen.this.exitGame();
 			}
 		});
 
@@ -121,6 +120,10 @@ public class LevelScreen extends JFrame {
 		panelTop.add(back);
 
 		this.board = board;
+	}
+	
+	public SelectScreen getPreviousScreen() {
+		return previousScreen;
 	}
 
 	public ScoreView getScoreView() {
@@ -158,6 +161,12 @@ public class LevelScreen extends JFrame {
 	
 	public void refreshBoardView() {
 		boardView = new BoardView(board, this);
+	}
+	
+	public void exitGame() {
+		previousScreen.setVisible(true);
+		// TODO probably save some stuff here
+		this.dispose();
 	}
 	
 }
