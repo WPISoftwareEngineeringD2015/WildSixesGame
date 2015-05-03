@@ -8,20 +8,19 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import development.Templates;
+import javax.swing.JFrame;
+
 import kiviuq.entities.Board;
-import kiviuq.entities.GameMode;
 import kiviuq.entities.LevelTemplate;
 import kiviuq.views.LevelScreen;
-import kiviuq.views.SelectScreen;
 
 public class LoadLevelController extends MouseAdapter{
 	private LevelTemplate template = new LevelTemplate();
 	private LevelScreen lvlScreen;
-	private SelectScreen selectScreen;
+	private JFrame selectScreen;
 	private String name;
 
-	public LoadLevelController(String name, SelectScreen selectScreen) throws FileNotFoundException {
+	public LoadLevelController(String name, JFrame selectScreen) throws FileNotFoundException {
 		this.selectScreen = selectScreen;
 		this.name = name;
 
