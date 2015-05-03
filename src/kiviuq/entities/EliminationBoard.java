@@ -1,7 +1,5 @@
 package kiviuq.entities;
 
-import kiviuq.util.Constants;
-
 public class EliminationBoard extends Board {
 
 	/** Flags for whether or not a given Tile on this Board has been eliminated */
@@ -15,7 +13,7 @@ public class EliminationBoard extends Board {
 	 */
 	protected EliminationBoard(LevelTemplate template) {
 		super(template);
-		eliminatedTiles = new boolean[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
+		eliminatedTiles = new boolean[Board.BOARD_LENGTH][Board.BOARD_WIDTH];
 		// set non-number Tiles to already be considered for Elimination
 		resetEliminated();
 	}
@@ -60,8 +58,8 @@ public class EliminationBoard extends Board {
 	 * (such as {@link TileType#Null}) are counted as eliminated.</i>
 	 */
 	public void resetEliminated() {
-		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
-			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
+		for (int x = 0; x < Board.BOARD_LENGTH; x++) {
+			for (int y = 0; y < Board.BOARD_WIDTH; y++) {
 				this.eliminatedTiles[x][y] = grid[x][y].getType() != TileType.Number;
 			}
 		}

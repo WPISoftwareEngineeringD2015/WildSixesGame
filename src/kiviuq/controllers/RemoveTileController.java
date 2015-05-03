@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import kiviuq.entities.Board;
 import kiviuq.entities.Tile;
 import kiviuq.entities.TileType;
-import kiviuq.util.Constants;
 import kiviuq.views.LevelScreen;
 
 public class RemoveTileController extends AbstractMoveController{
@@ -21,8 +20,8 @@ public class RemoveTileController extends AbstractMoveController{
 		if (tileToBeRemoved.getType() != TileType.Number) return false;
 		Tile[][] grid = board.getGrid();
 		boolean stopLooping = false;
-		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
-			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
+		for (int x = 0; x < Board.BOARD_LENGTH; x++) {
+			for (int y = 0; y < Board.BOARD_WIDTH; y++) {
 				Tile t = grid[x][y];
 				if (t == tileToBeRemoved) {
 					board.removeTile(x, y);

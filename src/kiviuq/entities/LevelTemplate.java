@@ -1,7 +1,6 @@
 package kiviuq.entities;
 
 import java.io.Serializable;
-import kiviuq.util.Constants;
 
 /**
  * LevelTemplate class represents the information needed for Sixes Wild to construct a level
@@ -47,9 +46,9 @@ public class LevelTemplate implements Serializable{
 		this.multConst = multConst;
 		this.probConst = probConst;
 		this.starCriteria = starCriteria;
-		grid = new TileType[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];	
-		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
-			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
+		grid = new TileType[Board.BOARD_LENGTH][Board.BOARD_WIDTH];	
+		for (int x = 0; x < Board.BOARD_LENGTH; x++) {
+			for (int y = 0; y < Board.BOARD_WIDTH; y++) {
 				grid[x][y] = TileType.Number;
 			}
 		}
@@ -63,9 +62,9 @@ public class LevelTemplate implements Serializable{
 	public LevelTemplate() {
 		this.starCriteria = null;
 		this.mode = GameMode.Puzzle;
-		this.grid = new TileType[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
-		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
-			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
+		this.grid = new TileType[Board.BOARD_LENGTH][Board.BOARD_WIDTH];
+		for (int x = 0; x < Board.BOARD_LENGTH; x++) {
+			for (int y = 0; y < Board.BOARD_WIDTH; y++) {
 				grid[x][y] = TileType.Null;
 			}
 		}
@@ -207,9 +206,9 @@ public class LevelTemplate implements Serializable{
 //		this.probConst = probConst;
 //		this.multConst = multConst;
 //		this.starCriteria = starCriteria;
-//		grid = new TileType[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];	
-//		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
-//			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
+//		grid = new TileType[Board.BOARD_LENGTH][Board.BOARD_WIDTH];	
+//		for (int x = 0; x < Board.BOARD_LENGTH; x++) {
+//			for (int y = 0; y < Board.BOARD_WIDTH; y++) {
 //				grid[x][y] = TileType.Number;
 //			}
 //		}

@@ -6,7 +6,6 @@ import java.util.List;
 
 import kiviuq.entities.Board;
 import kiviuq.entities.Tile;
-import kiviuq.util.Constants;
 import kiviuq.views.LevelScreen;
 
 public class ValidMoveController extends AbstractMoveController{
@@ -20,8 +19,8 @@ public class ValidMoveController extends AbstractMoveController{
 		int count = 0;
 		List<Integer> multipliers = new ArrayList<Integer>();
 		Tile[][] grid = board.getGrid();
-		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
-			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
+		for (int x = 0; x < Board.BOARD_LENGTH; x++) {
+			for (int y = 0; y < Board.BOARD_WIDTH; y++) {
 				if (grid[x][y].isSelected()) {
 					multipliers.add(grid[x][y].getMultiplier());
 					board.removeTile(x, y);

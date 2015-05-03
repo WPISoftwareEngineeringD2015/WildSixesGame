@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import kiviuq.entities.Board;
 import kiviuq.entities.Tile;
 import kiviuq.entities.TileType;
-import kiviuq.util.Constants;
 import kiviuq.views.LevelScreen;
 
 public class SwapTileController extends AbstractMoveController {
@@ -24,8 +23,8 @@ public class SwapTileController extends AbstractMoveController {
 		// find x,y position of a
 		Tile[][] grid = board.getGrid();
 		int ax = -1, ay = -1; // position of a
-		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
-			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
+		for (int x = 0; x < Board.BOARD_LENGTH; x++) {
+			for (int y = 0; y < Board.BOARD_WIDTH; y++) {
 				if (grid[x][y] == a) {
 					ax = x;
 					ay = y;
@@ -40,8 +39,8 @@ public class SwapTileController extends AbstractMoveController {
 		boolean nextTo = false;
 		for (int x = ax - 1; x < ax + 2; x++) {
 			for (int y = ay - 1; y < ay + 2; y++) {
-				if (x >= 0 && y >= 0 && x < Constants.BOARD_LENGTH
-						&& y < Constants.BOARD_WIDTH) {
+				if (x >= 0 && y >= 0 && x < Board.BOARD_LENGTH
+						&& y < Board.BOARD_WIDTH) {
 					Tile possibleB = grid[x][y];
 					if (possibleB == b) {
 						nextTo = true;

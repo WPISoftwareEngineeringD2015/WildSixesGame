@@ -10,7 +10,6 @@ import kiviuq.controllers.SelectTileController;
 import kiviuq.entities.Board;
 import kiviuq.entities.EliminationBoard;
 import kiviuq.entities.Tile;
-import kiviuq.util.Constants;
 
 public class BoardView extends JPanel {
 	/**
@@ -23,11 +22,11 @@ public class BoardView extends JPanel {
 	public BoardView(Board board, LevelScreen levelScreen) {
 		super();
 		this.board = board;
-		tvs = new TileView[Constants.BOARD_LENGTH][Constants.BOARD_WIDTH];
-		setLayout(new GridLayout(Constants.BOARD_LENGTH, Constants.BOARD_WIDTH, 10, 10));
+		tvs = new TileView[Board.BOARD_LENGTH][Board.BOARD_WIDTH];
+		setLayout(new GridLayout(Board.BOARD_LENGTH, Board.BOARD_WIDTH, 10, 10));
 		Tile[][] grid = board.getGrid();
-		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
-			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
+		for (int x = 0; x < Board.BOARD_LENGTH; x++) {
+			for (int y = 0; y < Board.BOARD_WIDTH; y++) {
 				int X = x;
 				int Y = y;
 				tvs[x][y] = new TileView(grid[x][y]);
@@ -41,8 +40,8 @@ public class BoardView extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Tile[][] grid = board.getGrid();
-		for (int x = 0; x < Constants.BOARD_LENGTH; x++) {
-			for (int y = 0; y < Constants.BOARD_WIDTH; y++) {
+		for (int x = 0; x < Board.BOARD_LENGTH; x++) {
+			for (int y = 0; y < Board.BOARD_WIDTH; y++) {
 				TileView tv = tvs[x][y];
 				tv.setTile(grid[x][y]);
 				if (board instanceof EliminationBoard) {
