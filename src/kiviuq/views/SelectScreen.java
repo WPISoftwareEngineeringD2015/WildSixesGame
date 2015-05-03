@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -49,8 +51,10 @@ public class SelectScreen extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	public SelectScreen(JFrame lastWindow) {
+	public SelectScreen(JFrame lastWindow) throws ClassNotFoundException, IOException {
 		this.lastWindow = lastWindow;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,103 +91,103 @@ public class SelectScreen extends JFrame {
 		FlowLayout fl_puzzle1Panel = (FlowLayout) puzzle1Panel.getLayout();
 		fl_puzzle1Panel.setAlignOnBaseline(true);
 		puzzle1Panel.setBackground(Color.CYAN);
-		puzzle1Panel.setName("puzzle 1");
+		puzzle1Panel.setName("puzzle1");
 		puzzle1Panel.addMouseListener(new LoadLevelController(puzzle1Panel.getName(), this));
 		panel_1.add(puzzle1Panel);
 
 		puzzle2Panel = new JPanel();
 		puzzle2Panel.setBackground(Color.BLUE);
-		puzzle2Panel.setName("puzzle 2");
+		puzzle2Panel.setName("puzzle2");
 		puzzle2Panel.addMouseListener(new LoadLevelController(puzzle2Panel.getName(), this));
 		panel_1.add(puzzle2Panel);
 
 		puzzle3Panel = new JPanel();
 		puzzle3Panel.setBackground(Color.BLUE);
-		puzzle3Panel.setName("puzzle 3");
+		puzzle3Panel.setName("puzzle3");
 		puzzle3Panel.addMouseListener(new LoadLevelController(puzzle3Panel.getName(), this));
 		panel_1.add(puzzle3Panel);
 
 		puzzle4Panel = new JPanel();
 		puzzle4Panel.setBackground(Color.BLUE);
-		puzzle4Panel.setName("puzzle 4");
+		puzzle4Panel.setName("puzzle4");
 		puzzle4Panel.addMouseListener(new LoadLevelController(puzzle4Panel.getName(), this));
 		panel_1.add(puzzle4Panel);
 
 		puzzle5Panel = new JPanel();
 		puzzle5Panel.setBackground(Color.BLUE);
-		puzzle5Panel.setName("puzzle 5");
+		puzzle5Panel.setName("puzzle5");
 		puzzle5Panel.addMouseListener(new LoadLevelController(puzzle5Panel.getName(), this));
 		panel_1.add(puzzle5Panel);
 
 		lightning1Panel = new JPanel();
 		lightning1Panel.setBackground(Color.CYAN); 
-		lightning1Panel.setName("lightning 1");
+		lightning1Panel.setName("lightning1");
 		lightning1Panel.addMouseListener(new LoadLevelController(lightning1Panel.getName(), this));
 		panel_1.add(lightning1Panel);
 
 		lightning2Panel = new JPanel();
 		lightning2Panel.setBackground(Color.BLUE);
-		lightning2Panel.setName("lightning 2");
+		lightning2Panel.setName("lightning2");
 		lightning2Panel.addMouseListener(new LoadLevelController(lightning2Panel.getName(), this));
 		panel_1.add(lightning2Panel);
 
 		lightning3Panel = new JPanel();
 		lightning3Panel.setBackground(Color.BLUE);
-		lightning3Panel.setName("lightning 3");
+		lightning3Panel.setName("lightning3");
 		lightning3Panel.addMouseListener(new LoadLevelController(lightning3Panel.getName(), this));
 		panel_1.add(lightning3Panel);
 
 		lightning4Panel = new JPanel();
 		lightning4Panel.setBackground(Color.BLUE);
-		lightning4Panel.setName("lightning 4");
+		lightning4Panel.setName("lightning4");
 		lightning4Panel.addMouseListener(new LoadLevelController(lightning4Panel.getName(), this));
 		panel_1.add(lightning4Panel);
 
 		lightning5Panel = new JPanel();
 		lightning5Panel.setBackground(Color.BLUE);
-		lightning5Panel.setName("lightning 5");
+		lightning5Panel.setName("lightning5");
 		lightning5Panel.addMouseListener(new LoadLevelController(lightning5Panel.getName(), this));
 		panel_1.add(lightning5Panel);
 
 		elimination1Panel = new JPanel();
 		elimination1Panel.setBackground(Color.CYAN);
-		elimination1Panel.setName("elimination 1");
+		elimination1Panel.setName("elimination1");
 		elimination1Panel.addMouseListener(new LoadLevelController(elimination1Panel.getName(), this));
 		panel_1.add(elimination1Panel);
 
 		elimination2Panel = new JPanel();
 		elimination2Panel.setBackground(Color.BLUE);
-		elimination2Panel.setName("elimination 2");
+		elimination2Panel.setName("elimination2");
 		elimination2Panel.addMouseListener(new LoadLevelController(elimination2Panel.getName(), this));
 		panel_1.add(elimination2Panel);
 
 		elimination3Panel = new JPanel();
 		elimination3Panel.setBackground(Color.BLUE);
-		elimination3Panel.setName("elimination 3");
+		elimination3Panel.setName("elimination3");
 		elimination3Panel.addMouseListener(new LoadLevelController(elimination3Panel.getName(), this));
 		panel_1.add(elimination3Panel);
 
 		elimination4Panel = new JPanel();
 		elimination4Panel.setBackground(Color.BLUE);
-		elimination4Panel.setName("elimination 4");
+		elimination4Panel.setName("elimination4");
 		elimination4Panel.addMouseListener(new LoadLevelController(elimination4Panel.getName(), this));
 		panel_1.add(elimination4Panel);
 
 		elimination5Panel = new JPanel();
 		elimination5Panel.setBackground(Color.BLUE);
-		elimination5Panel.setName("elimination 5");
+		elimination5Panel.setName("elimination5");
 		elimination5Panel.addMouseListener(new LoadLevelController(elimination5Panel.getName(), this));
 		panel_1.add(elimination5Panel);
 
 		release1Panel = new JPanel();
 		release1Panel.setBackground(Color.CYAN);
-		release1Panel.setName("release 1");
+		release1Panel.setName("release1");
 		release1Panel.addMouseListener(new LoadLevelController(release1Panel.getName(), this));
 		panel_1.add(release1Panel);
 
 		release2Panel = new JPanel();
 		release2Panel.setBackground(Color.BLUE);
-		release2Panel.setName("release 2");
+		release2Panel.setName("release2");
 		release2Panel.addMouseListener(new LoadLevelController(release2Panel.getName(), this));
 		panel_1.add(release2Panel);
 		release2Panel.setLayout(null);
@@ -191,21 +195,21 @@ public class SelectScreen extends JFrame {
 		release3Panel = new JPanel();
 		release3Panel.setLayout(null);
 		release3Panel.setBackground(Color.BLUE);
-		release3Panel.setName("release 3");
+		release3Panel.setName("release3");
 		release3Panel.addMouseListener(new LoadLevelController(release3Panel.getName(), this));
 		panel_1.add(release3Panel);
 
 		release4Panel = new JPanel();
 		release4Panel.setLayout(null);
 		release4Panel.setBackground(Color.BLUE);
-		release4Panel.setName("release 4");
+		release4Panel.setName("release4");
 		release4Panel.addMouseListener(new LoadLevelController(release4Panel.getName(), this));
 		panel_1.add(release4Panel);
 
 		release5Panel = new JPanel();
 		release5Panel.setLayout(null);
 		release5Panel.setBackground(Color.BLUE);
-		release5Panel.setName("release 5");
+		release5Panel.setName("release5");
 		release5Panel.addMouseListener(new LoadLevelController(release5Panel.getName(), this));
 		panel_1.add(release5Panel);
 

@@ -4,13 +4,16 @@ public class Score {
 	int levelNumber;
 	int movesMade;
 	int points;
+	StarCriteria criteria;
 	StarRating rating;
 	
-	public Score(int levelNumber, int movesMade, int points, StarRating rating) {
+	public Score(int levelNumber, int movesMade, int points, StarCriteria criteria) {
 		this.levelNumber = levelNumber;
 		this.movesMade = movesMade;
 		this.points = points;
-		this.rating = rating;
+		this.criteria = criteria;
+		// TODO: write code to determine rating
+		//this.rating = .........
 	}
 	
 	public int getLevelNumber() {

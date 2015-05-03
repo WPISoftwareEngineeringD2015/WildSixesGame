@@ -3,6 +3,7 @@ package kiviuq.views;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -37,7 +38,15 @@ public class MainScreen extends JFrame {
 		PlayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Execute when button is pressed
-				MainScreen.this.goToSelectScreen();
+				try {
+					MainScreen.this.goToSelectScreen();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 
 		});
@@ -49,7 +58,7 @@ public class MainScreen extends JFrame {
 		getContentPane().add(lblNewLabel);
 	}
 
-	public void goToSelectScreen() {
+	public void goToSelectScreen() throws ClassNotFoundException, IOException {
 		SelectScreen s = new SelectScreen(this);
 		s.setVisible(true);
 		this.setVisible(false);

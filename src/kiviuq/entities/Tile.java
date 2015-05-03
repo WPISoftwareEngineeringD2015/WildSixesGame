@@ -34,9 +34,42 @@ public class Tile {
 		return number;
 	}
 	
+	public void setType(TileType type) {
+		switch(type) {
+		case Null:
+			this.type = TileType.Null;
+			break;
+		case Number:
+			this.type = TileType.Number;
+			this.number = 1; // doesn't matter for the level builder
+			break;
+		case Release:
+			this.type = TileType.Release;
+			break;
+		case Block:
+			this.type = TileType.Block;
+			break;
+		}
+	}
+	
 	public TileType getType() {
 		return type;
 	}
+	
+//	@Override 
+//	public String toString() {
+//		String str = "";
+//		switch (type) {
+//			default: break;
+//			case Number:
+//				str = number + "";
+//			case Null:
+//				break;
+//			case Release:
+//				str = "R";
+//		}
+//		return str;
+//	}
 	
 	@Override 
 	public String toString() {
@@ -44,11 +77,16 @@ public class Tile {
 		switch (type) {
 			default: break;
 			case Number:
-				str = number + "";
+				str = "#";
+				break;
 			case Null:
+				break;
+			case Block:
+				str = "6";
 				break;
 			case Release:
 				str = "R";
+				break;
 		}
 		return str;
 	}
