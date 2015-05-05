@@ -21,6 +21,7 @@ public class SplashScreen extends JFrame {
 
 	/** The amount of time the SplashScreen stays on the screen for */
 	int duration_ms;
+
 	/**
 	 * The next JFrame to load after the SplashScreen is removed from the
 	 * Screen.
@@ -29,6 +30,7 @@ public class SplashScreen extends JFrame {
 
 	/**
 	 * Constructs a new SplashScreen
+	 * 
 	 * @param duration_ms
 	 *            amount of time the SplashScreen stays on the screen for.
 	 * @param nextWindow
