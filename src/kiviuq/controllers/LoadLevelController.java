@@ -49,6 +49,7 @@ public class LoadLevelController extends MouseAdapter{
 			System.out.println("IOException");
 		}
 		
+//		((SelectScreen) this.selectScreen).puzzle1Label.setText(template...);
 	}
 
 	@Override

@@ -27,7 +27,7 @@ public class StarCriteriaView extends JPanel {
 	JLabel lblOnecriterialabel;
 	/** Label for the two star accomplishment */
 	JLabel lblTwocriterialabel;
-	/**Label for the three star accomplishment */
+	/** Label for the three star accomplishment */
 	JLabel lblThreecriterialabel;
 
 	/**
