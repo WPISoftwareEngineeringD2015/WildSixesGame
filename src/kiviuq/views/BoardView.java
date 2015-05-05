@@ -33,7 +33,7 @@ public class BoardView extends JPanel {
 	 * Constructs a new BoardView for use when in-game.
 	 * 
 	 * @param board
-	 *            the entity object that represents game state
+	 *            the entity object that represents game state.
 	 * @param levelScreen
 	 *            the boundary object that represents a game screen
 	 */
