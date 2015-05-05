@@ -18,7 +18,6 @@ public class SelectTileController extends MouseAdapter {
 	int lastX;
 	int lastY;
 	Tile tile;
-	boolean waiting;
 	LevelScreen levelScreen;
 
 	public SelectTileController(LevelScreen levelScreen, BoardView boardView,
@@ -28,10 +27,6 @@ public class SelectTileController extends MouseAdapter {
 		this.board = boardView.getBoard();
 		this.x = x;
 		this.y = y;
-	}
-
-	public void setWaiting(boolean bool) {
-		waiting = bool;
 	}
 
 	private boolean isAdjacent() {

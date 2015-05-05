@@ -76,28 +76,15 @@ public class Tile {
 	/**
 	 * The numerical value for this Tile.
 	 * 
-	 * @return The Tile's numberical value, or -1 if it does not have one.
+	 * @return The Tile's numerical value, or -1 if it does not have one.
 	 */
 	public int getNumber() {
 		return number;
 	}
 
 	public void setType(TileType type) {
-		switch (type) {
-		case Null:
-			this.type = TileType.Null;
-			break;
-		case Number:
-			this.type = TileType.Number;
-			this.number = 1; // doesn't matter for the level builder
-			break;
-		case Release:
-			this.type = TileType.Release;
-			break;
-		case Block:
-			this.type = TileType.Block;
-			break;
-		}
+		this.type = type;
+		if (type == TileType.Number) this.number =1; // doesn't matter for Lb
 	}
 
 	/**
@@ -115,15 +102,10 @@ public class Tile {
 	public String toString() {
 		String str = "";
 		switch (type) {
-		default:
-			break;
 		case Number:
 			str = number + "";
 			break;
 		case Null:
-			break;
-		case Block:
-			str = "6";
 			break;
 		case Release:
 			str = "R";

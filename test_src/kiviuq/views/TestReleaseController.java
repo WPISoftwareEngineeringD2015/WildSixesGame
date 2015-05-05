@@ -2,21 +2,24 @@ package kiviuq.views;
 
 import java.awt.event.WindowEvent;
 
-import development.Templates;
 import junit.framework.TestCase;
 import kiviuq.controllers.RemoveTileController;
 import kiviuq.entities.Board;
 import kiviuq.entities.LevelTemplate;
 import kiviuq.entities.MoveType;
+import kiviuq.entities.ReleaseBoard;
 import kiviuq.entities.Tile;
 import kiviuq.entities.TileType;
-import kiviuq.views.LevelScreen;
+import development.Templates;
 
 public class TestReleaseController extends TestCase {
 	LevelScreen lvlScreen;
+	ReleaseBoard board;
 
 	protected void setUp() throws Exception {
 		LevelTemplate template = Templates.getExampleTemplateRelease();
+		// have to case because ecl emma isn't smart enough to look in ReleaseBoard.java
+		board = (ReleaseBoard)Board.MakeBoardFromTemplate(template, null);
 		lvlScreen = new LevelScreen(Board.MakeBoardFromTemplate(template, null), null);
 		lvlScreen.setVisible(true);
 	}
@@ -37,6 +40,7 @@ public class TestReleaseController extends TestCase {
 		grid[2][0] = tile3;
 		grid[3][0] = tile4;
 		lvlScreen.board.setGrid(grid);	
+		lvlScreen.getBoardView().repaint();
 		
 		RemoveTileController rtc = new RemoveTileController(lvlScreen.board, tile3, lvlScreen);
 		lvlScreen.board.setMoveType(MoveType.Remove);
@@ -44,8 +48,12 @@ public class TestReleaseController extends TestCase {
 		Thread.sleep(500);
 		
 		assertEquals(lvlScreen.board.getGrid()[2][0].getNumber(), tile1.getNumber());
-		assertEquals(lvlScreen.board.getGrid()[2][0].getMultiplier(), tile1.getMultiplier());
-		
+		assertEquals(lvlScreen.board.getGrid()[2][0].getMultiplier(), tile1.getMultiplier());	
 	}
-
+	
+	public void testInitalLost() {
+		assertFalse(lvlScreen.board.hasWon());
+	}
+	
+	
 }

@@ -36,17 +36,19 @@ public class TestSelectTileController extends TestCase {
 		lvlScreen.refreshBoardView();
 //		lvlScreen.boardView.tvs[0][0].repaint();
 //		lvlScreen.boardView.tvs[1][0].repaint();
-		
+		assertEquals(0, lvlScreen.board.getTileCount());
 		SelectTileController stc = new SelectTileController(lvlScreen, lvlScreen.boardView, 0, 0);
 		MouseEvent click = new MouseEvent(lvlScreen.boardView.tvs[0][0], 0, 0, 0, 0, 0, 1, false);
 		stc.mouseClicked(click);
-		
 		Thread.sleep(100);
+		assertEquals(1, lvlScreen.board.getTileCount());
 		assertTrue(lvlScreen.board.getGrid()[0][0].isSelected());
 		MouseEvent drag = new MouseEvent(lvlScreen.boardView.tvs[1][0], 0, 0, 0, 0, 0, 0, false);
 		stc = new SelectTileController(lvlScreen, lvlScreen.boardView, 1, 0);
 		stc.mouseEntered(drag);
 		Thread.sleep(100);
 		assertTrue(lvlScreen.board.getGrid()[1][0].isSelected());
+		assertEquals(2, lvlScreen.board.getTileCount());
+		
 	}
 }
