@@ -4,7 +4,9 @@ public class ReleaseBoard extends Board {
 
 	/**
 	 * Constructs a new ReleaseBoard from the template.
+	 * 
 	 * @param template
+	 *            the LevelTemplate to pass into {@link Board}'s constructor.
 	 */
 	protected ReleaseBoard(LevelTemplate template) {
 		super(template);
@@ -12,6 +14,7 @@ public class ReleaseBoard extends Board {
 
 	/**
 	 * Checks to see if all Release Tiles are gone from the board.
+	 * 
 	 * @return true: if all release tiles are gone
 	 */
 	@Override
@@ -23,7 +26,7 @@ public class ReleaseBoard extends Board {
 					return false;
 		return true;
 	}
-	
+
 	/**
 	 * Resets the grid by changing Number Tiles.
 	 */
@@ -38,5 +41,5 @@ public class ReleaseBoard extends Board {
 			}
 		}
 	}
-	
+
 }

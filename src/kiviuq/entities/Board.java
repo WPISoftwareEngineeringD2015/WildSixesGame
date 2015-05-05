@@ -48,12 +48,21 @@ public abstract class Board {
 	/** Criteria for earning stars */
 	StarCriteria starCriteria;
 
+	/** Sum of the selected Tiles */
 	int tileSum;
+	/** Number of Tiles that are currently selected */
 	int tileCount;
+	/**
+	 * Represents the kind of Move that is currently being performed on this
+	 * Board
+	 */
 	MoveType moveType = MoveType.Normal;
 
+	/** Stores if the mouse is pressed on this Board */
 	boolean isMousePressed;
+	/** last x position from selection */
 	int lastX = -1;
+	/** last y position from selection */
 	int lastY = -1;
 
 	/**
@@ -193,6 +202,7 @@ public abstract class Board {
 		this.grid = grid;
 	}
 
+	// TODO do we need this
 	public void scrubGrid() {
 		GameMode g = template.getGameMode();
 
@@ -214,6 +224,7 @@ public abstract class Board {
 		}
 	}
 
+	// TODO document?
 	public TileType[][] convertGrid() {
 		TileType[][] newGrid;
 		newGrid = new TileType[9][9];
@@ -254,6 +265,9 @@ public abstract class Board {
 		movesMade++;
 	}
 
+	/**
+	 * Sets the amount of moves made to zero.
+	 */
 	public void resetMovesMade() {
 		movesMade = 0;
 	}
@@ -402,38 +416,68 @@ public abstract class Board {
 			}
 	}
 
+	/**
+	 * @param moveType
+	 *            the MoveType to be set
+	 */
 	public void setMoveType(MoveType moveType) {
 		this.moveType = moveType;
 	}
 
+	/**
+	 * @return The kind of operation being performed on this Board
+	 */
 	public MoveType getMoveType() {
 		return moveType;
 	}
 
+	/**
+	 * @return the x-value from the last selection
+	 */
 	public int getLastX() {
 		return lastX;
 	}
 
+	/**
+	 * @param lastX
+	 *            the new x-value from the latest selection
+	 */
 	public void setLastX(int lastX) {
 		this.lastX = lastX;
 	}
 
+	/**
+	 * @return the y-value from the last selection
+	 */
 	public int getLastY() {
 		return lastY;
 	}
 
+	/**
+	 * @param lastX
+	 *            the new y-value from the latest selection
+	 */
 	public void setLastY(int lastY) {
 		this.lastY = lastY;
 	}
 
+	/**
+	 * Sets a flag indicating the mouse has been pressed
+	 */
 	public void pressMouse() {
 		isMousePressed = true;
 	}
 
+	/**
+	 * Sets a flag indicating the mouse has been released
+	 */
 	public void releaseMouse() {
 		isMousePressed = false;
 	}
 
+	/**
+	 * @return a flag indicating whether or not the mouse has been pressed
+	 */
 	public boolean isMousePressed() {
 		return isMousePressed;
 	}
@@ -459,10 +503,18 @@ public abstract class Board {
 		}
 	}
 
+	/**
+	 * Subclasses can override this function as needed.
+	 * 
+	 * @return the time limit for this game.
+	 */
 	public int getTimeLimit() {
 		return -1;
 	}
 
+	/**
+	 * @return the amount of time that has passed since the game has been started.
+	 */
 	public int getTimePassed() {
 		return this.timePassed;
 	}
@@ -506,7 +558,9 @@ public abstract class Board {
 	 * still occurs.
 	 * 
 	 * @param x
+	 *            the row of the Tile
 	 * @param y
+	 *            the column of the Tile
 	 */
 	public void removeTile(int x, int y) {
 		grid[x][y] = null;
@@ -522,6 +576,10 @@ public abstract class Board {
 	 */
 	public abstract boolean hasWon();
 
+	/**
+	 * Subclasses can override this method in order to set the game into a state
+	 * where moves can't be performed.
+	 */
 	public void stopMovement() {
 		return;
 	}

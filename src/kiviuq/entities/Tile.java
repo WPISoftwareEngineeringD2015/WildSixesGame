@@ -107,6 +107,10 @@ public class Tile {
 		return type;
 	}
 
+	/**
+	 * Generates a String representation of a Tile. Rendered on
+	 * {@link TileView#getMainLabel()}.
+	 */
 	@Override
 	public String toString() {
 		String str = "";
