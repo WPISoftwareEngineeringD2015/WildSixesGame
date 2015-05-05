@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 
 import kiviuq.entities.Board;
 import kiviuq.entities.LevelTemplate;
+import kiviuq.entities.Score;
 import kiviuq.views.LevelScreen;
 
 public class FinishLevelController implements ActionListener {
@@ -27,8 +28,13 @@ public class FinishLevelController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		template.setHighScorePoints(board.getScore().getPoints());
-		template.setHighScoreRating(board.getScore().getRating());
+		int oldHighScorePoints = template.getHighScorePoints();
+		Score currentScore = board.getScore();
+		int currentScorePoints = currentScore.getPoints();
+		if (currentScorePoints > oldHighScorePoints) {
+			template.setHighScorePoints(currentScorePoints);
+			template.setHighScoreRating(currentScore.getRating());
+		}
 
 		// this block of code looks crazy, but it seems to be
 		// necessary for relative class path to work

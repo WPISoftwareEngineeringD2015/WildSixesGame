@@ -4,11 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import kiviuq.entities.Board;
 import kiviuq.entities.LevelTemplate;
+import kiviuq.entities.Score;
 import kiviuq.views.LevelScreen;
 
 public class WinController implements ActionListener {
@@ -36,13 +38,7 @@ public class WinController implements ActionListener {
 		    dialog.setVisible(true);
 		    levelScreen.getFinishButton().setEnabled(true);
 		    board.setWinFlag(false);
-			//JOptionPane.showConfirmDialog(levelScreen.getBoardView(), "Congratulations on Winning!");
-			
-		    // Old Code: Can be Deleted when necessary
-		    /**
-			template.setHighScorePoints(board.getScore().getPoints());
-			template.setHighScoreRating(board.getScore().getRating());
-
+		    
 			int oldHighScorePoints = template.getHighScorePoints();
 			Score currentScore = board.getScore();
 			int currentScorePoints = currentScore.getPoints();
@@ -50,6 +46,13 @@ public class WinController implements ActionListener {
 				template.setHighScorePoints(currentScorePoints);
 				template.setHighScoreRating(currentScore.getRating());
 			}
+			//JOptionPane.showConfirmDialog(levelScreen.getBoardView(), "Congratulations on Winning!");
+			
+		    // Old Code: Can be Deleted when necessary
+		    /**
+			template.setHighScorePoints(board.getScore().getPoints());
+			template.setHighScoreRating(board.getScore().getRating());
+
 			// this block of code looks crazy, but it seems to be
 			// necessary for relative class path to work
 			File file = new File(getClass().getClassLoader().getResource("LevelTemplates/" + name).toString());
