@@ -11,17 +11,32 @@ import java.io.Serializable;
 
 public class LevelTemplate implements Serializable{
 	/**
-	 * 
+	 * Automatically included by Eclipse to prevent error.
 	 */
 	private static final long serialVersionUID = -9104499374831536471L;
+	
+	/** Integer representing the number of the level */
 	private int levelNumber;
+	
+	/** Enumeration representing the type of level */
 	GameMode mode;
+	
+	/** 2-D Array of all the tiles. */
 	TileType[][] grid;
+	
+	/** The time limit used in Lightning levels */
 	int timeLimit;
+	
+	/** The maximum amount of moves the user can do */
 	int moveLimit;
-//	int random1, random2, random3, random4, random5;
+
+	/** The ranking system associated with the level determining what star count is awarded */
 	StarCriteria starCriteria;	
+	
+	/** Constant from 0 - 100 that helps determine the frequency of NumberTiles 1 through 6. */
 	int probConst;
+	
+	/** Constant from 0 - 100 that helps determine the frequency of multipliers 1 through 3 */
 	int multConst;
 	
 	/**
@@ -30,11 +45,8 @@ public class LevelTemplate implements Serializable{
 	 * @param mode what GameMode the level is (puzzle, lightning, elimination, release)
 	 * @param timeLimit the time limit for lightning mode levels
 	 * @param moveLimit the move limit for elimination mode levels
-	 * @param random1 
-	 * @param random2
-	 * @param random3
-	 * @param random4
-	 * @param random5
+	 * @param probConst the constant determining tile number frequency
+	 * @param multConst the constant determining tile multiplier frequency
 	 * @param starCriteria the starCriteria for the level @see StarCriteria
 	 */
 	public LevelTemplate(int levelNumber, GameMode mode, int timeLimit, int moveLimit, int probConst,
@@ -154,30 +166,58 @@ public class LevelTemplate implements Serializable{
 		this.timeLimit = i;
 	}
 
+	/**
+	 * get method for int levelNumber
+	 * @return int levelNumber
+	 */
 	public int getLevelNumber() {
 		return levelNumber;
 	}
 
+	/**
+	 * set method for levelNumber
+	 * @param levelNumber int to set levelNumber attribute to
+	 */
 	public void setLevelNumber(int levelNumber) {
 		this.levelNumber = levelNumber;
 	}
 
+	/**
+	 * set method for starCriteria
+	 * @param starCriteria2 StarCriteria for which to attribute to the template
+	 */
 	public void setStarCriteria(StarCriteria starCriteria2) {
 		this.starCriteria = starCriteria2;
 	}
 
+	/**
+	 * get method for probConst
+	 * @return int probConst
+	 */
 	public int getProbConst() {
 		return probConst;
 	}
 	
+	/**
+	 * set method for probConst
+	 * @param newProb int for which to set int probConst
+	 */
 	public void setProbConst(int newProb) {
 		probConst = newProb;
 	}
 
+	/**
+	 * get method for multConst
+	 * @return int multConst
+	 */
 	public int getMultConst() {
 		return multConst;
 	}
 	
+	/**
+	 * set method for probConst
+	 * @param newMult int for which to set int multConst
+	 */
 	public void setMultConst(int newMult) {
 		multConst = newMult;
 	}

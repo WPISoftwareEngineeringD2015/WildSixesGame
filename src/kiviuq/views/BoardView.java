@@ -23,7 +23,9 @@ public class BoardView extends JPanel {
 	/**
 	 * Constructs a new BoardView for use when in-game.
 	 * @param board
+	 * 				Board represented in BoardView.
 	 * @param levelScreen
+	 * 				LevelScreen for which BoardView is internalized
 	 */
 	public BoardView(Board board, LevelScreen levelScreen) {
 		super();
