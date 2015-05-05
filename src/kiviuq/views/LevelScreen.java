@@ -243,6 +243,7 @@ public class LevelScreen extends JFrame {
 	 */
 	public void exitGame() {
 		previousScreen.setVisible(true);
+		((SelectScreen) previousScreen).refreshHighScores();
 		// TODO probably save some stuff here
 		this.dispose();
 	}
