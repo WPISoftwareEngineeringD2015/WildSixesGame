@@ -2,11 +2,9 @@ package kiviuq.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 
+
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import kiviuq.entities.Board;
@@ -29,9 +27,18 @@ public class WinController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (board.hasWon()) {
-			JOptionPane.showConfirmDialog(levelScreen.getBoardView(), "Congratulations on Winning!");
+		if (board.hasWon() && board.getWinFlag()) {
+			JOptionPane winPane = new JOptionPane
+					("You beat the level!"
+							+ " Click the 'Finish Level' button to record your score!", JOptionPane.PLAIN_MESSAGE);
+			JDialog dialog = winPane.createDialog(levelScreen.getBoardView(), "Victory");
+		    dialog.setVisible(true);
+		    levelScreen.getFinishButton().setEnabled(true);
+		    board.setWinFlag(false);
+			//JOptionPane.showConfirmDialog(levelScreen.getBoardView(), "Congratulations on Winning!");
 			
+		    // Old Code: Can be Deleted when necessary
+		    /**
 			template.setHighScorePoints(board.getScore().getPoints());
 			template.setHighScoreRating(board.getScore().getRating());
 
@@ -54,6 +61,7 @@ public class WinController implements ActionListener {
 			}		
 
 			levelScreen.exitGame();
+			*/
 		}
 	}
 

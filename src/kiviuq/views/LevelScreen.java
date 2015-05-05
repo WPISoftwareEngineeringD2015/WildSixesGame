@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import kiviuq.controllers.FinishLevelController;
 import kiviuq.controllers.ResetTilesController;
 import kiviuq.controllers.RestartLevelController;
 import kiviuq.controllers.SelectRemoveController;
@@ -37,6 +38,8 @@ public class LevelScreen extends JFrame {
 	JButton back;
 	/** Button used to completely restart the level */
 	JButton restart;
+	/** Button used to complete a level a document the current score */
+	JButton finish;
 	/** Reference to the boundary class that visualizes a {@link Board}'s Tiles. */
 	BoardView boardView;
 	/** Reference to the entity object that represents the game state */
@@ -57,8 +60,8 @@ public class LevelScreen extends JFrame {
 	
 	JLabel highScoreLabel;
 	/**
-	 * Component used to contain a preformatted View that lets the user invoke
-	 * Special Movea
+	 * Component used to contain a pre-formatted View that lets the user invoke
+	 * Special Moves
 	 */
 	SpecialButtonsView sbv;
 	/** The amount of time played. */
@@ -86,7 +89,7 @@ public class LevelScreen extends JFrame {
 		JPanel panelTop = new JPanel();
 		panelTop.setBounds(7, 6, 855, 82);
 		getContentPane().add(panelTop);
-		int panelTopCol = 3;
+		int panelTopCol = 4;
 		if (board instanceof LightningBoard) {
 			panelTopCol++;
 			timer = new Timer(1000, new ActionListener() {
@@ -136,7 +139,11 @@ public class LevelScreen extends JFrame {
 		panelGrid.setBounds(6, 89, 855, 585);
 		getContentPane().add(panelGrid);
 		panelGrid.setLayout(new BorderLayout(0, 0));
-
+		
+		this.finish = new JButton("Finish Level");
+		this.finish.setEnabled(false);
+		finish.addActionListener(new FinishLevelController(board, this));
+		
 		this.restart = new JButton("Restart Level");
 		restart.addActionListener(new RestartLevelController(board, this));
 
@@ -154,6 +161,7 @@ public class LevelScreen extends JFrame {
 		highScoreLabel = new JLabel(highScore.getHighScoreText());
 		
 		panelGrid.add(boardView, BorderLayout.CENTER);
+		panelTop.add(finish);
 		panelTop.add(restart);
 		panelTop.add(back);
 		panelTop.add(highScoreLabel);
@@ -245,6 +253,10 @@ public class LevelScreen extends JFrame {
 		previousScreen.setVisible(true);
 		// TODO probably save some stuff here
 		this.dispose();
+	}
+	
+	public JButton getFinishButton() {
+		return this.finish;
 	}
 
 }

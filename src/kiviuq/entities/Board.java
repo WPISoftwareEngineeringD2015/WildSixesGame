@@ -77,6 +77,11 @@ public abstract class Board {
 	 */
 	int r1, r2, r3, r4, r5;
 	int m1, m2;
+	
+	/**
+	 * Boolean flag to ensure level is not "won" more than once.
+	 */
+	boolean winFlag = true;
 
 	/**
 	 * This function takes a LevelTemplate and will construct the appropriate
@@ -601,6 +606,15 @@ public abstract class Board {
 		}
 		return newGrid;
 	}
+	
+	public boolean getWinFlag() {
+		return this.winFlag;
+	}
+	
+	public void setWinFlag(boolean setter) {
+		this.winFlag = setter;
+	}
+	
 }
 
 /* OLD BOARD FROM EDITOR */
