@@ -30,7 +30,7 @@ public abstract class Board {
 	 * program
 	 */
 	LevelTemplate template;
-	
+
 	/**
 	 * Name of actual file on disk used to Load/Save LevelTemplate
 	 * (templates include highScore information)
@@ -149,7 +149,7 @@ public abstract class Board {
 				if (type == TileType.Number)
 					t = getNextTile();
 				else if (type == TileType.Block) // this will convert the Tile
-													// to be a number Tile.
+					// to be a number Tile.
 					t = Tile.NewBlockTile();
 				else
 					t = new Tile(type); // it's a null or release tile
@@ -561,13 +561,13 @@ public abstract class Board {
 	public void removeTile(int x, int y) {
 		grid[x][y] = null;
 	}
-	
+
 	public Score getScore() {
 		StarRating rating = starCriteria.getStarRating(points);		
 		Score finalScore = new Score(points, rating);
 		return finalScore;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -590,6 +590,17 @@ public abstract class Board {
 		return;
 	}
 
+	public TileType[][] convertGrid() {
+		TileType[][] newGrid;
+		newGrid = new TileType[9][9];
+		for (int x = 0; x < 9; x++) {
+			for (int y = 0; x < 9; y++) {
+				TileType type = grid[x][y].getType();
+				newGrid[x][x] = type;
+			}
+		}
+		return newGrid;
+	}
 }
 
 /* OLD BOARD FROM EDITOR */
