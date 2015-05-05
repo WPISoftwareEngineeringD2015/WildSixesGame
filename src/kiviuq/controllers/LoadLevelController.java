@@ -27,7 +27,9 @@ public class LoadLevelController extends MouseAdapter{
 
 		// this block of code looks crazy, but it seems to be
 		// necessary for relative class path to work
-		File file = new File(getClass().getClassLoader().getResource("LevelTemplates/" + name).toString());
+	    File file = 
+	    		new File(getClass().getClassLoader()
+	    				.getResource("LevelTemplates/" + name).toString().replaceAll("%20", " "));
 		String[] tempString;
 		String fileString = file.toString();
 		tempString = fileString.split(":", 2);
