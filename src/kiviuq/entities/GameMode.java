@@ -1,7 +1,6 @@
 package kiviuq.entities;
 
 /**
-<<<<<<< HEAD
  * Enum used to represent the state of the Game. This is used when reading input
  * from the LevelBuilder. The ideal way to determine what kind of {@link Board}
  * a Board is, is to simply use instanceof to check if your Board is a
