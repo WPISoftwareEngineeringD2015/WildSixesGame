@@ -31,23 +31,45 @@ public class LevelScreen extends JFrame {
 	 * eclipse warning silencer
 	 */
 	private static final long serialVersionUID = 1L;
+	/** Button used to navigate to the previous window */
 	JButton back;
+	/** Button used to completely restart the level */
 	JButton restart;
+	/** Reference to the boundary class that visualizes a {@link Board}'s Tiles. */
 	BoardView boardView;
+	/** Reference to the entity object that represents the game state */
 	Board board;
+	/** Reference to the previous screen. */
 	JFrame previousScreen;
+	/**
+	 * Label used to display the amount of time left when using a
+	 * {@link LightningBoard}.
+	 */
 	JLabel timeLeft;
+	/** Component used to represent a {@link Board}'s score */
 	ScoreView scoreView;
+	/** Label used to display the amount of moves left */
 	JLabel movesLeft;
+	/** Label used to display the amount of moves made */
 	JLabel movesMade;
+	/**
+	 * Component used to contain a preformatted View that lets the user invoke
+	 * Special Movea
+	 */
 	SpecialButtonsView sbv;
+	/** The amount of time played. */
 	int time;
+	/** A Timer object to keep track of time when needed */
 	Timer timer;
 
 	/**
 	 * Constructs a new LevelScreen.
+	 * 
 	 * @param board
+	 *            the entity object that represents game state
 	 * @param previousScreen
+	 *            the Screen that {@link LevelScreen#back} will display when
+	 *            clicked
 	 */
 	public LevelScreen(Board board, final JFrame previousScreen) {
 		super();
@@ -66,29 +88,32 @@ public class LevelScreen extends JFrame {
 			timer = new Timer(1000, new ActionListener() {
 				// Executes code per second
 				public void actionPerformed(ActionEvent e) {
-					if(LevelScreen.this.board.getTimePassed() < LevelScreen.this.board.getTimeLimit()) {
-						 LevelScreen.this.board.increaseTimePassed();
-						 LevelScreen.this.refreshTime();
+					if (LevelScreen.this.board.getTimePassed() < LevelScreen.this.board
+							.getTimeLimit()) {
+						LevelScreen.this.board.increaseTimePassed();
+						LevelScreen.this.refreshTime();
 					} else {
-					 LevelScreen.this.board.stopMovement();
-					 LevelScreen.this.timer.stop();
+						LevelScreen.this.board.stopMovement();
+						LevelScreen.this.timer.stop();
 					}
 				}
 			});
 			timer.setInitialDelay(1000);
 			timer.start();
-			timeLeft = new JLabel("Timer: " + 
-			(board.getTimeLimit() - board.getTimePassed()));
+			timeLeft = new JLabel("Timer: "
+					+ (board.getTimeLimit() - board.getTimePassed()));
 		}
 		panelTop.setLayout(new GridLayout(1, panelTopCol, 5, 0));
 
-		StarCriteriaView starCriteria = new StarCriteriaView(board.getStarCriteria());
+		StarCriteriaView starCriteria = new StarCriteriaView(
+				board.getStarCriteria());
 		panelTop.add(starCriteria);
 
 		scoreView = new ScoreView(board);
 		panelTop.add(scoreView);
-		
-		if (board instanceof LightningBoard) panelTop.add(timeLeft);
+
+		if (board instanceof LightningBoard)
+			panelTop.add(timeLeft);
 
 		sbv = new SpecialButtonsView(new ResetTilesController(board, this),
 				new SelectSwapController(board), new SelectRemoveController(
@@ -125,9 +150,10 @@ public class LevelScreen extends JFrame {
 
 		this.board = board;
 	}
-	
+
 	/**
 	 * Returns the screen the game was previously on.
+	 * 
 	 * @return previous screen
 	 */
 	public JFrame getPreviousScreen() {
@@ -136,14 +162,16 @@ public class LevelScreen extends JFrame {
 
 	/**
 	 * Retrieves the ScoreView of this LevelScreen
+	 * 
 	 * @return ScoreView
 	 */
 	public ScoreView getScoreView() {
 		return scoreView;
 	}
-	
+
 	/**
 	 * Returns the Timer Label
+	 * 
 	 * @return timeLeftLabel
 	 */
 	public JLabel getTimeLeftLabel() {
@@ -152,6 +180,7 @@ public class LevelScreen extends JFrame {
 
 	/**
 	 * Returns the BoardView
+	 * 
 	 * @return BoardView
 	 */
 	public BoardView getBoardView() {
@@ -160,6 +189,7 @@ public class LevelScreen extends JFrame {
 
 	/**
 	 * Returns the views for the Special Buttons
+	 * 
 	 * @return SpecialButtonsView
 	 */
 	public SpecialButtonsView getSpecialButtonsView() {
@@ -178,25 +208,25 @@ public class LevelScreen extends JFrame {
 		}
 		repaint();
 	}
-	
+
 	/**
-	 * Updates screen to show proper amount of time left.
-	 * Automatically called every second on Lightning levels.
+	 * Updates screen to show proper amount of time left. Automatically called
+	 * every second on Lightning levels.
 	 */
 	public void refreshTime() {
-		if(board instanceof LightningBoard) {
-			timeLeft.setText("Timer: " + 
-					(board.getTimeLimit() - board.getTimePassed()));
+		if (board instanceof LightningBoard) {
+			timeLeft.setText("Timer: "
+					+ (board.getTimeLimit() - board.getTimePassed()));
 		}
 	}
-	
+
 	/**
 	 * Refreshes the BoardView.
 	 */
 	public void refreshBoardView() {
 		boardView = new BoardView(board, this);
 	}
-	
+
 	/**
 	 * Exits the LevelScreen and returns to previous screen.
 	 */
@@ -205,5 +235,5 @@ public class LevelScreen extends JFrame {
 		// TODO probably save some stuff here
 		this.dispose();
 	}
-	
+
 }
