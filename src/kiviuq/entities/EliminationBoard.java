@@ -10,9 +10,10 @@ public class EliminationBoard extends Board {
 	 * {@link #eliminatedTiles}.
 	 * 
 	 * @param template
+	 * @param name 
 	 */
-	protected EliminationBoard(LevelTemplate template) {
-		super(template);
+	protected EliminationBoard(LevelTemplate template, String name) {
+		super(template, name);
 		eliminatedTiles = new boolean[Board.BOARD_LENGTH][Board.BOARD_WIDTH];
 		// set non-number Tiles to already be considered for Elimination
 		resetEliminated();

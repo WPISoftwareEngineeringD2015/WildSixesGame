@@ -5,30 +5,33 @@ import java.io.Serializable;
 public class StarCriteria implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	int points;
-	int movesMade;
+//	int points;
+//	int movesMade;
 	
 	int points1, points2, points3;
-	int movesMade1, movesMade2, movesMade3;
+//	int movesMade1, movesMade2, movesMade3;
 	
 	/**
 	 * Specified Constructor for StarCriteria
 	 * @param points1
 	 * @param points2
 	 * @param points3
-	 * @param movesMade1
-	 * @param movesMade2
-	 * @param movesMade3
 	 */
-	public StarCriteria(int points1, int points2, int points3, 
-			int movesMade1, int movesMade2, int movesMade3) {
+	public StarCriteria(int points1, int points2, int points3) {
 		this.points1 = points1;
 		this.points2 = points2;
 		this.points3 = points3;
-		this.movesMade1 = movesMade1;
-		this.movesMade2 = movesMade2;
-		this.movesMade3 = movesMade3;
 	}
+	
+//	public StarCriteria(int points1, int points2, int points3, 
+//			int movesMade1, int movesMade2, int movesMade3) {
+//		this.points1 = points1;
+//		this.points2 = points2;
+//		this.points3 = points3;
+//		this.movesMade1 = movesMade1;
+//		this.movesMade2 = movesMade2;
+//		this.movesMade3 = movesMade3;
+//	}
 	
 	/**
 	 * Unspecified Constructor for StarCriteria
@@ -37,9 +40,20 @@ public class StarCriteria implements Serializable{
 		this.points1 = 0;
 		this.points2 = 0;
 		this.points3 = 0;
-		this.movesMade1 = 0;
-		this.movesMade2 = 0;
-		this.movesMade3 = 0;
+//		this.movesMade1 = 0;
+//		this.movesMade2 = 0;
+//		this.movesMade3 = 0;
+	}
+	
+	public StarRating getStarRating(int points) {
+		if(points >= points3)
+			return StarRating.ThreeStars;
+		else if(points >= points2)
+			return StarRating.TwoStars;
+		else if(points >= points1)
+			return StarRating.OneStar;
+		else
+			return StarRating.NoStars;
 	}
 	
 	// TODO, so far it's only evident to the user that points are needed for Stars... see StarCriteriaView.java ...

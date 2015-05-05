@@ -1,42 +1,33 @@
 package kiviuq.entities;
 
 
-public class Score {
-	int levelNumber;
-	int movesMade;
+public class Score{
+	/**
+	 * 
+	 */
 	int points;
-	StarCriteria criteria;
 	StarRating rating;
+	
+	/**
+	 * Constructs a new Score
+	 * with input points and rating.
+	 */
+	public Score(int points, StarRating rating) {
+		this.points = points;
+		this.rating = rating;
+	}
 	
 	/**
 	 * Constructs a new Score.
 	 */
-	public Score(int levelNumber, int movesMade, int points, StarCriteria criteria) {
-		this.levelNumber = levelNumber;
-		this.movesMade = movesMade;
-		this.points = points;
-		this.criteria = criteria;
+	public Score() {
+		this.points = 0;
+		this.rating = StarRating.NoStars;
 	}
 	
 	/**
-	 * Returns level number.
-	 * @return level number
-	 */
-	public int getLevelNumber() {
-		return levelNumber;
-	}
-	
-	/**
-	 * Returns moves made.
-	 * @return moves made
-	 */
-	public int getMovesMade() {
-		return movesMade;
-	}
-	
-	/**
-	 * Returns current points.
-	 * @return current points
+	 * Returns points.
+	 * @return points
 	 */
 	public int getPoints() {
 		return points;
@@ -50,4 +41,18 @@ public class Score {
 		return rating;
 	}
 	
+	public String getHighScoreText() {
+		String ratingText = "";
+		if(rating == StarRating.NoStars)
+			ratingText = "0 Stars";
+		if(rating == StarRating.OneStar)
+			ratingText = "1 Star";
+		if(rating == StarRating.TwoStars)
+			ratingText = "2 Stars";
+		if(rating == StarRating.ThreeStars)
+			ratingText = "3 Stars";
+		String highScoreText =
+				String.format("<html><body>HIGH SCORE<br>Points: %d<br>Rating: %s</body></html>", points, ratingText);
+		return highScoreText;
+	}
 }

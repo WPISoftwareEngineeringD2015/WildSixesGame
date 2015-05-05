@@ -5,9 +5,10 @@ public class PuzzleBoard extends Board{
 	/**
 	 * Constructs a new PuzzleBoard from template.
 	 * @param template
+	 * @param name 
 	 */
-	protected PuzzleBoard(LevelTemplate template) {
-		super(template);
+	protected PuzzleBoard(LevelTemplate template, String name) {
+		super(template, name);
 	}
 	
 	/**

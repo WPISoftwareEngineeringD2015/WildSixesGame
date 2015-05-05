@@ -13,7 +13,7 @@ public class Templates {
 
 	public static LevelTemplate getExampleTemplateElimination() {
 		if (elimTemp == null) {
-			StarCriteria sc = new StarCriteria(50, 100, 300, 4, 6, 8); 
+			StarCriteria sc = new StarCriteria(50, 100, 300); 
 			elimTemp = new LevelTemplate(0, GameMode.Elimination, 60, 30, 50, 60, sc);
 		}
 		return elimTemp;
@@ -21,7 +21,7 @@ public class Templates {
 
 	public static LevelTemplate getExampleTemplateLightning() {
 		if (lightTemp == null) {
-			StarCriteria sc = new StarCriteria(0, 0, 50, 100, 300, 4); 
+			StarCriteria sc = new StarCriteria(0, 0, 50); 
 			lightTemp = new LevelTemplate(1, GameMode.Lightning, 60, 30, 50, 60, sc);
 		}
 		return lightTemp;
@@ -29,7 +29,7 @@ public class Templates {
 
 	public static LevelTemplate getExampleTemplatePuzzle() {
 		if (puzzleTemp == null) {
-			StarCriteria sc = new StarCriteria(0, 0, 50, 100, 300, 4); 
+			StarCriteria sc = new StarCriteria(0, 0, 50); 
 			puzzleTemp = new LevelTemplate(2, GameMode.Puzzle, 60, 30, 50, 60, sc);
 		}
 		return puzzleTemp;
@@ -37,7 +37,7 @@ public class Templates {
 
 	public static LevelTemplate getExampleTemplateRelease() {
 		if (releaseTemp == null) {
-			StarCriteria sc = new StarCriteria(0, 0, 50, 100, 300, 4); 
+			StarCriteria sc = new StarCriteria(0, 0, 50); 
 			releaseTemp = new LevelTemplate(3, GameMode.Release, 60, 30, 50, 60, sc);
 
 			releaseTemp.setTileTypeAtPosition(8, 0, TileType.Null);

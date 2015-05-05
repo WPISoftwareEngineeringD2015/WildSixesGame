@@ -5,9 +5,10 @@ public class ReleaseBoard extends Board {
 	/**
 	 * Constructs a new ReleaseBoard from the template.
 	 * @param template
+	 * @param name 
 	 */
-	protected ReleaseBoard(LevelTemplate template) {
-		super(template);
+	protected ReleaseBoard(LevelTemplate template, String name) {
+		super(template, name);
 	}
 
 	/**

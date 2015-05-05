@@ -30,6 +30,12 @@ public abstract class Board {
 	 * program
 	 */
 	LevelTemplate template;
+	
+	/**
+	 * Name of actual file on disk used to Load/Save LevelTemplate
+	 * (templates include highScore information)
+	 */
+	String name;
 
 	/**
 	 * Tiles on the grid. Initialized to {@link Constants#BOARD_LENGTH} x
@@ -79,17 +85,17 @@ public abstract class Board {
 	 *            the {@link LevelTemplate} template for the file.
 	 * @return the proper subclass of {@link Board}
 	 */
-	public static Board MakeBoardFromTemplate(LevelTemplate template) {
+	public static Board MakeBoardFromTemplate(LevelTemplate template, String name) {
 		GameMode mode = template.getGameMode();
 		switch (mode) {
 		case Puzzle:
-			return new PuzzleBoard(template);
+			return new PuzzleBoard(template, name);
 		case Lightning:
-			return new LightningBoard(template);
+			return new LightningBoard(template, name);
 		case Release:
-			return new ReleaseBoard(template);
+			return new ReleaseBoard(template, name);
 		case Elimination:
-			return new EliminationBoard(template);
+			return new EliminationBoard(template, name);
 		default:
 			break;
 		}
@@ -106,7 +112,10 @@ public abstract class Board {
 	 * @param template
 	 *            the LevelTemplate object used for building this Board.
 	 */
-	protected Board(LevelTemplate template) {
+	protected Board(LevelTemplate template, String name) {
+		this.timePassed = 0;
+		this.points = 0;
+		this.name = name;
 		this.setTemplate(template);
 		moveLimit = template.moveLimit;
 		grid = new Tile[Board.BOARD_LENGTH][Board.BOARD_WIDTH];
@@ -472,7 +481,7 @@ public abstract class Board {
 	 * function is called when the Restart Level button is clicked on.
 	 */
 	public void resetBoard() {
-		Board newBoard = Board.MakeBoardFromTemplate(template);
+		Board newBoard = Board.MakeBoardFromTemplate(template, name);
 		this.setGrid(newBoard.getGrid());
 		resetPoints();
 		resetTimePassed();
@@ -510,6 +519,16 @@ public abstract class Board {
 	 */
 	public void removeTile(int x, int y) {
 		grid[x][y] = null;
+	}
+	
+	public Score getScore() {
+		StarRating rating = starCriteria.getStarRating(points);		
+		Score finalScore = new Score(points, rating);
+		return finalScore;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	/**

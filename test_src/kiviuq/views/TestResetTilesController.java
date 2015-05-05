@@ -12,7 +12,7 @@ public class TestResetTilesController extends TestCase {
 
 	protected void setUp() throws Exception {
 		LevelTemplate template = Templates.getExampleTemplateElimination();
-		lvlScreen = new LevelScreen(Board.MakeBoardFromTemplate(template), null);
+		lvlScreen = new LevelScreen(Board.MakeBoardFromTemplate(template, null), null);
 		lvlScreen.setVisible(true);
 	}
 

@@ -17,7 +17,7 @@ public class TestReleaseController extends TestCase {
 
 	protected void setUp() throws Exception {
 		LevelTemplate template = Templates.getExampleTemplateRelease();
-		lvlScreen = new LevelScreen(Board.MakeBoardFromTemplate(template), null);
+		lvlScreen = new LevelScreen(Board.MakeBoardFromTemplate(template, null), null);
 		lvlScreen.setVisible(true);
 	}
 

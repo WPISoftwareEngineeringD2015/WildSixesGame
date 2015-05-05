@@ -10,9 +10,11 @@ public class LightningBoard extends Board{
 	/**
 	 * Constructs a new LightningBoard from template.
 	 * @param template
+	 * @param name 
 	 */
-	protected LightningBoard(LevelTemplate template) {
-		super(template);
+	protected LightningBoard(LevelTemplate template, String name) {
+		super(template, name);
+		this.timeLimit = 0;
 		this.timeLimit = template.timeLimit;
 	}
 	

@@ -18,6 +18,8 @@ import kiviuq.controllers.SelectSwapController;
 import kiviuq.entities.Board;
 import kiviuq.entities.EliminationBoard;
 import kiviuq.entities.LightningBoard;
+import kiviuq.entities.Score;
+import kiviuq.entities.StarRating;
 
 /**
  * View class that is the main screen for a game of Sixes Wild. Contains Swing
@@ -52,6 +54,8 @@ public class LevelScreen extends JFrame {
 	JLabel movesLeft;
 	/** Label used to display the amount of moves made */
 	JLabel movesMade;
+	
+	JLabel highScoreLabel;
 	/**
 	 * Component used to contain a preformatted View that lets the user invoke
 	 * Special Movea
@@ -144,9 +148,16 @@ public class LevelScreen extends JFrame {
 			}
 		});
 
+		int highScorePoints = board.getTemplate().getHighScorePoints();
+		StarRating highScoreRating = board.getTemplate().getHighScoreRating();
+		Score highScore = new Score(highScorePoints, highScoreRating);
+		highScoreLabel = new JLabel(highScore.getHighScoreText());
+		
 		panelGrid.add(boardView, BorderLayout.CENTER);
 		panelTop.add(restart);
 		panelTop.add(back);
+		panelTop.add(highScoreLabel);
+		
 
 		this.board = board;
 	}

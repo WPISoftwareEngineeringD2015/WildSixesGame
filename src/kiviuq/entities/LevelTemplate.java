@@ -23,6 +23,9 @@ public class LevelTemplate implements Serializable{
 	StarCriteria starCriteria;	
 	int probConst;
 	int multConst;
+//	Score highScore;
+	int highScorePoints;
+	StarRating highScoreRating;
 	
 	/**
 	 * Full constructor for LevelTemplate class
@@ -46,6 +49,9 @@ public class LevelTemplate implements Serializable{
 		this.multConst = multConst;
 		this.probConst = probConst;
 		this.starCriteria = starCriteria;
+//		this.highScore = new Score(0, StarRating.NoStars);
+		this.highScorePoints = 0;
+		this.highScoreRating = StarRating.NoStars;
 		grid = new TileType[Board.BOARD_LENGTH][Board.BOARD_WIDTH];	
 		for (int x = 0; x < Board.BOARD_LENGTH; x++) {
 			for (int y = 0; y < Board.BOARD_WIDTH; y++) {
@@ -60,6 +66,7 @@ public class LevelTemplate implements Serializable{
 	 * Sets defaults for a fresh level template used in the level builder
 	 */
 	public LevelTemplate() {
+		this.timeLimit = 0;
 		this.starCriteria = null;
 		this.mode = GameMode.Puzzle;
 		this.grid = new TileType[Board.BOARD_LENGTH][Board.BOARD_WIDTH];
@@ -70,6 +77,9 @@ public class LevelTemplate implements Serializable{
 		}
 		this.moveLimit = 10;
 		this.starCriteria = new StarCriteria();
+//		this.highScore = new Score(0, StarRating.NoStars);
+		this.highScorePoints = 0;
+		this.highScoreRating = StarRating.NoStars;
 	}
 	
 	/**
@@ -78,6 +88,54 @@ public class LevelTemplate implements Serializable{
 	 */
 	public StarCriteria getStarCriteria() {
 		return starCriteria;
+	}
+	
+//	/**
+//	 * get method for Score highScore
+//	 * @return Score highScore
+//	 */
+//	public Score getHighScore() {
+//		return highScore;
+//	}
+//	
+//	/**
+//	 * set method for Score highScore
+//	 * @return Score highScore
+//	 */
+//	public void setHighScore(Score newScore) {
+//		highScore = newScore;
+//	}
+	
+	/**
+	 * get method for Score highScore
+	 * @return Score highScore
+	 */
+	public int getHighScorePoints() {
+		return highScorePoints;
+	}
+	
+	/**
+	 * set method for Score highScore
+	 * @return Score highScore
+	 */
+	public void setHighScorePoints(int newPoints) {
+		highScorePoints = newPoints;
+	}
+	
+	/**
+	 * get method for Score highScore
+	 * @return Score highScore
+	 */
+	public StarRating getHighScoreRating() {
+		return highScoreRating;
+	}
+	
+	/**
+	 * set method for Score highScore
+	 * @return Score highScore
+	 */
+	public void setHighScoreRating(StarRating newRating) {
+		highScoreRating = newRating;
 	}
 	
 	/**
