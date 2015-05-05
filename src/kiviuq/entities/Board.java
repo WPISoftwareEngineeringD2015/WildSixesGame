@@ -77,6 +77,11 @@ public abstract class Board {
 	 */
 	int r1, r2, r3, r4, r5;
 	int m1, m2;
+	
+	/**
+	 * Boolean flag to ensure level is not "won" more than once.
+	 */
+	boolean winFlag = true;
 
 	/**
 	 * This function takes a LevelTemplate and will construct the appropriate
@@ -594,13 +599,22 @@ public abstract class Board {
 		TileType[][] newGrid;
 		newGrid = new TileType[9][9];
 		for (int x = 0; x < 9; x++) {
-			for (int y = 0; x < 9; y++) {
+			for (int y = 0; y < 9; y++) {
 				TileType type = grid[x][y].getType();
-				newGrid[x][x] = type;
+				newGrid[x][y] = type;
 			}
 		}
 		return newGrid;
 	}
+	
+	public boolean getWinFlag() {
+		return this.winFlag;
+	}
+	
+	public void setWinFlag(boolean setter) {
+		this.winFlag = setter;
+	}
+	
 }
 
 /* OLD BOARD FROM EDITOR */

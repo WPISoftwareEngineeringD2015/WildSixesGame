@@ -44,6 +44,7 @@ public class TestSelectTileController extends TestCase {
 		Thread.sleep(100);
 		assertTrue(lvlScreen.board.getGrid()[0][0].isSelected());
 		MouseEvent drag = new MouseEvent(lvlScreen.boardView.tvs[1][0], 0, 0, 0, 0, 0, 0, false);
+		stc = new SelectTileController(lvlScreen, lvlScreen.boardView, 1, 0);
 		stc.mouseEntered(drag);
 		Thread.sleep(100);
 		assertTrue(lvlScreen.board.getGrid()[1][0].isSelected());
