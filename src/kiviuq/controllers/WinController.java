@@ -37,15 +37,8 @@ public class WinController implements ActionListener {
 			JDialog dialog = winPane.createDialog(levelScreen.getBoardView(), "Victory");
 		    dialog.setVisible(true);
 		    levelScreen.getFinishButton().setEnabled(true);
-		    board.setWinFlag(false);
-		    
-			int oldHighScorePoints = template.getHighScorePoints();
-			Score currentScore = board.getScore();
-			int currentScorePoints = currentScore.getPoints();
-			if (currentScorePoints > oldHighScorePoints) {
-				template.setHighScorePoints(currentScorePoints);
-				template.setHighScoreRating(currentScore.getRating());
-			}
+		    board.setWinFlag(false);			
+			
 			//JOptionPane.showConfirmDialog(levelScreen.getBoardView(), "Congratulations on Winning!");
 			
 		    // Old Code: Can be Deleted when necessary
