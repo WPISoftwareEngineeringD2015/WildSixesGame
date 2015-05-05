@@ -83,11 +83,11 @@ public class LevelScreen extends JFrame {
 		boardView = new BoardView(board, this);
 		this.previousScreen = previousScreen;
 		setTitle("Example Level Screen");
-		setBounds(100, 100, 880, 715);
+		setBounds(100, 100, 972, 715);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		JPanel panelTop = new JPanel();
-		panelTop.setBounds(7, 6, 855, 82);
+		panelTop.setBounds(7, 6, 950, 82);
 		getContentPane().add(panelTop);
 		int panelTopCol = 4;
 		if (board instanceof LightningBoard) {
@@ -136,7 +136,7 @@ public class LevelScreen extends JFrame {
 		}
 
 		JPanel panelGrid = new JPanel();
-		panelGrid.setBounds(6, 89, 855, 585);
+		panelGrid.setBounds(6, 89, 950, 585);
 		getContentPane().add(panelGrid);
 		panelGrid.setLayout(new BorderLayout(0, 0));
 		
