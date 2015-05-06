@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import kiviuq.entities.Board;
 import kiviuq.entities.LevelTemplate;
 import kiviuq.entities.Score;
+import kiviuq.entities.StarRating;
 import kiviuq.views.LevelScreen;
 
 /**
@@ -68,6 +69,9 @@ public class WinController implements ActionListener {
 				template.setHighScoreRating(currentScore.getRating());
 				levelScreen.refreshHighScore();
 			}
+			
+			if (currentScore.getRating() != StarRating.NoStars)
+				levelScreen.getFinishButton().setEnabled(true);
 
 			// this block of code looks crazy, but it seems to be
 			// necessary for relative class path to work
@@ -89,7 +93,6 @@ public class WinController implements ActionListener {
 				e1.printStackTrace();
 			}
 			
-			levelScreen.getFinishButton().setEnabled(true);
 			board.setWinFlag(false);
 
 		}
