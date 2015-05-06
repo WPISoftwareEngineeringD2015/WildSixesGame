@@ -46,6 +46,8 @@ public class TestSubclassSpecificImplementations extends TestCase{
 		}
 		rb.setGrid(grid);
 		assertTrue(rb.hasWon());
+		rb.resetGrid();
+		assertTrue(rb.hasWon());
 	}
 	
 	public void testTimeControlsOnEntity() {
