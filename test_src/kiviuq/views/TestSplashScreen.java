@@ -10,7 +10,8 @@ public class TestSplashScreen extends TestCase {
 	MainScreen mainScreen;
 
 	protected void setUp() throws Exception {
-		splashScreen = new SplashScreen(1000, splashScreen);
+		mainScreen = new MainScreen();
+		splashScreen = new SplashScreen(1000, mainScreen);
 		splashScreen.setVisible(true);
 	}
 
@@ -22,6 +23,12 @@ public class TestSplashScreen extends TestCase {
 	public void testScreen(){
 		assertSame(splashScreen.nextWindow, mainScreen);
 		assertEquals(splashScreen.duration_ms, 1000);
+	}
+	
+	public void testLaunch() {
+		assertFalse(mainScreen.isVisible());
+		splashScreen.launchSplashScreen();
+		assertTrue(mainScreen.isVisible());
 	}
 	
 
