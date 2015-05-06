@@ -17,108 +17,136 @@ import kiviuq.entities.Score;
 import kiviuq.views.LevelScreen;
 import kiviuq.views.SelectScreen;
 
-public class LoadLevelController extends MouseAdapter{
+/**
+ * 
+ * Controller responsible for loading a Level from disk.
+ * 
+ * @author Gabe Bell
+ *
+ */
+public class LoadLevelController extends MouseAdapter {
+	/**
+	 * represents a level stored on disk, can be read by the LevelBuilder and
+	 * converted to a {@link Board} for play.
+	 */
 	private LevelTemplate template = new LevelTemplate();
+	/** top level boundary object */
 	private LevelScreen lvlScreen;
+	/** boundary object for the level select screen */
 	private JFrame selectScreen;
+	/** name of the level file */
 	private String name;
+	/** text label used on level views */
 	private JLabel label;
-	private ObjectInputStream menuInput;
+	// private ObjectInputStream menuInput;
+	/** high score entity object */
 	private Score highScore;
 
-
-	public LoadLevelController(String name, JFrame selectScreen) throws FileNotFoundException {
+	/**
+	 * 
+	 * Stores values while loading the appropriate level from disk.
+	 * 
+	 * @param name
+	 *            name of the level
+	 * @param selectScreen
+	 *            boundary object that corresponds to the level select screen
+	 * @throws FileNotFoundException
+	 *             if a level file was not on disk, this will be thrown
+	 */
+	public LoadLevelController(String name, JFrame selectScreen)
+			throws FileNotFoundException {
 		this.selectScreen = (SelectScreen) selectScreen;
 		this.name = name;
-		this.menuInput = null;
+		// this.menuInput = null;
 
-		switch(name) {
+		switch (name) {
 		case "puzzle1":
 			label = ((SelectScreen) this.selectScreen).puzzle1Label;
-			menuInput = ((SelectScreen) this.selectScreen).puzzle1Input;
+			// menuInput = ((SelectScreen) this.selectScreen).puzzle1Input;
 			break;
 		case "puzzle2":
 			label = ((SelectScreen) this.selectScreen).puzzle2Label;
-			menuInput = ((SelectScreen) this.selectScreen).puzzle2Input;
+			// menuInput = ((SelectScreen) this.selectScreen).puzzle2Input;
 			break;
 		case "puzzle3":
 			label = ((SelectScreen) this.selectScreen).puzzle3Label;
-			menuInput = ((SelectScreen) this.selectScreen).puzzle3Input;
+			// menuInput = ((SelectScreen) this.selectScreen).puzzle3Input;
 			break;
 		case "puzzle4":
 			label = ((SelectScreen) this.selectScreen).puzzle4Label;
-			menuInput = ((SelectScreen) this.selectScreen).puzzle4Input;
+			// menuInput = ((SelectScreen) this.selectScreen).puzzle4Input;
 			break;
 		case "puzzle5":
 			label = ((SelectScreen) this.selectScreen).puzzle5Label;
-			menuInput = ((SelectScreen) this.selectScreen).puzzle5Input;
+			// menuInput = ((SelectScreen) this.selectScreen).puzzle5Input;
 			break;
 		case "elimination1":
 			label = ((SelectScreen) this.selectScreen).elimination1Label;
-			menuInput = ((SelectScreen) this.selectScreen).elimination1Input;
+			// menuInput = ((SelectScreen) this.selectScreen).elimination1Input;
 			break;
 		case "elimination2":
 			label = ((SelectScreen) this.selectScreen).elimination2Label;
-			menuInput = ((SelectScreen) this.selectScreen).elimination2Input;
+			// menuInput = ((SelectScreen) this.selectScreen).elimination2Input;
 			break;
 		case "elimination3":
 			label = ((SelectScreen) this.selectScreen).elimination3Label;
-			menuInput = ((SelectScreen) this.selectScreen).elimination3Input;
+			// menuInput = ((SelectScreen) this.selectScreen).elimination3Input;
 			break;
 		case "elimination4":
 			label = ((SelectScreen) this.selectScreen).elimination4Label;
-			menuInput = ((SelectScreen) this.selectScreen).elimination4Input;
+			// menuInput = ((SelectScreen) this.selectScreen).elimination4Input;
 			break;
 		case "elimination5":
 			label = ((SelectScreen) this.selectScreen).elimination5Label;
-			menuInput = ((SelectScreen) this.selectScreen).elimination5Input;
+			// menuInput = ((SelectScreen) this.selectScreen).elimination5Input;
 			break;
 		case "lightning1":
 			label = ((SelectScreen) this.selectScreen).lightning1Label;
-			menuInput = ((SelectScreen) this.selectScreen).lightning1Input;
+			// menuInput = ((SelectScreen) this.selectScreen).lightning1Input;
 			break;
 		case "lightning2":
 			label = ((SelectScreen) this.selectScreen).lightning2Label;
-			menuInput = ((SelectScreen) this.selectScreen).lightning2Input;
+			// menuInput = ((SelectScreen) this.selectScreen).lightning2Input;
 			break;
 		case "lightning3":
 			label = ((SelectScreen) this.selectScreen).lightning3Label;
-			menuInput = ((SelectScreen) this.selectScreen).lightning3Input;
+			// menuInput = ((SelectScreen) this.selectScreen).lightning3Input;
 			break;
 		case "lightning4":
 			label = ((SelectScreen) this.selectScreen).lightning4Label;
-			menuInput = ((SelectScreen) this.selectScreen).lightning4Input;
+			// menuInput = ((SelectScreen) this.selectScreen).lightning4Input;
 			break;
 		case "lightning5":
 			label = ((SelectScreen) this.selectScreen).lightning5Label;
-			menuInput = ((SelectScreen) this.selectScreen).lightning5Input;
+			// menuInput = ((SelectScreen) this.selectScreen).lightning5Input;
 			break;
 		case "release1":
 			label = ((SelectScreen) this.selectScreen).release1Label;
-			menuInput = ((SelectScreen) this.selectScreen).release1Input;
+			// menuInput = ((SelectScreen) this.selectScreen).release1Input;
 			break;
 		case "release2":
 			label = ((SelectScreen) this.selectScreen).release2Label;
-			menuInput = ((SelectScreen) this.selectScreen).release2Input;
+			// menuInput = ((SelectScreen) this.selectScreen).release2Input;
 			break;
 		case "release3":
 			label = ((SelectScreen) this.selectScreen).release3Label;
-			menuInput = ((SelectScreen) this.selectScreen).release3Input;
+			// menuInput = ((SelectScreen) this.selectScreen).release3Input;
 			break;
 		case "release4":
 			label = ((SelectScreen) this.selectScreen).release4Label;
-			menuInput = ((SelectScreen) this.selectScreen).release4Input;
+			// menuInput = ((SelectScreen) this.selectScreen).release4Input;
 			break;
 		case "release5":
 			label = ((SelectScreen) this.selectScreen).release5Label;
-			menuInput = ((SelectScreen) this.selectScreen).release5Input;
+			// menuInput = ((SelectScreen) this.selectScreen).release5Input;
 			break;
 		}
 
 		// this block of code looks crazy, but it seems to be
 		// necessary for relative class path to work
 		File file = new File(getClass().getClassLoader()
-				.getResource("LevelTemplates/" + name).toString().replaceAll("%20", " "));
+				.getResource("LevelTemplates/" + name).toString()
+				.replaceAll("%20", " "));
 		String[] tempString;
 		String fileString = file.toString();
 		tempString = fileString.split(":", 2);
@@ -126,10 +154,11 @@ public class LoadLevelController extends MouseAdapter{
 
 		try {
 			ObjectInputStream in = new ObjectInputStream(fileInput);
-//			((SelectScreen) selectScreen).setObjectInputStream(menuInput, in);
+			// ((SelectScreen) selectScreen).setObjectInputStream(menuInput,
+			// in);
 			template = (LevelTemplate) in.readObject();
 			in.close();
-			//			fileInput.close();
+			// fileInput.close();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -140,13 +169,19 @@ public class LoadLevelController extends MouseAdapter{
 			System.out.println("IOException");
 		}
 
-		highScore = new Score(template.getHighScorePoints(), template.getHighScoreRating());
+		highScore = new Score(template.getHighScorePoints(),
+				template.getHighScoreRating());
 		label.setText(highScore.getHighScoreText());
 	}
 
+	/**
+	 * Creates a {@link LevelScreen} with valid data. Launches a game of Sixes
+	 * Wild with the appropriate level.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		lvlScreen = new LevelScreen(Board.MakeBoardFromTemplate(template, name), selectScreen);
+		lvlScreen = new LevelScreen(
+				Board.MakeBoardFromTemplate(template, name), selectScreen);
 		lvlScreen.setVisible(true);
 		selectScreen.setVisible(false);
 		System.out.println(name);

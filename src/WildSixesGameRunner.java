@@ -10,6 +10,12 @@ import kiviuq.views.SplashScreen;
  */
 public class WildSixesGameRunner {
 
+	/**
+	 * Main method for the program
+	 * 
+	 * @param args
+	 *            unused command line options
+	 */
 	public static void main(String[] args) {
 		MainScreen mainScreen = new MainScreen();
 		SplashScreen s = new SplashScreen(500, mainScreen);

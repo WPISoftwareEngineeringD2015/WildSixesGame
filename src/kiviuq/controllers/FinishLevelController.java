@@ -14,11 +14,23 @@ import kiviuq.views.LevelScreen;
 
 public class FinishLevelController implements ActionListener {
 
+	/** top level entity object */
 	Board board;
+	/** top level boundary object */
 	LevelScreen levelScreen;
+	/** level name */
 	String name;
+	/** used to store data to disk */
 	LevelTemplate template;
 
+	/**
+	 * Stores the model and view into this class.
+	 * 
+	 * @param board
+	 *            top level entity object
+	 * @param levelScreen
+	 *            top level boundary object
+	 */
 	public FinishLevelController(Board board, LevelScreen levelScreen) {
 		this.board = board;
 		this.levelScreen = levelScreen;
@@ -26,6 +38,9 @@ public class FinishLevelController implements ActionListener {
 		this.template = board.getTemplate();
 	}
 
+	/**
+	 * Will attempt to save the score to disk.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int oldHighScorePoints = template.getHighScorePoints();
@@ -38,9 +53,9 @@ public class FinishLevelController implements ActionListener {
 
 		// this block of code looks crazy, but it seems to be
 		// necessary for relative class path to work
-		File file = 
-				new File(getClass().getClassLoader()
-						.getResource("LevelTemplates/" + name).toString().replaceAll("%20", " "));
+		File file = new File(getClass().getClassLoader()
+				.getResource("LevelTemplates/" + name).toString()
+				.replaceAll("%20", " "));
 		String[] tempString;
 		String fileString = file.toString();
 		tempString = fileString.split(":", 2);
@@ -57,6 +72,5 @@ public class FinishLevelController implements ActionListener {
 		}
 		levelScreen.exitGame();
 	}
-	
-	
+
 }

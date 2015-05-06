@@ -22,13 +22,19 @@ public class ReleaseTileController implements ActionListener {
 	/** Current instance of the game view */
 	BoardView boardView;
 
+	/**
+	 * @param board
+	 *            top level entity
+	 * @param boardView
+	 *            top level boundary
+	 */
 	public ReleaseTileController(Board board, BoardView boardView) {
 		this.board = board;
 		this.boardView = boardView;
 	}
 
 	/**
-	 * Iterate through the grid and if there any 
+	 * Iterate through the grid and if there any
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
