@@ -1,5 +1,7 @@
 package kiviuq.views;
 
+import java.io.FileNotFoundException;
+
 import junit.framework.TestCase;
 import kiviuq.entities.Board;
 import kiviuq.entities.EliminationBoard;
@@ -58,9 +60,20 @@ public class TestSubclassSpecificImplementations extends TestCase{
 	
 	public void testLightningBoardView() {
 		// lightning boards have time left labels
-		LevelScreen ls = new LevelScreen(lb, null);
+		LevelScreen ls = null;
+		try {
+			ls = new LevelScreen(lb, null);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertNotNull(ls.getTimeLeftLabel());
-		ls = new LevelScreen(eb, null);
+		try {
+			ls = new LevelScreen(eb, null);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// other boards do not
 		assertNull(ls.getTimeLeftLabel());
 	}
