@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 
 import kiviuq.entities.Board;
 import kiviuq.entities.LevelTemplate;
-import kiviuq.entities.Score;
 import kiviuq.views.LevelScreen;
 
 public class WinController implements ActionListener {

@@ -126,7 +126,7 @@ public class LoadLevelController extends MouseAdapter{
 
 		try {
 			ObjectInputStream in = new ObjectInputStream(fileInput);
-			((SelectScreen) selectScreen).setObjectInputStream(menuInput, in);
+//			((SelectScreen) selectScreen).setObjectInputStream(menuInput, in);
 			template = (LevelTemplate) in.readObject();
 			in.close();
 			//			fileInput.close();
