@@ -61,6 +61,7 @@ public class SelectTileController extends MouseAdapter {
 	 * @return true if adjacent, false otherwise.
 	 */
 	private boolean isAdjacent() {
+		this.board = levelScreen.getBoard();
 		lastX = board.getLastX();
 		lastY = board.getLastY();
 

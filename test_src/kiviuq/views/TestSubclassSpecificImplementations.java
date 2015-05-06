@@ -33,10 +33,14 @@ public class TestSubclassSpecificImplementations extends TestCase{
 		// TODO get these to fail
 		assertFalse(lb.hasWon());
 		assertFalse(pb.hasWon());
-		pb.addPoints(2000);
+		for (int i = 0; i < pb.getMoveLimit(); i++) {
+			pb.increaseMovesMade();
+		}
 		assertTrue(pb.hasWon());
 		
-		lb.addPoints(2000);
+		for (int i = 0; i < lb.getTimeLimit(); i++) {
+			lb.increaseTimePassed();;
+		}
 		assertTrue(lb.hasWon());
 		
 		Tile[][] grid = rb.getGrid();

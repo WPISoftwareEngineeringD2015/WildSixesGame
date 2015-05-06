@@ -7,8 +7,10 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -69,6 +71,9 @@ public class LevelScreen extends JFrame {
 	int time;
 	/** A Timer object to keep track of time when needed */
 	Timer timer;
+	
+	JOptionPane winPane;
+	JDialog dialog;
 
 	/**
 	 * Constructs a new LevelScreen.
@@ -225,6 +230,10 @@ public class LevelScreen extends JFrame {
 	public SpecialButtonsView getSpecialButtonsView() {
 		return sbv;
 	}
+	
+	public Board getBoard() {
+		return board;
+	}
 
 	/**
 	 * Updates screen to show current number of Moves
@@ -273,6 +282,21 @@ public class LevelScreen extends JFrame {
 	
 	public JButton getFinishButton() {
 		return this.finish;
+	}
+	
+	public void spawnWinDialog() {
+		winPane = new JOptionPane("You beat the level!"
+				+ " Click the 'Finish Level' button to record your score!",
+				JOptionPane.PLAIN_MESSAGE);
+		dialog = winPane.createDialog(this,
+				"Victory");
+		dialog.setVisible(true);
+	}
+	
+	public void killWinDialog() {;
+		dialog.setVisible(false);
+		dialog.dispose();
+		winPane.setVisible(false);
 	}
 
 }
