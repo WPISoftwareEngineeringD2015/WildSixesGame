@@ -33,7 +33,7 @@ public class LightningBoard extends Board{
 	 */
 	@Override
 	public boolean hasWon() {
-		return (this.points >= this.starCriteria.getPoints1());
+		return (this.getTimeLimit() - this.getTimePassed() == 0);
 	}
 	
 	/**

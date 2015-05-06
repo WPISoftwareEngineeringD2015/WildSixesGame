@@ -17,8 +17,8 @@ import kiviuq.controllers.ResetTilesController;
 import kiviuq.controllers.RestartLevelController;
 import kiviuq.controllers.SelectRemoveController;
 import kiviuq.controllers.SelectSwapController;
+import kiviuq.controllers.WinController;
 import kiviuq.entities.Board;
-import kiviuq.entities.EliminationBoard;
 import kiviuq.entities.LightningBoard;
 import kiviuq.entities.Score;
 import kiviuq.entities.StarRating;
@@ -97,11 +97,12 @@ public class LevelScreen extends JFrame {
 			timer = new Timer(1000, new ActionListener() {
 				// Executes code per second
 				public void actionPerformed(ActionEvent e) {
-					if (LevelScreen.this.board.getTimePassed() < LevelScreen.this.board
-							.getTimeLimit()) {
+					if (!LevelScreen.this.board.hasWon()) {
 						LevelScreen.this.board.increaseTimePassed();
 						LevelScreen.this.refreshTime();
+						
 					} else {
+						new WinController(board, LevelScreen.this).actionPerformed(e);
 						LevelScreen.this.board.stopMovement();
 						LevelScreen.this.timer.stop();
 					}
@@ -129,12 +130,12 @@ public class LevelScreen extends JFrame {
 						board));
 		panelTop.add(sbv);
 
-		if (board instanceof EliminationBoard) {
-			movesLeft = new JLabel("Moves Left: " + board.getMoveLimit());
-			panelTop.add(movesLeft);
-		} else {
+		if (board instanceof LightningBoard) {
 			movesMade = new JLabel("Moves Made: " + board.getMovesMade());
 			panelTop.add(movesMade);
+		} else {
+			movesLeft = new JLabel("Moves Left: " + board.getMoveLimit());
+			panelTop.add(movesLeft);
 		}
 
 		JPanel panelGrid = new JPanel();
@@ -172,6 +173,14 @@ public class LevelScreen extends JFrame {
 		this.board = board;
 	}
 
+	public void refreshHighScore() {
+		int highScorePoints = board.getTemplate().getHighScorePoints();
+		StarRating highScoreRating = board.getTemplate().getHighScoreRating();
+		Score highScore = new Score(highScorePoints, highScoreRating);
+		highScoreLabel.setText(highScore.getHighScoreText());
+		this.repaint();
+	}
+	
 	/**
 	 * Returns the screen the game was previously on.
 	 * 
@@ -221,11 +230,11 @@ public class LevelScreen extends JFrame {
 	 * Updates screen to show current number of Moves
 	 */
 	public void refreshMoves() {
-		if (board instanceof EliminationBoard)
+		if (board instanceof LightningBoard)
+			movesMade.setText("Moves Made: " + board.getMovesMade());
+		else {
 			movesLeft.setText("Moves Left: "
 					+ (board.getMoveLimit() - board.getMovesMade()));
-		else {
-			movesMade.setText("Moves Made: " + board.getMovesMade());
 		}
 		repaint();
 	}

@@ -17,7 +17,7 @@ public class PuzzleBoard extends Board{
 	 */
 	@Override
 	public boolean hasWon() {
-		return (this.points >= this.starCriteria.getPoints1());
+		return (this.getMoveLimit() - this.getMovesMade() == 0);
 	}
 
 

@@ -66,6 +66,7 @@ public class WinController implements ActionListener {
 			if (currentScorePoints > oldHighScorePoints) {
 				template.setHighScorePoints(currentScorePoints);
 				template.setHighScoreRating(currentScore.getRating());
+				levelScreen.refreshHighScore();
 			}
 
 			// this block of code looks crazy, but it seems to be

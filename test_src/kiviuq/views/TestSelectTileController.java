@@ -5,8 +5,6 @@ import java.awt.event.WindowEvent;
 
 import development.Templates;
 import junit.framework.TestCase;
-import kiviuq.controllers.RemoveTileController;
-import kiviuq.controllers.SelectRemoveController;
 import kiviuq.controllers.SelectTileController;
 import kiviuq.entities.Board;
 import kiviuq.entities.LevelTemplate;
