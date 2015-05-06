@@ -21,7 +21,7 @@ public class Templates {
 
 	public static LevelTemplate getExampleTemplateLightning() {
 		if (lightTemp == null) {
-			StarCriteria sc = new StarCriteria(0, 0, 50); 
+			StarCriteria sc = new StarCriteria(50, 100, 150); 
 			lightTemp = new LevelTemplate(1, GameMode.Lightning, 60, 30, 50, 60, sc);
 		}
 		return lightTemp;
@@ -29,7 +29,7 @@ public class Templates {
 
 	public static LevelTemplate getExampleTemplatePuzzle() {
 		if (puzzleTemp == null) {
-			StarCriteria sc = new StarCriteria(0, 0, 50); 
+			StarCriteria sc = new StarCriteria(50, 100, 150); 
 			puzzleTemp = new LevelTemplate(2, GameMode.Puzzle, 60, 30, 50, 60, sc);
 		}
 		return puzzleTemp;

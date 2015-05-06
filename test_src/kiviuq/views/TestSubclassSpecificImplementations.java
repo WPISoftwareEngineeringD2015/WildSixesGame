@@ -1,12 +1,14 @@
 package kiviuq.views;
 
-import development.Templates;
 import junit.framework.TestCase;
 import kiviuq.entities.Board;
 import kiviuq.entities.EliminationBoard;
 import kiviuq.entities.LightningBoard;
 import kiviuq.entities.PuzzleBoard;
 import kiviuq.entities.ReleaseBoard;
+import kiviuq.entities.Tile;
+import kiviuq.entities.TileType;
+import development.Templates;
 
 public class TestSubclassSpecificImplementations extends TestCase{
 	ReleaseBoard rb;
@@ -27,8 +29,21 @@ public class TestSubclassSpecificImplementations extends TestCase{
 		assertFalse(rb.hasWon());
 		assertFalse(eb.hasWon());
 		// TODO get these to fail
-		// assertFalse(lb.hasWon());
-		// assertFalse(pb.hasWon());
+		assertFalse(lb.hasWon());
+		assertFalse(pb.hasWon());
+		pb.addPoints(2000);
+		assertTrue(pb.hasWon());
+		
+		
+		Tile[][] grid = rb.getGrid();
+		for (int x = 0; x < Board.BOARD_LENGTH; x++) {
+			for (int y = 0; y < Board.BOARD_WIDTH; y++) {
+				if (grid[x][y].getType() == TileType.Release) 
+					grid[x][y] = new Tile(TileType.Null);
+			}
+		}
+		rb.setGrid(grid);
+		assertTrue(rb.hasWon());
 	}
 	
 	public void testTimeControlsOnEntity() {
