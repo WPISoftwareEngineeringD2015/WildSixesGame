@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
@@ -22,6 +23,7 @@ import javax.swing.border.EmptyBorder;
 import kiviuq.controllers.LoadLevelController;
 import kiviuq.entities.LevelTemplate;
 import kiviuq.entities.Score;
+import kiviuq.entities.StarRating;
 
 public class SelectScreen extends JFrame {
 	JPanel puzzle1Panel;
@@ -87,6 +89,8 @@ public class SelectScreen extends JFrame {
 	public ObjectInputStream release4Input;
 	public ObjectInputStream release5Input;
 
+	JPanel panel_1;
+
 
 
 	/**
@@ -132,7 +136,7 @@ public class SelectScreen extends JFrame {
 		});
 		panel.add(backBTN, BorderLayout.WEST);
 
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new GridLayout(0, 5, 5, 5));
 
@@ -153,7 +157,9 @@ public class SelectScreen extends JFrame {
 		puzzle2Label.setFont(new Font("Verdana",1,16));
 		puzzle2Panel.add(puzzle2Label);
 		puzzle2Panel.setName("puzzle2");
-		puzzle2Panel.addMouseListener(new LoadLevelController(puzzle2Panel.getName(), this));
+		if (refreshHighScore("puzzle1", puzzle1Label) ) {
+			puzzle2Panel.addMouseListener(new LoadLevelController(puzzle2Panel.getName(), this));
+		}
 		panel_1.add(puzzle2Panel);
 
 		puzzle3Panel = new JPanel();
@@ -162,7 +168,9 @@ public class SelectScreen extends JFrame {
 		puzzle3Label.setFont(new Font("Verdana",1,16));
 		puzzle3Panel.add(puzzle3Label);
 		puzzle3Panel.setName("puzzle3");
-		puzzle3Panel.addMouseListener(new LoadLevelController(puzzle3Panel.getName(), this));
+		if (refreshHighScore("puzzle2", puzzle2Label) ) {
+			puzzle3Panel.addMouseListener(new LoadLevelController(puzzle3Panel.getName(), this));
+		}
 		panel_1.add(puzzle3Panel);
 
 		puzzle4Panel = new JPanel();
@@ -171,7 +179,9 @@ public class SelectScreen extends JFrame {
 		puzzle4Label.setFont(new Font("Verdana",1,16));
 		puzzle4Panel.add(puzzle4Label);
 		puzzle4Panel.setName("puzzle4");
-		puzzle4Panel.addMouseListener(new LoadLevelController(puzzle4Panel.getName(), this));
+		if (refreshHighScore("puzzle3", puzzle3Label) ) {
+			puzzle4Panel.addMouseListener(new LoadLevelController(puzzle4Panel.getName(), this));
+		}
 		panel_1.add(puzzle4Panel);
 
 		puzzle5Panel = new JPanel();
@@ -180,7 +190,9 @@ public class SelectScreen extends JFrame {
 		puzzle5Label.setFont(new Font("Verdana",1,16));
 		puzzle5Panel.add(puzzle5Label);
 		puzzle5Panel.setName("puzzle5");
-		puzzle5Panel.addMouseListener(new LoadLevelController(puzzle5Panel.getName(), this));
+		if (refreshHighScore("puzzle4", puzzle4Label) ) {
+			puzzle5Panel.addMouseListener(new LoadLevelController(puzzle5Panel.getName(), this));
+		}
 		panel_1.add(puzzle5Panel);
 
 		lightning1Panel = new JPanel();
@@ -198,7 +210,9 @@ public class SelectScreen extends JFrame {
 		lightning2Label.setFont(new Font("Verdana",1,16));
 		lightning2Panel.add(lightning2Label);
 		lightning2Panel.setName("lightning2");
-		lightning2Panel.addMouseListener(new LoadLevelController(lightning2Panel.getName(), this));
+		if (refreshHighScore("lightning1", lightning1Label) ) {
+			lightning2Panel.addMouseListener(new LoadLevelController(lightning2Panel.getName(), this));
+		}
 		panel_1.add(lightning2Panel);
 
 		lightning3Panel = new JPanel();
@@ -207,7 +221,9 @@ public class SelectScreen extends JFrame {
 		lightning3Label.setFont(new Font("Verdana",1,16));
 		lightning3Panel.add(lightning3Label);
 		lightning3Panel.setName("lightning3");
-		lightning3Panel.addMouseListener(new LoadLevelController(lightning3Panel.getName(), this));
+		if (refreshHighScore("lightning2", lightning2Label) ) {
+			lightning3Panel.addMouseListener(new LoadLevelController(lightning3Panel.getName(), this));
+		}
 		panel_1.add(lightning3Panel);
 
 		lightning4Panel = new JPanel();
@@ -216,7 +232,9 @@ public class SelectScreen extends JFrame {
 		lightning4Label.setFont(new Font("Verdana",1,16));
 		lightning4Panel.add(lightning4Label);
 		lightning4Panel.setName("lightning4");
-		lightning4Panel.addMouseListener(new LoadLevelController(lightning4Panel.getName(), this));
+		if (refreshHighScore("lightning3", lightning3Label) ) {
+			lightning4Panel.addMouseListener(new LoadLevelController(lightning4Panel.getName(), this));
+		}
 		panel_1.add(lightning4Panel);
 
 		lightning5Panel = new JPanel();
@@ -225,7 +243,9 @@ public class SelectScreen extends JFrame {
 		lightning5Label.setFont(new Font("Verdana",1,16));
 		lightning5Panel.add(lightning5Label);
 		lightning5Panel.setName("lightning5");
-		lightning5Panel.addMouseListener(new LoadLevelController(lightning5Panel.getName(), this));
+		if (refreshHighScore("lightning4", lightning4Label) ) {
+			lightning5Panel.addMouseListener(new LoadLevelController(lightning5Panel.getName(), this));
+		}
 		panel_1.add(lightning5Panel);
 
 		elimination1Panel = new JPanel();
@@ -243,7 +263,9 @@ public class SelectScreen extends JFrame {
 		elimination2Label.setFont(new Font("Verdana",1,16));
 		elimination2Panel.add(elimination2Label);
 		elimination2Panel.setName("elimination2");
-		elimination2Panel.addMouseListener(new LoadLevelController(elimination2Panel.getName(), this));
+		if (refreshHighScore("elimination1", elimination1Label) ) {
+			elimination2Panel.addMouseListener(new LoadLevelController(elimination2Panel.getName(), this));
+		}
 		panel_1.add(elimination2Panel);
 
 		elimination3Panel = new JPanel();
@@ -252,7 +274,9 @@ public class SelectScreen extends JFrame {
 		elimination3Label.setFont(new Font("Verdana",1,16));
 		elimination3Panel.add(elimination3Label);
 		elimination3Panel.setName("elimination3");
-		elimination3Panel.addMouseListener(new LoadLevelController(elimination3Panel.getName(), this));
+		if (refreshHighScore("elimination2", elimination2Label) ) {
+			elimination3Panel.addMouseListener(new LoadLevelController(elimination3Panel.getName(), this));
+		}
 		panel_1.add(elimination3Panel);
 
 		elimination4Panel = new JPanel();
@@ -261,7 +285,9 @@ public class SelectScreen extends JFrame {
 		elimination4Label.setFont(new Font("Verdana",1,16));
 		elimination4Panel.add(elimination4Label);
 		elimination4Panel.setName("elimination4");
-		elimination4Panel.addMouseListener(new LoadLevelController(elimination4Panel.getName(), this));
+		if (refreshHighScore("elimination3", elimination3Label) ) {
+			elimination4Panel.addMouseListener(new LoadLevelController(elimination4Panel.getName(), this));
+		}
 		panel_1.add(elimination4Panel);
 
 		elimination5Panel = new JPanel();
@@ -270,7 +296,9 @@ public class SelectScreen extends JFrame {
 		elimination5Label.setFont(new Font("Verdana",1,16));
 		elimination5Panel.add(elimination5Label);
 		elimination5Panel.setName("elimination5");
-		elimination5Panel.addMouseListener(new LoadLevelController(elimination5Panel.getName(), this));
+		if (refreshHighScore("elimination4", elimination4Label) ) {
+			elimination5Panel.addMouseListener(new LoadLevelController(elimination5Panel.getName(), this));
+		}
 		panel_1.add(elimination5Panel);
 
 		release1Panel = new JPanel();
@@ -288,38 +316,42 @@ public class SelectScreen extends JFrame {
 		release2Label.setFont(new Font("Verdana",1,16));
 		release2Panel.add(release2Label);
 		release2Panel.setName("release2");
-		release2Panel.addMouseListener(new LoadLevelController(release2Panel.getName(), this));
+		if (refreshHighScore("release1", release1Label) ) {
+			release2Panel.addMouseListener(new LoadLevelController(release2Panel.getName(), this));
+		}
 		panel_1.add(release2Panel);
-		release2Panel.setLayout(null);
 
 		release3Panel = new JPanel();
-		release3Panel.setLayout(null);
 		release3Panel.setBackground(Color.BLUE);
 		release3Label = new JLabel();
 		release3Label.setFont(new Font("Verdana",1,16));
 		release3Panel.add(release3Label);
 		release3Panel.setName("release3");
-		release3Panel.addMouseListener(new LoadLevelController(release3Panel.getName(), this));
+		if (refreshHighScore("release2", release2Label) ) {
+			release3Panel.addMouseListener(new LoadLevelController(release3Panel.getName(), this));
+		}
 		panel_1.add(release3Panel);
 
 		release4Panel = new JPanel();
-		release4Panel.setLayout(null);
 		release4Panel.setBackground(Color.BLUE);
 		release4Label = new JLabel();
 		release4Label.setFont(new Font("Verdana",1,16));
 		release4Panel.add(release4Label);
 		release4Panel.setName("release4");
-		release4Panel.addMouseListener(new LoadLevelController(release4Panel.getName(), this));
+		if (refreshHighScore("release3", release3Label) ) {
+			release4Panel.addMouseListener(new LoadLevelController(release4Panel.getName(), this));
+		}
 		panel_1.add(release4Panel);
 
 		release5Panel = new JPanel();
-		release5Panel.setLayout(null);
 		release5Panel.setBackground(Color.BLUE);
 		release5Label = new JLabel();
 		release5Label.setFont(new Font("Verdana",1,16));
 		release5Panel.add(release5Label);
 		release5Panel.setName("release5");
-		release5Panel.addMouseListener(new LoadLevelController(release5Panel.getName(), this));
+		if (refreshHighScore("release4", release4Label) ) {
+			release5Panel.addMouseListener(new LoadLevelController(release5Panel.getName(), this));
+		}
 		panel_1.add(release5Panel);
 
 		JPanel panel_2 = new JPanel();
@@ -337,6 +369,8 @@ public class SelectScreen extends JFrame {
 
 		JLabel lblNewLabel_3 = new JLabel("Release");
 		panel_2.add(lblNewLabel_3);
+
+		refreshHighScores();
 	}
 
 	/**
@@ -352,7 +386,7 @@ public class SelectScreen extends JFrame {
 		input = newInput;		
 	}
 
-	void refreshHighScore(String name, JLabel label) {
+	private boolean refreshHighScore(String name, JLabel label) {
 		// this block of code looks crazy, but it seems to be
 		// necessary for relative class path to work
 		File file = new File(getClass().getClassLoader()
@@ -361,9 +395,9 @@ public class SelectScreen extends JFrame {
 		String fileString = file.toString();
 		tempString = fileString.split(":", 2);
 		FileInputStream fileInput;
-		
+
 		LevelTemplate template = null;
-		
+
 		try {
 			fileInput = new FileInputStream(tempString[1]);
 			ObjectInputStream in = new ObjectInputStream(fileInput);
@@ -380,29 +414,91 @@ public class SelectScreen extends JFrame {
 		Score highScore = new Score(template.getHighScorePoints(), template.getHighScoreRating());
 		label.setText(highScore.getHighScoreText());
 		this.repaint();
+
+		if (highScore.getRating() == StarRating.NoStars) {
+			return false;
+		} else
+			return true;
 	}
 
 	public void refreshHighScores() {
-		refreshHighScore("puzzle1", puzzle1Label);
-		refreshHighScore("puzzle2", puzzle2Label);
-		refreshHighScore("puzzle3", puzzle3Label);
-		refreshHighScore("puzzle4", puzzle4Label);
-		refreshHighScore("puzzle5", puzzle5Label);
-		refreshHighScore("elimination1", elimination1Label);
-		refreshHighScore("elimination2", elimination2Label);
-		refreshHighScore("elimination3", elimination3Label);
-		refreshHighScore("elimination4", elimination4Label);
-		refreshHighScore("elimination5", elimination5Label);
-		refreshHighScore("lightning1", lightning1Label);
-		refreshHighScore("lightning2", lightning2Label);
-		refreshHighScore("lightning3", lightning3Label);
-		refreshHighScore("lightning4", lightning4Label);
-		refreshHighScore("lightning5", lightning5Label);
-		refreshHighScore("release1", release1Label);
-		refreshHighScore("release2", release2Label);
-		refreshHighScore("release3", release3Label);
-		refreshHighScore("release4", release4Label);
-		refreshHighScore("release5", release5Label);
-	}
+		try {
+			if (refreshHighScore("puzzle1", puzzle1Label) ) {
+				//			puzzle2Panel.removeAll();
+				puzzle2Panel.addMouseListener(new LoadLevelController(puzzle2Panel.getName(), this));
+			}
+			if (refreshHighScore("puzzle2", puzzle2Label) ) {
+				//			puzzle3Panel.removeAll();
+				puzzle3Panel.addMouseListener(new LoadLevelController(puzzle3Panel.getName(), this));
+			}
+			if (refreshHighScore("puzzle3", puzzle3Label) ) {
+				//			puzzle4Panel.removeAll();
+				puzzle4Panel.addMouseListener(new LoadLevelController(puzzle4Panel.getName(), this));
+			}
+			if (refreshHighScore("puzzle4", puzzle4Label) ) {
+				//			puzzle5Panel.removeAll();
+				puzzle5Panel.addMouseListener(new LoadLevelController(puzzle5Panel.getName(), this));
+			}
+			refreshHighScore("puzzle5", puzzle5Label);
 
+			if (refreshHighScore("elimination1", elimination1Label) ) {
+//				elimination2Panel.setEnabled(false);
+				elimination2Panel.addMouseListener(new LoadLevelController(elimination2Panel.getName(), this));
+			}
+			if (refreshHighScore("elimination2", elimination2Label) ) {
+//				elimination3Panel.setEnabled(false);
+				elimination3Panel.addMouseListener(new LoadLevelController(elimination3Panel.getName(), this));
+			}
+			if (refreshHighScore("elimination3", elimination3Label) ) {
+//				elimination4Panel.setEnabled(false);
+				elimination4Panel.addMouseListener(new LoadLevelController(elimination4Panel.getName(), this));
+			}
+			if (refreshHighScore("elimination4", elimination4Label) ) {
+//				elimination5Panel.setEnabled(false);
+				elimination5Panel.addMouseListener(new LoadLevelController(elimination5Panel.getName(), this));
+			}
+			refreshHighScore("elimination5", elimination5Label);
+
+			if (refreshHighScore("lightning1", lightning1Label) ) {
+//				lightning2Panel.setEnabled(false);
+				lightning2Panel.addMouseListener(new LoadLevelController(lightning2Panel.getName(), this));
+			}
+			if (refreshHighScore("lightning2", lightning2Label) ) {
+//				lightning3Panel.setEnabled(false);
+				lightning3Panel.addMouseListener(new LoadLevelController(lightning3Panel.getName(), this));
+			}
+			if (refreshHighScore("lightning3", lightning3Label) ) {
+//				lightning4Panel.setEnabled(false);
+				lightning4Panel.addMouseListener(new LoadLevelController(lightning4Panel.getName(), this));
+			}
+			if (refreshHighScore("lightning4", lightning4Label) ) {
+//				lightning5Panel.setEnabled(false);
+				lightning5Panel.addMouseListener(new LoadLevelController(lightning5Panel.getName(), this));
+			}
+			refreshHighScore("lightning5", lightning5Label);
+
+			if (refreshHighScore("release1", release1Label) ) {
+//				release2Panel.setEnabled(false);
+				release2Panel.addMouseListener(new LoadLevelController(release2Panel.getName(), this));
+			}
+			if (refreshHighScore("release2", release2Label) ) {
+//				release3Panel.setEnabled(false);
+				release3Panel.addMouseListener(new LoadLevelController(release3Panel.getName(), this));
+			}
+			if (refreshHighScore("release3", release3Label) ) {
+//				release4Panel.setEnabled(false);
+				release4Panel.addMouseListener(new LoadLevelController(release4Panel.getName(), this));
+			}
+			if (refreshHighScore("release4", release4Label) ) {
+//				release5Panel.setEnabled(false);
+				release5Panel.addMouseListener(new LoadLevelController(release5Panel.getName(), this));
+			}
+			refreshHighScore("release5", release5Label);
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 }
