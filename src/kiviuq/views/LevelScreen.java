@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import kiviuq.controllers.FinishLevelController;
+import kiviuq.controllers.NextLevelController;
 import kiviuq.controllers.ResetTilesController;
 import kiviuq.controllers.RestartLevelController;
 import kiviuq.controllers.SelectRemoveController;
@@ -77,8 +78,9 @@ public class LevelScreen extends JFrame {
 	 * @param previousScreen
 	 *            the Screen that {@link LevelScreen#back} will display when
 	 *            clicked
+	 * @throws FileNotFoundException 
 	 */
-	public LevelScreen(Board board, final JFrame previousScreen) {
+	public LevelScreen(Board board, final JFrame previousScreen) throws FileNotFoundException {
 		super();
 		boardView = new BoardView(board, this);
 		this.previousScreen = previousScreen;
@@ -140,9 +142,9 @@ public class LevelScreen extends JFrame {
 		getContentPane().add(panelGrid);
 		panelGrid.setLayout(new BorderLayout(0, 0));
 		
-		this.finish = new JButton("Finish Level");
+		this.finish = new JButton("Next Level");
 		this.finish.setEnabled(false);
-		finish.addActionListener(new FinishLevelController(board, this));
+		finish.addActionListener(new NextLevelController(board.getName(), this));
 		
 		this.restart = new JButton("Restart Level");
 		restart.addActionListener(new RestartLevelController(board, this));
@@ -256,6 +258,7 @@ public class LevelScreen extends JFrame {
 			((SelectScreen) previousScreen).refreshHighScores();
 		}
 		// TODO probably save some stuff here
+		this.setVisible(false);
 		this.dispose();
 	}
 	
