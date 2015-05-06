@@ -7,15 +7,38 @@ import kiviuq.entities.Tile;
 import kiviuq.entities.TileType;
 import kiviuq.views.LevelScreen;
 
+/**
+ * This controller can swap two tiles. It is an {@link AbstractMoveController}
+ * so common logic will occur after the {@link Tile}s are swapped.
+ * 
+ * @author Evin Ugur
+ */
 public class SwapTileController extends AbstractMoveController {
-	Tile a, b;
+	/** A Tile Object to be switched with b */
+	Tile a;
+	/** A Tile Object to be switched with a */
+	Tile b;
 
-	public SwapTileController(Tile a, Tile b, Board board, LevelScreen levelScreen) {
+	/**
+	 * @param a
+	 *            tile to be switched
+	 * @param b
+	 *            another tile to be switched
+	 * @param board
+	 *            top level entity
+	 * @param levelScreen
+	 *            boundary object
+	 */
+	public SwapTileController(Tile a, Tile b, Board board,
+			LevelScreen levelScreen) {
 		super(board, levelScreen);
 		this.a = a;
 		this.b = b;
 	}
-	
+
+	/**
+	 * Will swap the two tiles if they are valid to be swapped.
+	 */
 	@Override
 	public boolean handleMove(ActionEvent e) {
 		if (a.getType() != TileType.Number || b.getType() != TileType.Number)

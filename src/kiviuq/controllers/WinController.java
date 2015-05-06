@@ -3,68 +3,53 @@ package kiviuq.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import kiviuq.entities.Board;
-import kiviuq.entities.LevelTemplate;
 import kiviuq.views.LevelScreen;
 
+/**
+ * This provides a dialog for when you win a game. It is hooked into the game
+ * logic via {@link AbstractMoveController#actionPerformed(ActionEvent)}.
+ * 
+ * @author Evin Ugur
+ */
 public class WinController implements ActionListener {
 
+	/** Reference to an entity object */
 	Board board;
+	/** Reference to a boundary object */
 	LevelScreen levelScreen;
-	String name;
-	LevelTemplate template;
 
+	/**
+	 * @param board
+	 *            an entity object
+	 * @param levelScreen
+	 *            a boundary object
+	 */
 	public WinController(Board board, LevelScreen levelScreen) {
 		this.board = board;
 		this.levelScreen = levelScreen;
-		this.name = board.getName();
-		this.template = board.getTemplate();
 	}
 
+	/**
+	 * Displays a dialog and modifies the boundary to create a button for
+	 * winning.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		if (board.hasWon() && board.getWinFlag()) {
-			JOptionPane winPane = new JOptionPane
-					("You beat the level!"
-							+ " Click the 'Finish Level' button to record your score!", JOptionPane.PLAIN_MESSAGE);
-			JDialog dialog = winPane.createDialog(levelScreen.getBoardView(), "Victory");
-		    dialog.setVisible(true);
-		    levelScreen.getFinishButton().setEnabled(true);
-		    board.setWinFlag(false);			
-			
-			//JOptionPane.showConfirmDialog(levelScreen.getBoardView(), "Congratulations on Winning!");
-			
-		    // Old Code: Can be Deleted when necessary
-		    /**
-			template.setHighScorePoints(board.getScore().getPoints());
-			template.setHighScoreRating(board.getScore().getRating());
+			JOptionPane winPane = new JOptionPane("You beat the level!"
+					+ " Click the 'Finish Level' button to record your score!",
+					JOptionPane.PLAIN_MESSAGE);
+			JDialog dialog = winPane.createDialog(levelScreen.getBoardView(),
+					"Victory");
+			dialog.setVisible(true);
+			levelScreen.getFinishButton().setEnabled(true);
+			board.setWinFlag(false);
 
-			// this block of code looks crazy, but it seems to be
-			// necessary for relative class path to work
-			File file = new File(getClass().getClassLoader().getResource("LevelTemplates/" + name).toString());
-			String[] tempString;
-			String fileString = file.toString();
-			tempString = fileString.split(":", 2);
-			FileOutputStream fileOutput;
-			try {
-				fileOutput = new FileOutputStream(tempString[1]);
-				ObjectOutputStream templateOut;
-				templateOut = new ObjectOutputStream(fileOutput);
-				templateOut.writeObject(template);
-				templateOut.close();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}		
-
-			levelScreen.exitGame();
-			*/
 		}
 	}
 
