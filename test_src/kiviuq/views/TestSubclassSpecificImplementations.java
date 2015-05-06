@@ -37,4 +37,13 @@ public class TestSubclassSpecificImplementations extends TestCase{
 		assertEquals(time + 1, lb.getTimePassed());
 	}
 	
+	public void testLightningBoardView() {
+		// lightning boards have time left labels
+		LevelScreen ls = new LevelScreen(lb, null);
+		assertNotNull(ls.getTimeLeftLabel());
+		ls = new LevelScreen(eb, null);
+		// other boards do not
+		assertNull(ls.getTimeLeftLabel());
+	}
+	
 }
