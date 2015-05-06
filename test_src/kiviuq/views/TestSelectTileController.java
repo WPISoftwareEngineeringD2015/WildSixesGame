@@ -5,6 +5,8 @@ import java.awt.event.WindowEvent;
 
 import development.Templates;
 import junit.framework.TestCase;
+import kiviuq.controllers.RemoveTileController;
+import kiviuq.controllers.SelectRemoveController;
 import kiviuq.controllers.SelectTileController;
 import kiviuq.entities.Board;
 import kiviuq.entities.LevelTemplate;
@@ -12,7 +14,6 @@ import kiviuq.entities.Tile;
 import kiviuq.entities.TileType;
 
 public class TestSelectTileController extends TestCase {
-
 	LevelScreen lvlScreen;
 
 	protected void setUp() throws Exception {
@@ -34,8 +35,6 @@ public class TestSelectTileController extends TestCase {
 		grid[1][0] = tile2;
 		lvlScreen.board.setGrid(grid);	
 		lvlScreen.refreshBoardView();
-//		lvlScreen.boardView.tvs[0][0].repaint();
-//		lvlScreen.boardView.tvs[1][0].repaint();
 		assertEquals(0, lvlScreen.board.getTileCount());
 		SelectTileController stc = new SelectTileController(lvlScreen, lvlScreen.boardView, 0, 0);
 		MouseEvent click = new MouseEvent(lvlScreen.boardView.tvs[0][0], 0, 0, 0, 0, 0, 1, false);
@@ -49,6 +48,6 @@ public class TestSelectTileController extends TestCase {
 		Thread.sleep(100);
 		assertTrue(lvlScreen.board.getGrid()[1][0].isSelected());
 		assertEquals(2, lvlScreen.board.getTileCount());
-		
 	}
+
 }
