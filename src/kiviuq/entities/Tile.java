@@ -98,6 +98,7 @@ public class Tile {
 	 * Generates a String representation of a Tile. Rendered on
 	 * {@link TileView#getMainLabel()}.
 	 */
+	@SuppressWarnings("incomplete-switch")
 	@Override
 	public String toString() {
 		String str = "";
