@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import kiviuq.entities.Board;
 import kiviuq.entities.MoveType;
+
 /**
  * This controller will set the {@link Board}'s {@link MoveType} to
  * {@link MoveType#Swap}.
@@ -15,7 +16,7 @@ import kiviuq.entities.MoveType;
 public class SelectSwapController implements ActionListener {
 	/** entity object */
 	Board board;
-	
+
 	/**
 	 * Stores model. There's no view to update, so this controller only takes a
 	 * reference to an entity.
@@ -26,7 +27,7 @@ public class SelectSwapController implements ActionListener {
 	public SelectSwapController(Board board) {
 		this.board = board;
 	}
-	
+
 	/**
 	 * Sets the {@link MoveType}.
 	 */

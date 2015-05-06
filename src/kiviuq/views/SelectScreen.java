@@ -67,7 +67,8 @@ public class SelectScreen extends JFrame {
 	public JLabel release3Label;
 	public JLabel release4Label;
 	public JLabel release5Label;
-
+	
+/*
 	public ObjectInputStream puzzle1Input;
 	public ObjectInputStream puzzle2Input;
 	public ObjectInputStream puzzle3Input;
@@ -88,7 +89,7 @@ public class SelectScreen extends JFrame {
 	public ObjectInputStream release3Input;
 	public ObjectInputStream release4Input;
 	public ObjectInputStream release5Input;
-
+*/
 	JPanel panel_1;
 
 
