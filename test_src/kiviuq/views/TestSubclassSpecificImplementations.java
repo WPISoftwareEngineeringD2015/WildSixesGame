@@ -34,6 +34,8 @@ public class TestSubclassSpecificImplementations extends TestCase{
 		pb.addPoints(2000);
 		assertTrue(pb.hasWon());
 		
+		lb.addPoints(2000);
+		assertTrue(lb.hasWon());
 		
 		Tile[][] grid = rb.getGrid();
 		for (int x = 0; x < Board.BOARD_LENGTH; x++) {
