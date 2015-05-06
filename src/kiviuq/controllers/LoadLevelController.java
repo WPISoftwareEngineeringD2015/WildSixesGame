@@ -180,9 +180,15 @@ public class LoadLevelController extends MouseAdapter {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		lvlScreen = new LevelScreen(
-				Board.MakeBoardFromTemplate(template, name), selectScreen);
+		try {
+			lvlScreen = new LevelScreen(
+					Board.MakeBoardFromTemplate(template, name), selectScreen);
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		lvlScreen.setVisible(true);
+		lvlScreen.setTitle(name);
 		selectScreen.setVisible(false);
 		System.out.println(name);
 	}
