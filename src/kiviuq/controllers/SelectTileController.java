@@ -9,26 +9,57 @@ import kiviuq.views.BoardView;
 import kiviuq.views.LevelScreen;
 import kiviuq.views.TileView;
 
+/**
+ * This controller abides to Swing's {@link MouseAdapter} which handles
+ * selecting {@link TileView}s.
+ * 
+ * @author Gabe Bell
+ *
+ */
 public class SelectTileController extends MouseAdapter {
-	BoardView boardView;
+	/** top level entity */
 	Board board;
+	/** used to determine information about selections */
 	MoveType moveType;
+	/** current x position */
 	int x;
+	/** current y position */
 	int y;
+	/** previous x position */
 	int lastX;
+	/** previous y position */
 	int lastY;
+	/** current Tile */
 	Tile tile;
+	/** top level boundary class */
 	LevelScreen levelScreen;
 
+	/**
+	 * Stores object reference to boundary and model components
+	 * 
+	 * @param levelScreen
+	 *            boundary
+	 * @param boardView
+	 *            boundary
+	 * @param x
+	 *            x position of the selection
+	 * @param y
+	 *            y position of the selection
+	 */
 	public SelectTileController(LevelScreen levelScreen, BoardView boardView,
 			int x, int y) {
 		this.levelScreen = levelScreen;
-		this.boardView = boardView;
 		this.board = boardView.getBoard();
 		this.x = x;
 		this.y = y;
 	}
 
+	/**
+	 * Determines if the current Tile is adjacent on the grid to the previous
+	 * one.
+	 * 
+	 * @return true if adjacent, false otherwise.
+	 */
 	private boolean isAdjacent() {
 		lastX = board.getLastX();
 		lastY = board.getLastY();
@@ -51,6 +82,13 @@ public class SelectTileController extends MouseAdapter {
 		return false;
 	}
 
+	/**
+	 * Determines is a {@link Tile} is the last in a sequence. Note that the
+	 * definition of a sequence is determined by the {@link Board}'s current
+	 * {@link MoveType}.
+	 * 
+	 * @return true if the tile is the last in the sequence, false otherwise.
+	 */
 	public boolean isLastTile() {
 		if (moveType == MoveType.Normal)
 			if (board.getTileSum() >= 6)
@@ -63,21 +101,24 @@ public class SelectTileController extends MouseAdapter {
 		return false;
 	}
 
+	/**
+	 * Logic for handling what to do when a {@link TileView} is clicked on
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		moveType = boardView.getBoard().getMoveType();
-		if(board.getMovesMade() >= board.getMoveLimit()) {
+		moveType = levelScreen.getBoardView().getBoard().getMoveType();
+		if (board.getMovesMade() >= board.getMoveLimit()) {
 			return;
 		}
 		if (!board.isMousePressed()) {
 			levelScreen.getSpecialButtonsView().setEnabled(false);
 			TileView sourcePanel = (TileView) e.getSource();
 			tile = sourcePanel.getTile();
-			if (!tile.isSelectable(moveType)){
+			if (!tile.isSelectable(moveType)) {
 				levelScreen.getSpecialButtonsView().setEnabled(true);
 				return;
 			}
-				
+
 			// all board logic below this point
 			board.pressMouse();
 			board.increaseTileCount();
@@ -91,7 +132,7 @@ public class SelectTileController extends MouseAdapter {
 				board.releaseMouse();
 				board.resetTileCount();
 				board.unselectTiles();
-				boardView.repaintTiles();
+				levelScreen.getBoardView().repaintTiles();
 				board.setLastX(-1);
 				board.setLastY(-1);
 				// stuff
@@ -106,13 +147,16 @@ public class SelectTileController extends MouseAdapter {
 		}
 	}
 
+	/**
+	 * Logic for handling what to do when a {@link TileView} is hovered over
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		moveType = boardView.getBoard().getMoveType();
+		moveType = levelScreen.getBoardView().getBoard().getMoveType();
 		if (board.isMousePressed()) {
 			TileView sourcePanel = (TileView) e.getSource();
 			tile = sourcePanel.getTile();
-			if(tile.isSelected()) {
+			if (tile.isSelected()) {
 				board.setLastX(x);
 				board.setLastY(y);
 				return;
@@ -140,8 +184,9 @@ public class SelectTileController extends MouseAdapter {
 						}
 						if (moveType == MoveType.Swap) {
 							// stuff
-							new SwapTileController( board.getGrid()[lastX][lastY], tile, board,levelScreen)
-								.actionPerformed(null);
+							new SwapTileController(
+									board.getGrid()[lastX][lastY], tile, board,
+									levelScreen).actionPerformed(null);
 							board.setMoveType(MoveType.Normal);
 						}
 						reset();
@@ -153,16 +198,21 @@ public class SelectTileController extends MouseAdapter {
 				}
 			}
 			// tile is NOT selectable
-			else reset();
+			else
+				reset();
 		}
 	}
+
+	/**
+	 * Resets the state for selected objects
+	 */
 	private void reset() {
 		levelScreen.getSpecialButtonsView().setEnabled(true);
 		board.releaseMouse();
 		board.resetTileCount();
 		board.unselectTiles();
-		boardView.repaintTiles();
-		boardView.repaint();
+		levelScreen.getBoardView().repaintTiles();
+		levelScreen.getBoardView().repaint();
 		board.setLastX(-1);
 		board.setLastY(-1);
 	}
