@@ -31,4 +31,10 @@ public class TestSubclassSpecificImplementations extends TestCase{
 		// assertFalse(pb.hasWon());
 	}
 	
+	public void testTimeControlsOnEntity() {
+		int time = lb.getTimePassed();
+		lb.increaseTimePassed();
+		assertEquals(time + 1, lb.getTimePassed());
+	}
+	
 }
