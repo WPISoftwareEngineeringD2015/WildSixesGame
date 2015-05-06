@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
@@ -350,11 +352,23 @@ public class SelectScreen extends JFrame {
 		input = newInput;		
 	}
 
-	void refreshHighScore(ObjectInputStream input, JLabel label) {
+	void refreshHighScore(String name, JLabel label) {
+		// this block of code looks crazy, but it seems to be
+		// necessary for relative class path to work
+		File file = new File(getClass().getClassLoader()
+				.getResource("LevelTemplates/" + name).toString().replaceAll("%20", " "));
+		String[] tempString;
+		String fileString = file.toString();
+		tempString = fileString.split(":", 2);
+		FileInputStream fileInput;
+		
 		LevelTemplate template = null;
+		
 		try {
-			template = (LevelTemplate) input.readObject();
-			input.close();
+			fileInput = new FileInputStream(tempString[1]);
+			ObjectInputStream in = new ObjectInputStream(fileInput);
+			template = (LevelTemplate) in.readObject();
+			in.close();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -362,33 +376,33 @@ public class SelectScreen extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		Score highScore = new Score(template.getHighScorePoints(), template.getHighScoreRating());
 		label.setText(highScore.getHighScoreText());
 		this.repaint();
 	}
-	
+
 	public void refreshHighScores() {
-		refreshHighScore(puzzle1Input, puzzle1Label);
-		refreshHighScore(puzzle2Input, puzzle2Label);
-		refreshHighScore(puzzle3Input, puzzle3Label);
-		refreshHighScore(puzzle4Input, puzzle4Label);
-		refreshHighScore(puzzle5Input, puzzle5Label);
-		refreshHighScore(elimination1Input, elimination1Label);
-		refreshHighScore(elimination2Input, elimination2Label);
-		refreshHighScore(elimination3Input, elimination3Label);
-		refreshHighScore(elimination4Input, elimination4Label);
-		refreshHighScore(elimination5Input, elimination5Label);
-		refreshHighScore(lightning1Input, lightning1Label);
-		refreshHighScore(lightning2Input, lightning2Label);
-		refreshHighScore(lightning3Input, lightning3Label);
-		refreshHighScore(lightning4Input, lightning4Label);
-		refreshHighScore(lightning5Input, lightning5Label);
-		refreshHighScore(release1Input, release1Label);
-		refreshHighScore(release2Input, release2Label);
-		refreshHighScore(release3Input, release3Label);
-		refreshHighScore(release4Input, release4Label);
-		refreshHighScore(release5Input, release5Label);
+		refreshHighScore("puzzle1", puzzle1Label);
+		refreshHighScore("puzzle2", puzzle2Label);
+		refreshHighScore("puzzle3", puzzle3Label);
+		refreshHighScore("puzzle4", puzzle4Label);
+		refreshHighScore("puzzle5", puzzle5Label);
+		refreshHighScore("elimination1", elimination1Label);
+		refreshHighScore("elimination2", elimination2Label);
+		refreshHighScore("elimination3", elimination3Label);
+		refreshHighScore("elimination4", elimination4Label);
+		refreshHighScore("elimination5", elimination5Label);
+		refreshHighScore("lightning1", lightning1Label);
+		refreshHighScore("lightning2", lightning2Label);
+		refreshHighScore("lightning3", lightning3Label);
+		refreshHighScore("lightning4", lightning4Label);
+		refreshHighScore("lightning5", lightning5Label);
+		refreshHighScore("release1", release1Label);
+		refreshHighScore("release2", release2Label);
+		refreshHighScore("release3", release3Label);
+		refreshHighScore("release4", release4Label);
+		refreshHighScore("release5", release5Label);
 	}
 
 }
